@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FeatureExtractor")]
-[assembly: AssemblyDescription("Product of Ambrex solution")]
+[assembly: AssemblyTitle("FeatureExtractor.Tests")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Ambrex")]
-[assembly: AssemblyProduct("FeatureExtractor")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("FeatureExtractor.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("eb94ea24-bc89-4d8a-8e68-fada76ea4cb9")]
+[assembly: Guid("5c2951c9-3bd1-41dc-8c21-c00e7905721b")]
 
 // Version information for an assembly consists of the following four values:
 //
