@@ -29,25 +29,26 @@ namespace FeatureExtractor.Specs.Sources
         [Then(@"le besoin (.*) existe")]
         public void ThenLeBesoin_Existe(string strRequirementID)
         {
-            requirment = extractor.getRequirement(strRequirementID);
-            Assert.Equals(strRequirementID, requirement.Id());  
+            requirement = extractor.getRequirement(strRequirementID);
+            Assert.IsNotNull(requirement);  
         }
 
         [Then(@"Et il contient le scénario:")]
         public void ThenEtIlContientLeScenario(Table table)
         {
-            ScenarioContext.Current.Pending();
+            foreach (var row in table.Rows)
+            {
+                Assert.AreEqual(true, requirement.Item2.Contains(new Tuple<string, string>(row["titre"], row["scénario"])));
+            }
         }
 
         [Then(@"Et il contient le contexte ""(.*)""")]
         public void ThenEtIlContientLeContexte(string strContexte)
         {
-            ScenarioContext.Current.Pending();
+            Assert.AreEqual(strContexte, requirement.Item1); ;
         }
 
-
-
         Extractor extractor = new Extractor();
-        Requirement requirment;
+        Tuple<string, List<Tuple<string,string>>> requirement;
     }
 }
