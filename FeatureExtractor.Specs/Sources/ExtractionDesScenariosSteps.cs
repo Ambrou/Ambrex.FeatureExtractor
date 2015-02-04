@@ -48,6 +48,16 @@ namespace FeatureExtractor.Specs.Sources
             Assert.AreEqual(strContexte, requirement.m_strContext); ;
         }
 
+        [Then(@"Et il contient les scénarios:")]
+        public void ThenEtIlContientLesScenario(Table table)
+        {
+            foreach (var row in table.Rows)
+            {
+                Assert.AreEqual(true, requirement.m_Scenario.Contains(new Tuple<string, string>(row["titre"], row["scénarios"])));
+            }
+        }
+
+
         Extractor extractor = new Extractor();
         Requirement requirement;
     }

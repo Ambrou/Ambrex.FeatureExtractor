@@ -77,6 +77,7 @@ namespace FeatureExtractor
                             scenario = new Tuple<string, string>(strTitle.TrimEnd(' '), strBody.TrimEnd(' '));
                             scenarios.Add(scenario);
                         }
+                        strTitle = "";
                         bIsScenarioTitle = true;
                         bIsScenarioBody = false;
                     }
@@ -87,6 +88,7 @@ namespace FeatureExtractor
                         {
                             bIsScenarioTitle = false;
                             bIsScenarioBody = true;
+                            strBody = "";
                             strBody += word;
                             strBody += " ";
                         }

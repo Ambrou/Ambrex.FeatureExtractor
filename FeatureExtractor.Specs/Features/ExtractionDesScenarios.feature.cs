@@ -126,7 +126,7 @@ this.ScenarioSetup(scenarioInfo);
                         "TEXTE"});
             table3.AddRow(new string[] {
                         "ESD_044",
-                        @"""Contexte:Étant donné un interpréteur de script Scénario: Changement de table Étant donné un matériel Et la configuration définissant la table 7 Lorsque j'appelle le mot clef changeTable 7 Alors le script retourne OK Scénario: Changement de table avec une table non définie Étant donné un matériel Et la configuration ne définissant pas la table 2 Lorsque j'appelle le mot clef changeTable 2 Alors j’ai la trace d’erreur numéro IDS_TCL_ERR_UNDEFINED_TABLE Et le script retourne KO"""});
+                        @"Contexte: Étant donné un interpréteur de script Scénario: Changement de table Étant donné un matériel Et la configuration définissant la table 7 Lorsque j'appelle le mot clef changeTable 7 Alors le script retourne OK Scénario: Changement de table avec une table non définie Étant donné un matériel Et la configuration ne définissant pas la table 2 Lorsque j'appelle le mot clef changeTable 2 Alors j’ai la trace d’erreur numéro IDS_TCL_ERR_UNDEFINED_TABLE Et le script retourne KO"});
 #line 21
     testRunner.Given("les exigences suivantes:", ((string)(null)), table3, "Given ");
 #line 24
@@ -147,7 +147,7 @@ this.ScenarioSetup(scenarioInfo);
                             " j\'appelle le mot clef changeTable 2 Alors j’ai la trace d’erreur numéro IDS_TCL" +
                             "_ERR_UNDEFINED_TABLE Et le script retourne KO"});
 #line 26
-        testRunner.And("Et il contient les scénario:", ((string)(null)), table4, "And ");
+        testRunner.And("Et il contient les scénarios:", ((string)(null)), table4, "And ");
 #line 30
         testRunner.And("Et il contient le contexte \"Étant donné un interpréteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
