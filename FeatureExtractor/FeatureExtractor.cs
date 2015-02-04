@@ -9,12 +9,107 @@ namespace FeatureExtractor
     {
         public void extract()
         {
-            //m_ExtractedRequirement = new Dictionary<string, List<Tuple<string, string>>>();
-            //foreach(var requirement in m_RawRequirements)
-            //{
-            //    List<Tuple<string, string>> requirementScenario = new List<Tuple<string,string>>();
-            //    m_ExtractedRequirement.Add(requirement.Key, requirementScenario);
-            //}
+            m_ExtractedRequirements = new Dictionary<string, Requirement>();
+            foreach (var requirement in m_RawRequirements)
+            {
+                Requirement requirementScenario = new Requirement();
+                extractContextAndScenario(requirement.Value, ref requirementScenario.m_strContext, ref requirementScenario.m_Scenario);
+
+                m_ExtractedRequirements.Add(requirement.Key, requirementScenario);
+            }
+        }
+
+        private void extractContextAndScenario(string strRawRequirement, ref string strContext, ref List<Tuple<string, string>> scenario)
+        {
+            extractContext(strRawRequirement, ref strContext);
+            extractScenario(strRawRequirement, ref scenario);
+        }
+
+        private void extractContext(string strRawRequirement, ref string strContext)
+        {
+            strContext = "";
+            string[] words = strRawRequirement.Split(' ');
+            bool bIsContext = false;
+            foreach (var word in words)
+            {
+                switch (word)
+                {
+                    case "Contexte:":
+                        {
+                            bIsContext = true;
+                        }
+                        break;
+                    case "Scénario:":
+                        {
+                            bIsContext = false;
+                            strContext = strContext.TrimEnd(' ');
+                        }
+                        break;
+                    default:
+                        {
+                            if (bIsContext == true)
+                            {
+                                strContext += word;
+                                strContext += " ";
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+        private void extractScenario(string strRawRequirement, ref List<Tuple<string, string>> scenarios)
+        {
+            bool bIsScenarioTitle = false;
+            bool bIsScenarioBody = false;
+            string[] words = strRawRequirement.Split(' ');
+            string strTitle = "";
+            string strBody = "";
+            Tuple<string, string> scenario;
+            foreach (var word in words)
+            {
+                switch (word)
+                {
+                    case "Scénario:":
+                    {
+                        if (bIsScenarioBody == true)
+                        {
+                            scenario = new Tuple<string, string>(strTitle.TrimEnd(' '), strBody.TrimEnd(' '));
+                            scenarios.Add(scenario);
+                        }
+                        bIsScenarioTitle = true;
+                        bIsScenarioBody = false;
+                    }
+                    break;
+                    case "Étant":
+                    {
+                        if (bIsScenarioTitle == true)
+                        {
+                            bIsScenarioTitle = false;
+                            bIsScenarioBody = true;
+                            strBody += word;
+                            strBody += " ";
+                        }
+                    }
+                    break;
+                    default:
+                    {
+                        if (bIsScenarioTitle == true)
+                        {
+                            strTitle += word;
+                            strTitle += " ";
+                        }
+                        if (bIsScenarioBody == true)
+                        {
+                            strBody += word;
+                            strBody += " ";
+                        }
+                    }
+                    break;
+                }
+            }
+            scenario = new Tuple<string, string>(strTitle.TrimEnd(' '), strBody.TrimEnd(' '));
+            scenarios.Add(scenario);
         }
 
 
@@ -23,15 +118,14 @@ namespace FeatureExtractor
             m_RawRequirements = requirements;
         }
 
-        public Tuple<string, List<Tuple<string, string>>> getRequirement(string strRequirementID)
+        public Requirement getRequirement(string strRequirementID)
         {
-            return m_ExtractedRequirement[strRequirementID];
+            return m_ExtractedRequirements[strRequirementID];
         }
 
         private Dictionary<string, string> m_RawRequirements;
-       // private Dictionary<string, List<Tuple<string, string>>> m_ExtractedRequirement;
-        private Dictionary<string, List<Tuple<string, Tuple<string, string>>>
-            List<Tuple<string, string>>> m_ExtractedRequirement;
+        private Dictionary<string, Requirement> m_ExtractedRequirements;
+
 
     }
 }

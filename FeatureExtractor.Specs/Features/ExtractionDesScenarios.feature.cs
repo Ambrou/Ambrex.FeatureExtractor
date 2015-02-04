@@ -31,8 +31,8 @@ namespace FeatureExtractor.Specs.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ExtractionDesScenarios", "  In order to avoid silly mistakes\r\n  As a math idiot\r\n  I want to be told the su" +
-                    "m of two numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ExtractionDesScenarios", "  In order to manipulate Requirement\'s scenarios as easily as moving shit around\r" +
+                    "\n  As a bourrin developer\r\n  I want to find the context and all scenarios", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -126,7 +126,7 @@ this.ScenarioSetup(scenarioInfo);
                         "TEXTE"});
             table3.AddRow(new string[] {
                         "ESD_044",
-                        @"""Contexte:Étant donné un interpréteur de script  Scénario: Changement de table Étant donné un matériel Et la configuration définissant la table 7 Lorsque j'appelle le mot clef changeTable 7 Alors le script retourne OK Scénario: Changement de table avec une table non définie Étant donné un matériel Et la configuration ne définissant pas la table 2 Lorsque j'appelle le mot clef changeTable 2 Alors j’ai la trace d’erreur numéro IDS_TCL_ERR_UNDEFINED_TABLE Et le script retourne KO"""});
+                        @"""Contexte:Étant donné un interpréteur de script Scénario: Changement de table Étant donné un matériel Et la configuration définissant la table 7 Lorsque j'appelle le mot clef changeTable 7 Alors le script retourne OK Scénario: Changement de table avec une table non définie Étant donné un matériel Et la configuration ne définissant pas la table 2 Lorsque j'appelle le mot clef changeTable 2 Alors j’ai la trace d’erreur numéro IDS_TCL_ERR_UNDEFINED_TABLE Et le script retourne KO"""});
 #line 21
     testRunner.Given("les exigences suivantes:", ((string)(null)), table3, "Given ");
 #line 24

@@ -38,17 +38,17 @@ namespace FeatureExtractor.Specs.Sources
         {
             foreach (var row in table.Rows)
             {
-                Assert.AreEqual(true, requirement.Item2.Contains(new Tuple<string, string>(row["titre"], row["scénario"])));
+                Assert.AreEqual(true, requirement.m_Scenario.Contains(new Tuple<string, string>(row["titre"], row["scénario"])));
             }
         }
 
         [Then(@"Et il contient le contexte ""(.*)""")]
         public void ThenEtIlContientLeContexte(string strContexte)
         {
-            Assert.AreEqual(strContexte, requirement.Item1); ;
+            Assert.AreEqual(strContexte, requirement.m_strContext); ;
         }
 
         Extractor extractor = new Extractor();
-        Tuple<string, List<Tuple<string,string>>> requirement;
+        Requirement requirement;
     }
 }
