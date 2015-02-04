@@ -85,9 +85,9 @@ this.ScenarioSetup(scenarioInfo);
                         "TEXTE"});
             table1.AddRow(new string[] {
                         "ESD_044",
-                        "\"  Contexte: Étant donné un interpréteur de script Scénario: Changement de table " +
-                            "Étant donné un matériel Et la configuration définissant la table 7 Lorsque j\'app" +
-                            "elle le mot clef changeTable 7 Alors le script retourne OK\""});
+                        "Contexte: Étant donné un interpréteur de script Scénario: Changement de table Éta" +
+                            "nt donné un matériel Et la configuration définissant la table 7 Lorsque j\'appell" +
+                            "e le mot clef changeTable 7 Alors le script retourne OK"});
 #line 8
     testRunner.Given("les exigences suivantes:", ((string)(null)), table1, "Given ");
 #line 11
@@ -99,13 +99,13 @@ this.ScenarioSetup(scenarioInfo);
                         "titre",
                         "scénario"});
             table2.AddRow(new string[] {
-                        "\"Changement de table\"",
-                        "\"Étant donné un matériel Et la configuration définissant la table 7 Lorsque j\'app" +
-                            "elle le mot clef changeTable 7 Alors le script retourne OK\""});
+                        "Changement de table",
+                        "Étant donné un matériel Et la configuration définissant la table 7 Lorsque j\'appe" +
+                            "lle le mot clef changeTable 7 Alors le script retourne OK"});
 #line 13
         testRunner.And("Et il contient le scénario:", ((string)(null)), table2, "And ");
 #line 16
-        testRunner.And("Et il contient le contexte \"Soit un interpreteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Et il contient le contexte \"Étant donné un interpréteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -136,20 +136,20 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "titre",
-                        "scénario"});
+                        "scénarios"});
             table4.AddRow(new string[] {
-                        "\"Changement de table\"",
-                        "\"Étant donné un matériel Et la configuration définissant la table 7 Lorsque j\'app" +
-                            "elle le mot clef changeTable 7 Alors le script retourne OK\""});
+                        "Changement de table",
+                        "Étant donné un matériel Et la configuration définissant la table 7 Lorsque j\'appe" +
+                            "lle le mot clef changeTable 7 Alors le script retourne OK"});
             table4.AddRow(new string[] {
-                        "\"Changement de table avec une table non définie\"",
-                        "\"Étant donné un matériel Et la configuration ne définissant pas la table 2 Lorsqu" +
-                            "e j\'appelle le mot clef changeTable 2 Alors j’ai la trace d’erreur numéro IDS_TC" +
-                            "L_ERR_UNDEFINED_TABLE Et le script retourne KO\""});
+                        "Changement de table avec une table non définie",
+                        "Étant donné un matériel Et la configuration ne définissant pas la table 2 Lorsque" +
+                            " j\'appelle le mot clef changeTable 2 Alors j’ai la trace d’erreur numéro IDS_TCL" +
+                            "_ERR_UNDEFINED_TABLE Et le script retourne KO"});
 #line 26
         testRunner.And("Et il contient les scénario:", ((string)(null)), table4, "And ");
 #line 30
-        testRunner.And("Et il contient le contexte \"Soit un interpreteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("Et il contient le contexte \"Étant donné un interpréteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
