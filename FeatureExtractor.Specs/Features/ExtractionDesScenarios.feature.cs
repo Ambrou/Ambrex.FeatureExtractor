@@ -153,6 +153,50 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Extraction de scénarios complexes")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ExtractionDesScenarios")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("core")]
+        public virtual void ExtractionDeScenariosComplexes()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Extraction de scénarios complexes", new string[] {
+                        "core"});
+#line 33
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ReqID",
+                        "TEXTE"});
+            table5.AddRow(new string[] {
+                        "ESD_044",
+                        @"Cette fonctionnalité permet de changer la valeur courante de gain. Accès à la fonctionnalité depuis un script Syntaxe changeGain valeur Spécifications exécutables Contexte: Étant donné un interpréteur de script Scénario: Changement de gain Etant donné un matériel Et la configuration définit le gain 7 Lorsque j'appelle le mot clef changeGain 7 Alors le script retourne OK Scénario: Changement de gain avec un gain non défini Etant donné un matériel Et la configuration définit pas le gain 2 Lorsque j'appelle le mot clef changeGain 2 Alors j’ai la trace d’erreur numero IDS_TCL_ERR_UNDEFINED_GAIN Et le script retourne KO Résultats attendus Met à jour le gain du mode courant. Met à jour la combo box gain de l’IHM. Le mot clef ne retourne rien à l’interpréteur. Si un problème survient alors un message d’erreur est affiché dans la fenêtre de sortie des messages standards."});
+#line 34
+    testRunner.Given("les exigences suivantes:", ((string)(null)), table5, "Given ");
+#line 37
+ testRunner.When("j\'extrais les scénarios", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 38
+ testRunner.Then("le besoin ESD_044 existe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénarios"});
+            table6.AddRow(new string[] {
+                        "Changement de gain",
+                        "Etant donné un matériel Et la configuration définit le gain 7 Lorsque j\'appelle l" +
+                            "e mot clef changeGain 7 Alors le script retourne OK"});
+            table6.AddRow(new string[] {
+                        "Changement de gain avec un gain non défini",
+                        "Etant donné un matériel Et la configuration définit pas le gain 2 Lorsque j\'appel" +
+                            "le le mot clef changeGain 2 Alors j’ai la trace d’erreur numero IDS_TCL_ERR_UNDE" +
+                            "FINED_GAIN Et le script retourne KO"});
+#line 39
+        testRunner.And("Et il contient les scénarios:", ((string)(null)), table6, "And ");
+#line 43
+        testRunner.And("Et il contient le contexte \"Étant donné un interpréteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

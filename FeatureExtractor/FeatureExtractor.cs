@@ -83,6 +83,7 @@ namespace FeatureExtractor
                     }
                     break;
                     case "Étant":
+                    case "Etant":
                     {
                         if (bIsScenarioTitle == true)
                         {
@@ -92,6 +93,11 @@ namespace FeatureExtractor
                             strBody += word;
                             strBody += " ";
                         }
+                    }
+                    break;
+                    case "Résultats":
+                    {
+                        bIsScenarioBody = false;
                     }
                     break;
                     default:
