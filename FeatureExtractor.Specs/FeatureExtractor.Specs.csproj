@@ -61,8 +61,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExtractionDesScenarios.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\TransformationDesScenarios.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransformationDesScenarios.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sources\ExtractionDesScenariosSteps.cs" />
+    <Compile Include="Sources\TransformationDesScenariosSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -71,6 +77,10 @@
     <None Include="Features\ExtractionDesScenarios.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ExtractionDesScenarios.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\TransformationDesScenarios.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TransformationDesScenarios.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

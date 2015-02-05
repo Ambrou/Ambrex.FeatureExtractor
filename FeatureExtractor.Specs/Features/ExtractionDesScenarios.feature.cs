@@ -72,11 +72,11 @@ namespace FeatureExtractor.Specs.Features
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Extraction de scénario simple")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ExtractionDesScenarios")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("core")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("extraction")]
         public virtual void ExtractionDeScenarioSimple()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Extraction de scénario simple", new string[] {
-                        "core"});
+                        "extraction"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -113,11 +113,11 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Extraction de plusieurs scénarios simples")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ExtractionDesScenarios")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("core")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("extraction")]
         public virtual void ExtractionDePlusieursScenariosSimples()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Extraction de plusieurs scénarios simples", new string[] {
-                        "core"});
+                        "extraction"});
 #line 20
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -157,11 +157,11 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Extraction de scénarios complexes")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ExtractionDesScenarios")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("core")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("extraction")]
         public virtual void ExtractionDeScenariosComplexes()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Extraction de scénarios complexes", new string[] {
-                        "core"});
+                        "extraction"});
 #line 33
 this.ScenarioSetup(scenarioInfo);
 #line hidden

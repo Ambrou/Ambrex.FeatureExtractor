@@ -3,7 +3,7 @@
     As a bourrin developer
     I want to find the context and all scenarios
 
-@core
+@extraction
 Scenario: Extraction de scénario simple
     Given les exigences suivantes:
             | ReqID   | TEXTE                                                                                                                                                                                                                      |   
@@ -16,7 +16,7 @@ Scenario: Extraction de scénario simple
         And Et il contient le contexte "Étant donné un interpréteur de script"
 
 
-@core
+@extraction
 Scenario: Extraction de plusieurs scénarios simples
     Given les exigences suivantes:
             | ReqID   | TEXTE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
@@ -29,7 +29,7 @@ Scenario: Extraction de plusieurs scénarios simples
             | Changement de table avec une table non définie | Étant donné un matériel Et la configuration ne définissant pas la table 2 Lorsque j'appelle le mot clef changeTable 2 Alors j’ai la trace d’erreur numéro IDS_TCL_ERR_UNDEFINED_TABLE Et le script retourne KO |
         And Et il contient le contexte "Étant donné un interpréteur de script"
 
-@core
+@extraction
 Scenario: Extraction de scénarios complexes
     Given les exigences suivantes:
         | ReqID   | TEXTE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
