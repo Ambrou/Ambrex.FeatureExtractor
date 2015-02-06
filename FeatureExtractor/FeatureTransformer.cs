@@ -12,22 +12,25 @@ namespace FeatureExtractor
             transform(ref requirement.m_strContext);
             foreach(var scenario in requirement.m_Scenarios)
             {
-                string strTemp = scenario.Item2;
-                transform(ref strTemp);
-                //scenario.GetType = strTemp;
+                transform(ref scenario.m_strSteps);
             }
         }
 
         private void transform(ref string strText)
         {
-            strText.Replace("Étant donné", "Soit");
-            strText.Replace("é", "e");
-            strText.Replace("è", "e");
-            strText.Replace("ê", "e");
-            strText.Replace("ù", "u");
-            strText.Replace("à", "a");
-            strText.Replace("à", "a");
-            strText.Replace("’", "'");
+            strText = strText.Replace("Étant donné", "Soit");
+            strText = strText.Replace("é", "e");
+            strText = strText.Replace("è", "e");
+            strText = strText.Replace("ê", "e");
+            strText = strText.Replace("ù", "u");
+            strText = strText.Replace("à", "a");
+            strText = strText.Replace("à", "a");
+            strText = strText.Replace("’", "'");
+            strText = strText.Replace("ô", "o");
+            strText = strText.Replace("ë", "e");
+            strText = strText.Replace("ö", "o");
+            strText = strText.Replace("ï", "i");
+            strText = strText.Replace("ä", "a");
         }
     }
 }

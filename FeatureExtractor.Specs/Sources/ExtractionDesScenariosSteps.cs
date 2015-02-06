@@ -38,7 +38,16 @@ namespace FeatureExtractor.Specs.Sources
         {
             foreach (var row in table.Rows)
             {
-                Assert.AreEqual(true, requirement.m_Scenario.Contains(new Tuple<string, string>(row["titre"], row["scénario"])));
+                bool bFound = false;
+                for (int i = 0; i < requirement.m_Scenarios.Count; i++)
+                {
+                    if (requirement.m_Scenarios[i].m_strSteps == row["scénario"] &&
+                        requirement.m_Scenarios[i].m_strTitle == row["titre"])
+                    {
+                        bFound = true;
+                    }
+                }
+                Assert.AreEqual(true, bFound);
             }
         }
 
@@ -53,7 +62,16 @@ namespace FeatureExtractor.Specs.Sources
         {
             foreach (var row in table.Rows)
             {
-                Assert.AreEqual(true, requirement.m_Scenario.Contains(new Tuple<string, string>(row["titre"], row["scénarios"])));
+                bool bFound = false;
+                for (int i = 0; i < requirement.m_Scenarios.Count; i++)
+                {
+                    if (requirement.m_Scenarios[i].m_strSteps == row["scénarios"] &&
+                        requirement.m_Scenarios[i].m_strTitle == row["titre"])
+                    {
+                        bFound = true;
+                    }
+                }
+                Assert.AreEqual(true, bFound);
             }
         }
 

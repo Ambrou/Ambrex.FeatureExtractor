@@ -19,7 +19,7 @@ namespace FeatureExtractor
             }
         }
 
-        private void extractContextAndScenario(string strRawRequirement, ref string strContext, ref List<Tuple<string, string>> scenario)
+        private void extractContextAndScenario(string strRawRequirement, ref string strContext, ref List<Scenario> scenario)
         {
             extractContext(strRawRequirement, ref strContext);
             extractScenario(strRawRequirement, ref scenario);
@@ -58,14 +58,13 @@ namespace FeatureExtractor
             }
         }
 
-        private void extractScenario(string strRawRequirement, ref List<Tuple<string, string>> scenarios)
+        private void extractScenario(string strRawRequirement, ref List<Scenario> scenarios)
         {
             bool bIsScenarioTitle = false;
             bool bIsScenarioBody = false;
             string[] words = strRawRequirement.Split(' ');
             string strTitle = "";
             string strBody = "";
-            Tuple<string, string> scenario;
             foreach (var word in words)
             {
                 switch (word)
@@ -74,8 +73,7 @@ namespace FeatureExtractor
                     {
                         if (bIsScenarioBody == true)
                         {
-                            scenario = new Tuple<string, string>(strTitle.TrimEnd(' '), strBody.TrimEnd(' '));
-                            scenarios.Add(scenario);
+                            scenarios.Add(new Scenario(strTitle.TrimEnd(' '), strBody.TrimEnd(' ')));
                         }
                         strTitle = "";
                         bIsScenarioTitle = true;
@@ -116,8 +114,7 @@ namespace FeatureExtractor
                     break;
                 }
             }
-            scenario = new Tuple<string, string>(strTitle.TrimEnd(' '), strBody.TrimEnd(' '));
-            scenarios.Add(scenario);
+            scenarios.Add(new Scenario(strTitle.TrimEnd(' '), strBody.TrimEnd(' ')));
         }
 
 
