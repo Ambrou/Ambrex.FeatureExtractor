@@ -99,12 +99,60 @@ this.ScenarioSetup(scenarioInfo);
                         "scénario"});
             table2.AddRow(new string[] {
                         "Changement d’une tablée",
-                        "Soit un materiel Et ou la configuration definissant la table 7 Lorsque j\'appelle " +
-                            "le mot clef changeTable 7 Alors le script retourne a volonte OK"});
+                        "Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j\'appelle " +
+                            "le mot clef changeTable 7\nAlors le script retourne a volonte OK"});
 #line 13
  testRunner.Then("l\'exigence extraite devient:", ((string)(null)), table2, "Then ");
 #line 16
         testRunner.And("son contexte devient \"Soit un interpreteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("transformation de deux scénario")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "TransformationDesScenarios")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("transformation")]
+        public virtual void TransformationDeDeuxScenario()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("transformation de deux scénario", new string[] {
+                        "transformation"});
+#line 20
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table3.AddRow(new string[] {
+                        "Changement d’une tablée",
+                        "Étant donné un matériel Et où la configuration définissant la table 7 Lorsque j’a" +
+                            "ppelle le mot clef changeTable 7 Alors le script retourne à volonté OK"});
+            table3.AddRow(new string[] {
+                        "Changement d’une tablée",
+                        "Étant donné un matériel Et où la configuration définissant la table 7 Lorsque j’a" +
+                            "ppelle le mot clef changeTable 7 Alors le script retourne à volonté OK24"});
+#line 21
+ testRunner.Given("l\'exigence extraite suivante:", ((string)(null)), table3, "Given ");
+#line 25
+        testRunner.And("son contexte est \"Étant donné un interpréteur de script Et un agenda\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 26
+ testRunner.When("je transforme le scénario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table4.AddRow(new string[] {
+                        "Changement d’une tablée",
+                        "Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j\'appelle " +
+                            "le mot clef changeTable 7\nAlors le script retourne a volonte OK"});
+            table4.AddRow(new string[] {
+                        "Changement d’une tablée",
+                        "Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j\'appelle " +
+                            "le mot clef changeTable 7\nAlors le script retourne a volonte OK24"});
+#line 27
+ testRunner.Then("l\'exigence extraite devient:", ((string)(null)), table4, "Then ");
+#line 31
+        testRunner.And("son contexte devient \"Soit un interpreteur de script\\nEt un agenda\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -56,6 +56,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Features\EcritureDesScenarios.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EcritureDesScenarios.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\ExtractionDesScenarios.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -73,6 +78,10 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Features\EcritureDesScenarios.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>EcritureDesScenarios.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\ExtractionDesScenarios.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
