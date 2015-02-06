@@ -5,7 +5,27 @@
 
 @ecriture
 Scenario: Ecriture d'un scénario
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+	Given l'exigence transformée ESD_044 contenant les scénario:	       
+            | titre                   | scénario                                                                                                                                              |
+            | Changement d’une tablée | Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j'appelle le mot clef changeTable 7\nAlors le script retourne a volonte OK   |
+            | Changement d’une tablée | Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j'appelle le mot clef changeTable 7\nAlors le script retourne a volonte OK24 |
+	    And le contexte "Soit un interpreteur de script\nEt un agenda"
+	When je génére les fichiers scénarios temporaires
+	Then j'ai le fichier contient ESD_044.feature contient les lignes:
+	        | ligne                                                 |
+	        | "  Contexte:"                                         |
+	        | "    Soit un interpreteur de script"                  |
+	        | "      Et un agenda                                   |
+	        | ""                                                    |
+	        | "  Scénario: Changement d’une tablée"                 |
+	        | "    Soit un materiel"                                |
+	        | "      Et ou la configuration definissant la table 7" |
+	        | "    Lorsque j'appelle le mot clef changeTable 7"     |
+	        | "    Alors le script retourne a volonte OK"           |
+	        | ""                                                    |
+	        | "  Scénario: Changement d’une tablée"                 |
+	        | "    Soit un materiel"                                |
+	        | "      Et ou la configuration definissant la table 7" |
+	        | "    Lorsque j'appelle le mot clef changeTable 7"     |
+	        | "    Alors le script retourne a volonte OK24"         |
+

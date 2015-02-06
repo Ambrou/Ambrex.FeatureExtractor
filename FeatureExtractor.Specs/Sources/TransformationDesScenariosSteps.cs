@@ -50,6 +50,7 @@ namespace FeatureExtractor.Specs.Sources
         [Then(@"son contexte devient ""(.*)""")]
         public void ThenSonContexteDevient(string strContext)
         {
+            strContext = strContext.Replace("\\n", "\n");
             Assert.AreEqual(strContext, requirement.m_strContext);
         }
 

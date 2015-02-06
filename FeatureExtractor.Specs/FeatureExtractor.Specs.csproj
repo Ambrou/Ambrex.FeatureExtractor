@@ -72,6 +72,7 @@
       <DependentUpon>TransformationDesScenarios.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sources\EcritureDesScenariosSteps.cs" />
     <Compile Include="Sources\ExtractionDesScenariosSteps.cs" />
     <Compile Include="Sources\TransformationDesScenariosSteps.cs" />
   </ItemGroup>

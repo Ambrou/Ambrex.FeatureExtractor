@@ -79,14 +79,59 @@ namespace FeatureExtractor.Specs.Features
                         "ecriture"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table1.AddRow(new string[] {
+                        "Changement d’une tablée",
+                        "Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j\'appelle " +
+                            "le mot clef changeTable 7\nAlors le script retourne a volonte OK"});
+            table1.AddRow(new string[] {
+                        "Changement d’une tablée",
+                        "Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j\'appelle " +
+                            "le mot clef changeTable 7\nAlors le script retourne a volonte OK24"});
 #line 8
- testRunner.Given("I have entered 50 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 9
- testRunner.And("I have entered 70 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
- testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
- testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("l\'exigence transformée ESD_044 contenant les scénario:", ((string)(null)), table1, "Given ");
+#line 12
+     testRunner.And("le contexte \"Soit un interpreteur de script\\nEt un agenda\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+ testRunner.When("je génére les fichiers scénarios temporaires", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ligne"});
+            table2.AddRow(new string[] {
+                        "\"  Contexte:\""});
+            table2.AddRow(new string[] {
+                        "\"    Soit un interpreteur de script\""});
+            table2.AddRow(new string[] {
+                        "\"      Et un agenda"});
+            table2.AddRow(new string[] {
+                        "\"\""});
+            table2.AddRow(new string[] {
+                        "\"  Scénario: Changement d’une tablée\""});
+            table2.AddRow(new string[] {
+                        "\"    Soit un materiel\""});
+            table2.AddRow(new string[] {
+                        "\"      Et ou la configuration definissant la table 7\""});
+            table2.AddRow(new string[] {
+                        "\"    Lorsque j\'appelle le mot clef changeTable 7\""});
+            table2.AddRow(new string[] {
+                        "\"    Alors le script retourne a volonte OK\""});
+            table2.AddRow(new string[] {
+                        "\"\""});
+            table2.AddRow(new string[] {
+                        "\"  Scénario: Changement d’une tablée\""});
+            table2.AddRow(new string[] {
+                        "\"    Soit un materiel\""});
+            table2.AddRow(new string[] {
+                        "\"      Et ou la configuration definissant la table 7\""});
+            table2.AddRow(new string[] {
+                        "\"    Lorsque j\'appelle le mot clef changeTable 7\""});
+            table2.AddRow(new string[] {
+                        "\"    Alors le script retourne a volonte OK24\""});
+#line 14
+ testRunner.Then("j\'ai le fichier contient ESD_044.feature contient les lignes:", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
