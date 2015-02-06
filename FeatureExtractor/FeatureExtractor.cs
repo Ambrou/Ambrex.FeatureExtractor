@@ -7,16 +7,17 @@ namespace FeatureExtractor
 {
     public class Extractor
     {
-        public void extract()
+        public Dictionary<string, Requirement> extract(Dictionary<string, string> requirements)
         {
-            m_ExtractedRequirements = new Dictionary<string, Requirement>();
-            foreach (var requirement in m_RawRequirements)
+            Dictionary<string, Requirement> extractedRequirements = new Dictionary<string, Requirement>();
+            foreach (var requirement in requirements)
             {
                 Requirement requirementScenario = new Requirement();
                 extractContextAndScenario(requirement.Value, ref requirementScenario.m_strContext, ref requirementScenario.m_Scenarios);
 
-                m_ExtractedRequirements.Add(requirement.Key, requirementScenario);
+                extractedRequirements.Add(requirement.Key, requirementScenario);
             }
+            return extractedRequirements;
         }
 
         private void extractContextAndScenario(string strRawRequirement, ref string strContext, ref List<Scenario> scenario)
@@ -118,18 +119,13 @@ namespace FeatureExtractor
         }
 
 
-        public void setRequirements(Dictionary<string, string> requirements)
-        {
-            m_RawRequirements = requirements;
-        }
+        //public Dictionary<string, Requirement> getRequirements()
+        //{
+        //    return m_ExtractedRequirements;
+        //}
 
-        public Requirement getRequirement(string strRequirementID)
-        {
-            return m_ExtractedRequirements[strRequirementID];
-        }
-
-        private Dictionary<string, string> m_RawRequirements;
-        private Dictionary<string, Requirement> m_ExtractedRequirements;
+        //private Dictionary<string, string> m_RawRequirements;
+        //private Dictionary<string, Requirement> m_ExtractedRequirements;
 
 
     }

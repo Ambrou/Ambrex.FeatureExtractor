@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FeatureExtractor.cs" />
+    <Compile Include="FeatureReader.cs" />
     <Compile Include="FeatureTransformer.cs" />
     <Compile Include="FeatureWrite.cs" />
     <Compile Include="Program.cs" />

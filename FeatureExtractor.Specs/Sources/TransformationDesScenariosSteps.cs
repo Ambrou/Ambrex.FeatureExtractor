@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace FeatureExtractor.Specs.Sources
@@ -25,7 +26,9 @@ namespace FeatureExtractor.Specs.Sources
         [When(@"je transforme le scénario")]
         public void WhenJeTransformeLeScenario()
         {
-            transformer.transform(ref requirement);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+            transformer.transform(Requirements);
         }
 
         [Then(@"l'exigence extraite devient:")]

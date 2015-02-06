@@ -66,11 +66,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExtractionDesScenarios.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\LectureDesScenarios.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LectureDesScenarios.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\TransformationDesScenarios.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TransformationDesScenarios.feature</DependentUpon>
     </Compile>
+    <Compile Include="Sources\LectureDesScenariosSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sources\EcritureDesScenariosSteps.cs" />
     <Compile Include="Sources\ExtractionDesScenariosSteps.cs" />
@@ -87,6 +93,10 @@
     <None Include="Features\ExtractionDesScenarios.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ExtractionDesScenarios.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\LectureDesScenarios.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LectureDesScenarios.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\TransformationDesScenarios.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

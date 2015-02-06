@@ -7,13 +7,17 @@ namespace FeatureExtractor
 {
     public class FeatureTransformer
     {
-        public void transform(ref Requirement requirement)
+        public Dictionary<string, Requirement> transform(Dictionary<string, Requirement> Requirements)
         {
-            transform(ref requirement.m_strContext);
-            foreach(var scenario in requirement.m_Scenarios)
+            foreach (var pair in Requirements)
             {
-                transform(ref scenario.m_strSteps);
+                transform(ref pair.Value.m_strContext);
+                foreach (var scenario in pair.Value.m_Scenarios)
+                {
+                    transform(ref scenario.m_strSteps);
+                }
             }
+            return Requirements;
         }
 
         private void transform(ref string strText)
@@ -45,28 +49,28 @@ namespace FeatureExtractor
             string newText = "";
             foreach (var word in words)
             {
-                switch(word)
+                switch (word)
                 {
                     case "Soit":
                     case "Lorsque":
                     case "Alors":
                     case "Et":
-                    {
-                        if(newText.Length != 0)
                         {
-                            newText = newText.TrimEnd(' ');
-                            newText += "\n";
-                        } 
-                        newText += word;
-                        newText += " ";
-                    }
-                    break;
+                            if (newText.Length != 0)
+                            {
+                                newText = newText.TrimEnd(' ');
+                                newText += "\n";
+                            }
+                            newText += word;
+                            newText += " ";
+                        }
+                        break;
                     default:
-                    {
-                        newText += word;
-                        newText += " "; 
-                    }
-                    break;
+                        {
+                            newText += word;
+                            newText += " ";
+                        }
+                        break;
                 }
             }
             strText = newText.TrimEnd(' ');

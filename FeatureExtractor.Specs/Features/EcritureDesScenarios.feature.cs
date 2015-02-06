@@ -31,8 +31,8 @@ namespace FeatureExtractor.Specs.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EcritureDesScenarios", "In order to get all scenarios in files\nAs a lazy developer\nI want to the scenario" +
-                    "s written in a file", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "EcritureDesScenarios", "In order to get all scenarios in files\r\nAs a lazy developer\r\nI want to the scenar" +
+                    "ios written in a file", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

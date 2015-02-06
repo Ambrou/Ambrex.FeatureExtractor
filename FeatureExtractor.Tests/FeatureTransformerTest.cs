@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace FeatureExtractor.Tests
 {
@@ -15,9 +16,11 @@ namespace FeatureExtractor.Tests
             requirement.m_strContext = "Étant donné un interpréteur de script éàèùëïäöêô’";
             Scenario scenario = new Scenario(" éàèùëïäöêô’", "Étant donné  éàèùëïäöêô’");
             requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
 
             // Act
-            transformer.transform(ref requirement);
+            transformer.transform(Requirements);
 
             // Assert
             Assert.AreEqual("Soit un interpreteur de script eaeueiaoeo'", requirement.m_strContext);

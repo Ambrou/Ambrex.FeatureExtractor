@@ -11,26 +11,24 @@ namespace FeatureExtractor.Specs.Sources
         [Given(@"les exigences suivantes:")]
         public void GivenLesExigencesSuivantes(Table table)
         {
-            var requirements = new Dictionary<string, string>();
 
             foreach (var row in table.Rows)
             {
                 requirements[row["ReqID"]] = row["TEXTE"];
             }
-            extractor.setRequirements(requirements);
         }
 
         [When(@"j'extrais les scénarios")]
         public void WhenJExtraisLesScenarios()
         {
-            extractor.extract();
+            extractedRequirements = extractor.extract(requirements);
         }
 
         [Then(@"le besoin (.*) existe")]
         public void ThenLeBesoin_Existe(string strRequirementID)
         {
-            requirement = extractor.getRequirement(strRequirementID);
-            Assert.IsNotNull(requirement);  
+            Assert.IsNotNull(extractedRequirements[strRequirementID]);
+            requirement = extractedRequirements[strRequirementID];
         }
 
         [Then(@"Et il contient le scénario:")]
@@ -75,7 +73,8 @@ namespace FeatureExtractor.Specs.Sources
             }
         }
 
-
+        Dictionary<string, string> requirements = new Dictionary<string, string>();
+        Dictionary<string, Requirement> extractedRequirements;
         Extractor extractor = new Extractor();
         Requirement requirement;
     }
