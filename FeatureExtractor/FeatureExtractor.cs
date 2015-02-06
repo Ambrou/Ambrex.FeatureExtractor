@@ -13,7 +13,7 @@ namespace FeatureExtractor
             foreach (var requirement in m_RawRequirements)
             {
                 Requirement requirementScenario = new Requirement();
-                extractContextAndScenario(requirement.Value, ref requirementScenario.m_strContext, ref requirementScenario.m_Scenario);
+                extractContextAndScenario(requirement.Value, ref requirementScenario.m_strContext, ref requirementScenario.m_Scenarios);
 
                 m_ExtractedRequirements.Add(requirement.Key, requirementScenario);
             }

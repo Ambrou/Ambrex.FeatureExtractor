@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using TechTalk.SpecFlow;
 
 namespace FeatureExtractor.Specs.Sources
@@ -9,32 +10,41 @@ namespace FeatureExtractor.Specs.Sources
         [Given(@"l'exigence extraite suivante:")]
         public void GivenLExigenceExtraiteSuivante(Table table)
         {
-            ScenarioContext.Current.Pending();
+            foreach (var row in table.Rows)
+            {
+                requirement.m_Scenario.Add(new Tuple<string, string>(row["titre"], row["scénario"]));
+            }
         }
 
         [Given(@"son contexte est ""(.*)""")]
         public void GivenSonContexteEst(string strContexte)
         {
-            ScenarioContext.Current.Pending();
+            requirement.m_strContext = strContexte;
         }
 
         [When(@"je transforme le scénario")]
         public void WhenJeTransformeLeScenario()
         {
-            ScenarioContext.Current.Pending();
+            transformer.transform(ref requirement);
         }
 
         [Then(@"l'exigence extraite devient:")]
         public void ThenLExigenceExtraiteDevient(Table table)
         {
-            ScenarioContext.Current.Pending();
+            foreach (var row in table.Rows)
+            {
+                Assert.AreEqual(true, requirement.m_Scenario.Contains(new Tuple<string,string>(row["titre"], row["scénario"])));
+            }
+            
         }
 
         [Then(@"son contexte devient ""(.*)""")]
-        public void ThenSonContexteDevient(string p0)
+        public void ThenSonContexteDevient(string strContext)
         {
-            ScenarioContext.Current.Pending();
+            Assert.AreEqual(strContext, requirement.m_strContext);
         }
 
+        Requirement requirement = new Requirement();
+        FeatureTransformer transformer = new FeatureTransformer();
     }
 }

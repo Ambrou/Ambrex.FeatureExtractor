@@ -4,7 +4,7 @@
 	I want to remove all silly caracteres like é or à 
 
 @transformation
-Scenario: Add two numbers
+Scenario: transformation d'un scénario
 	Given l'exigence extraite suivante:
             | titre                   | scénario                                                                                                                                                |
             | Changement d’une tablée | Étant donné un matériel Et où la configuration définissant la table 7 Lorsque j’appelle le mot clef changeTable 7 Alors le script retourne à volonté OK |
