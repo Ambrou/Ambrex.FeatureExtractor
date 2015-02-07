@@ -56,12 +56,17 @@
     <Compile Include="FeatureExtractorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FeatureTransformerTest.cs" />
+    <Compile Include="FeatureReaderTest.cs" />
+    <Compile Include="FeatureWriterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FeatureExtractor\FeatureExtractor.csproj">
       <Project>{e7b39b90-dcba-4f8b-87e6-a6892b11abbc}</Project>
       <Name>FeatureExtractor</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Issue01.agex" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

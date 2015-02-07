@@ -13,7 +13,7 @@ namespace FeatureExtractor
             FeatureReader reader = new FeatureReader();
             Extractor extractor = new Extractor();
             FeatureTransformer transformer = new FeatureTransformer();
-            FeatureWrite writer = new FeatureWrite();
+            FeatureWriter writer = new FeatureWriter();
             writer.write(transformer.transform(extractor.extract(reader.readRequirements(args[0]))));
         }
     }

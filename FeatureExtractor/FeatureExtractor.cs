@@ -94,6 +94,12 @@ namespace FeatureExtractor
                         }
                     }
                     break;
+                    case " ":
+                    case "":
+                    {
+
+                    }
+                    break;
                     case "Résultats":
                     {
                         bIsScenarioBody = false;

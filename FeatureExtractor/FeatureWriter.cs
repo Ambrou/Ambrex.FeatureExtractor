@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace FeatureExtractor
 {
-    public class FeatureWrite
+    public class FeatureWriter
     {
         public void write(Dictionary<string, Requirement> m_FormatedRequirements)
         {

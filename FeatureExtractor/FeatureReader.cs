@@ -10,7 +10,7 @@ namespace FeatureExtractor
         public Dictionary<string, string> readRequirements(string strFile)
         {
             Dictionary<string, string> requirements = new Dictionary<string, string>();
-            System.IO.StreamReader file = new System.IO.StreamReader(strFile);
+            System.IO.StreamReader file = new System.IO.StreamReader(strFile, Encoding.GetEncoding("iso-8859-15"));
             string strReqId = "";
             string strText = "";
             string line = "";

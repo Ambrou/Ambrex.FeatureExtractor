@@ -30,7 +30,7 @@ namespace FeatureExtractor.Specs.Sources
         public void WhenJeGenereLesFichiersScenariosTemporaires()
         {
             m_FormatedRequirements[strReqId] = requirement;
-            FeatureWrite writer = new FeatureWrite();
+            FeatureWriter writer = new FeatureWriter();
             writer.write(m_FormatedRequirements);
             //ScenarioContext.Current.Pending();
         }
