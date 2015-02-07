@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FeatureExtractor
 {
@@ -11,7 +12,8 @@ namespace FeatureExtractor
         {
             foreach (var pair in m_FormatedRequirements)
             {
-                string strFile = pair.Key + ".feature";
+                string strFile = Regex.Replace(pair.Key, "[a-zA-Z\\-_]", "") + ".feature";
+                //string strFile = pair.Key + ".feature";
                 System.IO.StreamWriter file = new System.IO.StreamWriter(strFile);
 
                 writeContext(ref file, ref pair.Value.m_strContext);
@@ -44,6 +46,7 @@ namespace FeatureExtractor
             foreach (var scenario in Scenarios)
             {
                 file.WriteLine("");
+                file.WriteLine("  @clean");
                 file.WriteLine("  Scénario: " + scenario.m_strTitle);
                 string[] lines = scenario.m_strSteps.Split('\n');
                 foreach (var line in lines)

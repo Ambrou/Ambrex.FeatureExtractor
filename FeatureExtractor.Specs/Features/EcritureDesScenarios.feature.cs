@@ -109,6 +109,8 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "\"\""});
             table2.AddRow(new string[] {
+                        "\"  @clean\""});
+            table2.AddRow(new string[] {
                         "\"  Scénario: Changement d’une tablée\""});
             table2.AddRow(new string[] {
                         "\"    Soit un materiel\""});
@@ -121,6 +123,8 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "\"\""});
             table2.AddRow(new string[] {
+                        "\"  @clean\""});
+            table2.AddRow(new string[] {
                         "\"  Scénario: Changement d’une tablée\""});
             table2.AddRow(new string[] {
                         "\"    Soit un materiel\""});
@@ -131,7 +135,7 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "\"    Alors le script retourne a volonte OK24\""});
 #line 14
- testRunner.Then("j\'ai le fichier contient ESD_044.feature contient les lignes:", ((string)(null)), table2, "Then ");
+ testRunner.Then("j\'ai le fichier contient 044.feature contient les lignes:", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

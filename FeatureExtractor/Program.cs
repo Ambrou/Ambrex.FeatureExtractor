@@ -14,7 +14,7 @@ namespace FeatureExtractor
             Extractor extractor = new Extractor();
             FeatureTransformer transformer = new FeatureTransformer();
             FeatureWrite writer = new FeatureWrite();
-            writer.write(transformer.transform(extractor.extract(reader.readRequirements(args[1]))));
+            writer.write(transformer.transform(extractor.extract(reader.readRequirements(args[0]))));
         }
     }
 }

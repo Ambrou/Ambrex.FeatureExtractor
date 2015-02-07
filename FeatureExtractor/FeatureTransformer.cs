@@ -28,6 +28,7 @@ namespace FeatureExtractor
 
         private void removeSpicyCharacters(ref string strText)
         {
+            strText = strText.Replace("Etant donné", "Soit");
             strText = strText.Replace("Étant donné", "Soit");
             strText = strText.Replace("é", "e");
             strText = strText.Replace("è", "e");

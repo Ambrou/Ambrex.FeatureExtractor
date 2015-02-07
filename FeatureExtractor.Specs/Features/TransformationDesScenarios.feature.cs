@@ -156,6 +156,46 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("transformation d\'un scénario avec Etant donné")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "TransformationDesScenarios")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("transformation")]
+        public virtual void TransformationDUnScenarioAvecEtantDonne()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("transformation d\'un scénario avec Etant donné", new string[] {
+                        "transformation"});
+#line 34
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table5.AddRow(new string[] {
+                        "Changement d’une tablée",
+                        "Etant donné un matériel Et où la configuration définissant la table 7 Lorsque j’a" +
+                            "ppelle le mot clef changeTable 7 Alors le script retourne à volonté OK"});
+#line 35
+ testRunner.Given("l\'exigence extraite suivante:", ((string)(null)), table5, "Given ");
+#line 38
+        testRunner.And("son contexte est \"Étant donné un interpréteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+ testRunner.When("je transforme le scénario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table6.AddRow(new string[] {
+                        "Changement d’une tablée",
+                        "Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j\'appelle " +
+                            "le mot clef changeTable 7\nAlors le script retourne a volonte OK"});
+#line 40
+ testRunner.Then("l\'exigence extraite devient:", ((string)(null)), table6, "Then ");
+#line 43
+        testRunner.And("son contexte devient \"Soit un interpreteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
