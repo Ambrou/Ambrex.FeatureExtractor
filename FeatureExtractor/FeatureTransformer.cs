@@ -46,6 +46,8 @@ namespace FeatureExtractor
 
         private void formatSteps(ref string strText)
         {
+            bool bExampleParameterStarted = false;
+            bool bExampleEmpty = false;
             string[] words = strText.Split(' ');
             string newText = "";
             foreach (var word in words)
@@ -66,10 +68,61 @@ namespace FeatureExtractor
                             newText += " ";
                         }
                         break;
+                    case "Exemple:":
+                        {
+                            if (newText.Length != 0)
+                            {
+                                newText = newText.TrimEnd(' ');
+                                newText += "\n";
+                            }
+                            newText += "Exemples:\n";
+                        }
+                        break;
+                    case "Exemples:":
+                        {
+                            if (newText.Length != 0)
+                            {
+                                newText = newText.TrimEnd(' ');
+                                newText += "\n";
+                            }
+                            newText += word;
+                            newText += "\n";
+                        }
+                        break;
+                    case "|":
+                        {
+                            
+                            bExampleParameterStarted = true;
+                            if (bExampleEmpty == true)
+                            {
+                                newText = newText.TrimEnd(' ');
+                                newText += "\n";
+                            }
+                            newText += word;
+                            newText += " ";
+                            bExampleEmpty = true;
+
+                            //if (bExampleParameterStarted == false)
+                            //{
+                            //    if(bExampleEmpty == true)
+                            //    {
+                            //        newText += "\n";
+                            //    } 
+                            //}
+                            //else
+                            //{
+                            //    bExampleEmpty = true;
+                            //}
+                        }
+                        break;
                     default:
                         {
                             newText += word;
                             newText += " ";
+                            if (bExampleParameterStarted == true)
+                            {
+                                bExampleEmpty = false;
+                            }
                         }
                         break;
                 }

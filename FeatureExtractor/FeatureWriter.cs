@@ -16,11 +16,20 @@ namespace FeatureExtractor
                 //string strFile = pair.Key + ".feature";
                 System.IO.StreamWriter file = new System.IO.StreamWriter(strFile);
 
+                writeHeader(ref file, pair.Key);
                 writeContext(ref file, ref pair.Value.m_strContext);
                 writeScenarios(ref file, ref pair.Value.m_Scenarios);
 
                 file.Close();
             }
+        }
+
+        private void writeHeader(ref System.IO.StreamWriter file, string strRequirementId)
+        {
+            file.WriteLine("# language: fr");
+            file.WriteLine("# encoding: Windows-1252");
+            file.WriteLine("@" + strRequirementId);
+            file.WriteLine("");
         }
 
         private void writeContext(ref System.IO.StreamWriter file, ref string strContext)
@@ -47,13 +56,25 @@ namespace FeatureExtractor
             {
                 file.WriteLine("");
                 file.WriteLine("  @clean");
-                file.WriteLine("  Scénario: " + scenario.m_strTitle);
+                if (scenario.m_strSteps.Contains("Exemples:") == true)
+                {
+                    file.WriteLine("  Plan du scénario: " + scenario.m_strTitle);
+                }
+                else
+                {
+                    file.WriteLine("  Scénario: " + scenario.m_strTitle);
+                }
+                
                 string[] lines = scenario.m_strSteps.Split('\n');
                 foreach (var line in lines)
                 {
                     if (line.StartsWith("Et") == true)
                     {
                         file.WriteLine("      " + line);
+                    }
+                    else if (line.StartsWith("Exemples:") == true)
+                    {
+                        file.WriteLine("  " + line);
                     }
                     else
                     {

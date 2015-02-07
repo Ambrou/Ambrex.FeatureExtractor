@@ -73,6 +73,13 @@ namespace FeatureExtractor.Specs.Sources
             }
         }
 
+        [Then(@"le besoin (.*) n'existe pas")]
+        public void ThenLeBesoinESD_NExistePas(string strRequirementId)
+        {
+            Assert.IsNull(extractedRequirements[strRequirementId]);
+        }
+
+
         Dictionary<string, string> requirements = new Dictionary<string, string>();
         Dictionary<string, Requirement> extractedRequirements;
         Extractor extractor = new Extractor();

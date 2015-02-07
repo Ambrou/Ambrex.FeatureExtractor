@@ -101,6 +101,14 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "ligne"});
             table2.AddRow(new string[] {
+                        "\"# language: fr\""});
+            table2.AddRow(new string[] {
+                        "\"# encoding: Windows-1252\""});
+            table2.AddRow(new string[] {
+                        "\"@ESD_044\""});
+            table2.AddRow(new string[] {
+                        "\"\""});
+            table2.AddRow(new string[] {
                         "\"  Contexte:\""});
             table2.AddRow(new string[] {
                         "\"    Soit un interpreteur de script\""});
@@ -136,6 +144,79 @@ this.ScenarioSetup(scenarioInfo);
                         "\"    Alors le script retourne a volonte OK24\""});
 #line 14
  testRunner.Then("j\'ai le fichier contient 044.feature contient les lignes:", ((string)(null)), table2, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Ecriture d\'un plan de scénario")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "EcritureDesScenarios")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ecriture")]
+        public virtual void EcritureDUnPlanDeScenario()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ecriture d\'un plan de scénario", new string[] {
+                        "ecriture"});
+#line 40
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table3.AddRow(new string[] {
+                        "Définition des statuts bloquants l’acquisition",
+                        @"Soit un generateur type
+Et aucun statut bloquant pour l'acquisition
+Lorsque j'appelle le mot clef setAcquiBlockingXGStatus parametres
+Alors les statuts st sont bloquants pour l'acquisition
+Et le script retourne TCL_OK
+Exemples:
+| type | parametres | st |
+| Philips avec le protocole SDL | st1Value 32 | st1Value 32 |"});
+#line 41
+ testRunner.Given("l\'exigence transformée ESD_044 contenant les scénario:", ((string)(null)), table3, "Given ");
+#line 44
+     testRunner.And("le contexte \"Soit un interpreteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
+ testRunner.When("je génére les fichiers scénarios temporaires", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ligne"});
+            table4.AddRow(new string[] {
+                        "\"# language: fr\""});
+            table4.AddRow(new string[] {
+                        "\"# encoding: Windows-1252\""});
+            table4.AddRow(new string[] {
+                        "\"@ESD_044\""});
+            table4.AddRow(new string[] {
+                        "\"\""});
+            table4.AddRow(new string[] {
+                        "\"  Contexte:\""});
+            table4.AddRow(new string[] {
+                        "\"    Soit un interpreteur de script\""});
+            table4.AddRow(new string[] {
+                        "\"\""});
+            table4.AddRow(new string[] {
+                        "\"  @clean\""});
+            table4.AddRow(new string[] {
+                        "\"  Plan du scénario: Définition des statuts bloquants l’acquisition"});
+            table4.AddRow(new string[] {
+                        "\"    Soit un generateur type\""});
+            table4.AddRow(new string[] {
+                        "\"      Et aucun statut bloquant pour l\'acquisition\""});
+            table4.AddRow(new string[] {
+                        "\"    Lorsque j\'appelle le mot clef setAcquiBlockingXGStatus parametres\""});
+            table4.AddRow(new string[] {
+                        "\"    Alors les statuts st sont bloquants pour l\'acquisition\""});
+            table4.AddRow(new string[] {
+                        "\"      Et le script retourne TCL_OK\""});
+            table4.AddRow(new string[] {
+                        "\"  Exemples:\""});
+            table4.AddRow(new string[] {
+                        "\"    | type | parametres | st |\""});
+            table4.AddRow(new string[] {
+                        "\"    | Philips avec le protocole SDL | st1Value 32 | st1Value 32 |\""});
+#line 46
+ testRunner.Then("j\'ai le fichier contient 044.feature contient les lignes:", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

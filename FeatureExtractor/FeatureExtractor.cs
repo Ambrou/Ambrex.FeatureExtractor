@@ -14,8 +14,10 @@ namespace FeatureExtractor
             {
                 Requirement requirementScenario = new Requirement();
                 extractContextAndScenario(requirement.Value, ref requirementScenario.m_strContext, ref requirementScenario.m_Scenarios);
-
-                extractedRequirements.Add(requirement.Key, requirementScenario);
+                if (requirementScenario.m_Scenarios.Count != 0)
+                {
+                    extractedRequirements.Add(requirement.Key, requirementScenario);
+                }
             }
             return extractedRequirements;
         }
@@ -43,7 +45,7 @@ namespace FeatureExtractor
                     case "Scénario:":
                         {
                             bIsContext = false;
-                            strContext = strContext.TrimEnd(' ');
+                            strContext = strContext.TrimEnd(' ').TrimStart(' ');
                         }
                         break;
                     default:
@@ -63,15 +65,20 @@ namespace FeatureExtractor
         {
             bool bIsScenarioTitle = false;
             bool bIsScenarioBody = false;
+            bool bPartOfExample = false;
             string[] words = strRawRequirement.Split(' ');
             string strTitle = "";
             string strBody = "";
+            string strPartOfExample = "";
+            string strLastWord = "";
             foreach (var word in words)
             {
                 switch (word)
                 {
                     case "Scénario:":
                     {
+                        bPartOfExample = false;
+                        strPartOfExample = "";
                         if (bIsScenarioBody == true)
                         {
                             scenarios.Add(new Scenario(strTitle.TrimEnd(' '), strBody.TrimEnd(' ')));
@@ -83,6 +90,7 @@ namespace FeatureExtractor
                     break;
                     case "Étant":
                     case "Etant":
+                    case "Soit":
                     {
                         if (bIsScenarioTitle == true)
                         {
@@ -92,6 +100,19 @@ namespace FeatureExtractor
                             strBody += word;
                             strBody += " ";
                         }
+                        
+                    }
+                    break;
+                    case "|":
+                    {
+                        if (bPartOfExample == true)
+                        {
+                            strBody += strPartOfExample;
+                            strPartOfExample = "";
+                        }
+                        bPartOfExample = true;
+                        strBody += word;
+                        strBody += " ";
                     }
                     break;
                     case " ":
@@ -107,32 +128,34 @@ namespace FeatureExtractor
                     break;
                     default:
                     {
-                        if (bIsScenarioTitle == true)
+                        if (word == strLastWord)
+                        {
+                            bIsScenarioBody = false;
+                        }
+                        if (bIsScenarioTitle == true && bPartOfExample == false)
                         {
                             strTitle += word;
                             strTitle += " ";
                         }
-                        if (bIsScenarioBody == true)
+                        if (bIsScenarioBody == true && bPartOfExample == false)
                         {
                             strBody += word;
                             strBody += " ";
                         }
+                        if(bPartOfExample == true)
+                        {
+                            strPartOfExample += word;
+                            strPartOfExample += " ";
+                        }
+                        strLastWord = word;
                     }
                     break;
                 }
             }
-            scenarios.Add(new Scenario(strTitle.TrimEnd(' '), strBody.TrimEnd(' ')));
+            if (strTitle != "" && strBody != "")
+            {
+                scenarios.Add(new Scenario(strTitle.TrimEnd(' '), strBody.TrimEnd(' ')));
+            }
         }
-
-
-        //public Dictionary<string, Requirement> getRequirements()
-        //{
-        //    return m_ExtractedRequirements;
-        //}
-
-        //private Dictionary<string, string> m_RawRequirements;
-        //private Dictionary<string, Requirement> m_ExtractedRequirements;
-
-
     }
 }

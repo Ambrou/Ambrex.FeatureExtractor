@@ -17,7 +17,7 @@ Scenario: transformation d'un scénario
 
 		
 @transformation
-Scenario: transformation de deux scénario
+Scenario: transformation de deux scénarios
 	Given l'exigence extraite suivante:
             | titre                   | scénario                                                                                                                                                  |
             | Changement d’une tablée | Étant donné un matériel Et où la configuration définissant la table 7 Lorsque j’appelle le mot clef changeTable 7 Alors le script retourne à volonté OK   |
@@ -41,3 +41,17 @@ Scenario: transformation d'un scénario avec Etant donné
             | titre                   | scénario                                                                                                                                            |
             | Changement d’une tablée | Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j'appelle le mot clef changeTable 7\nAlors le script retourne a volonte OK |
         And son contexte devient "Soit un interpreteur de script"
+
+
+		
+@transformation
+Scenario: transformation d'un plan de scénario simple sans indication de plan de scénario dans le texte
+    Given l'exigence extraite suivante:
+            | titre                                          | scénario                                                                                                                                                                                                                                                                                                                                    |
+            | Définition des statuts bloquants l’acquisition | Etant donné un générateur type Et aucun statut bloquant pour l’acquisition Lorsque j'appelle le mot clef setAcquiBlockingXGStatus parametres Alors les statuts st sont bloquants pour l’acquisition Et le script retourne TCL_OK Exemples: \| type \| paramètres \| st \| \| Philips avec le protocole SDL \| st1Value 32 \| st1Value 32 \| |
+	    And son contexte est "Soit un interpreteur TCL"
+    When je transforme le scénario
+    Then l'exigence extraite devient:
+            | titre                                          | scénario                                                                                                                                                                                                                                                                                                                                    |
+            | Définition des statuts bloquants l’acquisition | Soit un generateur type\nEt aucun statut bloquant pour l'acquisition\nLorsque j'appelle le mot clef setAcquiBlockingXGStatus parametres\nAlors les statuts st sont bloquants pour l'acquisition\nEt le script retourne TCL_OK\nExemples:\n\| type \| parametres \| st \|\n\| Philips avec le protocole SDL \| st1Value 32 \| st1Value 32 \| |
+        And son contexte devient "Soit un interpreteur TCL"

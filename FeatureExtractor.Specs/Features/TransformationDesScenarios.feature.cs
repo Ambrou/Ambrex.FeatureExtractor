@@ -31,8 +31,8 @@ namespace FeatureExtractor.Specs.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TransformationDesScenarios", "In order to use cucumber-cpp with ruby\nAs a french man\nI want to remove all silly" +
-                    " caracteres like é or à", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TransformationDesScenarios", "In order to use cucumber-cpp with ruby\r\nAs a french man\r\nI want to remove all sil" +
+                    "ly caracteres like é or à", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -110,12 +110,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("transformation de deux scénario")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("transformation de deux scénarios")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "TransformationDesScenarios")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("transformation")]
-        public virtual void TransformationDeDeuxScenario()
+        public virtual void TransformationDeDeuxScenarios()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("transformation de deux scénario", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("transformation de deux scénarios", new string[] {
                         "transformation"});
 #line 20
 this.ScenarioSetup(scenarioInfo);
@@ -193,6 +193,53 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("l\'exigence extraite devient:", ((string)(null)), table6, "Then ");
 #line 43
         testRunner.And("son contexte devient \"Soit un interpreteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("transformation d\'un plan de scénario simple sans indication de plan de scénario d" +
+            "ans le texte")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "TransformationDesScenarios")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("transformation")]
+        public virtual void TransformationDUnPlanDeScenarioSimpleSansIndicationDePlanDeScenarioDansLeTexte()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("transformation d\'un plan de scénario simple sans indication de plan de scénario d" +
+                    "ans le texte", new string[] {
+                        "transformation"});
+#line 48
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table7.AddRow(new string[] {
+                        "Définition des statuts bloquants l’acquisition",
+                        @"Etant donné un générateur type Et aucun statut bloquant pour l’acquisition Lorsque j'appelle le mot clef setAcquiBlockingXGStatus parametres Alors les statuts st sont bloquants pour l’acquisition Et le script retourne TCL_OK Exemples: | type | paramètres | st | | Philips avec le protocole SDL | st1Value 32 | st1Value 32 |"});
+#line 49
+    testRunner.Given("l\'exigence extraite suivante:", ((string)(null)), table7, "Given ");
+#line 52
+     testRunner.And("son contexte est \"Soit un interpreteur TCL\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 53
+    testRunner.When("je transforme le scénario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table8.AddRow(new string[] {
+                        "Définition des statuts bloquants l’acquisition",
+                        @"Soit un generateur type
+Et aucun statut bloquant pour l'acquisition
+Lorsque j'appelle le mot clef setAcquiBlockingXGStatus parametres
+Alors les statuts st sont bloquants pour l'acquisition
+Et le script retourne TCL_OK
+Exemples:
+| type | parametres | st |
+| Philips avec le protocole SDL | st1Value 32 | st1Value 32 |"});
+#line 54
+    testRunner.Then("l\'exigence extraite devient:", ((string)(null)), table8, "Then ");
+#line 57
+        testRunner.And("son contexte devient \"Soit un interpreteur TCL\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

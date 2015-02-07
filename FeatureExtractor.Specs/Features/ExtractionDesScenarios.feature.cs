@@ -197,6 +197,153 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Extraction d\'un plan de scénario simple sans indication de plande scénario dans l" +
+            "e texte")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ExtractionDesScenarios")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("extraction")]
+        public virtual void ExtractionDUnPlanDeScenarioSimpleSansIndicationDePlandeScenarioDansLeTexte()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Extraction d\'un plan de scénario simple sans indication de plande scénario dans l" +
+                    "e texte", new string[] {
+                        "extraction"});
+#line 47
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ReqID",
+                        "TEXTE"});
+            table7.AddRow(new string[] {
+                        "ESD_046",
+                        @"Contexte:     Soit un interpreteur TCL  Scénario: Définition des statuts bloquant l’acquisition     Etant donné un générateur type     Et aucun statut bloquant pour l’acquisition     Lorsque j'appelle le mot clef setAcquiBlockingXGStatus parametres     Alors les statuts st sont bloquants pour l’acquisition     Et le script retourne TCL_OK Exemples:     |  type                      | paramètres  | st          |     | Philips avec le protocole SDL  | st1Value 32 | st1Value 32 |"});
+#line 48
+    testRunner.Given("les exigences suivantes:", ((string)(null)), table7, "Given ");
+#line 51
+    testRunner.When("j\'extrais les scénarios", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 52
+    testRunner.Then("le besoin ESD_046 existe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table8.AddRow(new string[] {
+                        "Définition des statuts bloquant l’acquisition",
+                        @"Etant donné un générateur type Et aucun statut bloquant pour l’acquisition Lorsque j'appelle le mot clef setAcquiBlockingXGStatus parametres Alors les statuts st sont bloquants pour l’acquisition Et le script retourne TCL_OK Exemples: | type | paramètres | st | | Philips avec le protocole SDL | st1Value 32 | st1Value 32 |"});
+#line 53
+        testRunner.And("Et il contient le scénario:", ((string)(null)), table8, "And ");
+#line 56
+        testRunner.And("Et il contient le contexte \"Soit un interpreteur TCL\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Extraction d\'un plan de scénario complexe sans indication de plande scénario dans" +
+            " le texte")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ExtractionDesScenarios")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("extraction")]
+        public virtual void ExtractionDUnPlanDeScenarioComplexeSansIndicationDePlandeScenarioDansLeTexte()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Extraction d\'un plan de scénario complexe sans indication de plande scénario dans" +
+                    " le texte", new string[] {
+                        "extraction"});
+#line 59
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ReqID",
+                        "TEXTE"});
+            table9.AddRow(new string[] {
+                        "ESD_046",
+                        @"Description La configuration maamétrer : ,    Spécifications exécutables   Scénario: Vérification du RTC Port pour un RTC soft ou hard     Etant donné le champ Active RTC defini a un type de RTC hard ou soft         Et le champ RTC Port <etat>     Lorsque je verifie la configuration RTC     Alors j’ai la boite de dialogue d’erreur IDS_ERR_RTC_PORT_CONFIG         Et TeTriS ne se lance pas Exemple:     | etat       |     | inexistant |     | vide       |    IDS_ERR_RTC_PORT_CONFIG  Erreur de configuration de TeTr"});
+#line 60
+    testRunner.Given("les exigences suivantes:", ((string)(null)), table9, "Given ");
+#line 63
+    testRunner.When("j\'extrais les scénarios", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 64
+    testRunner.Then("le besoin ESD_046 existe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table10.AddRow(new string[] {
+                        "Vérification du RTC Port pour un RTC soft ou hard",
+                        @"Etant donné le champ Active RTC defini a un type de RTC hard ou soft Et le champ RTC Port <etat> Lorsque je verifie la configuration RTC Alors j’ai la boite de dialogue d’erreur IDS_ERR_RTC_PORT_CONFIG Et TeTriS ne se lance pas Exemple: | etat | | inexistant | | vide |"});
+#line 65
+        testRunner.And("Et il contient le scénario:", ((string)(null)), table10, "And ");
+#line 68
+        testRunner.And("Et il contient le contexte \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Extraction sans aucun scénario")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ExtractionDesScenarios")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("extraction")]
+        public virtual void ExtractionSansAucunScenario()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Extraction sans aucun scénario", new string[] {
+                        "extraction"});
+#line 71
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ReqID",
+                        "TEXTE"});
+            table11.AddRow(new string[] {
+                        "ESD_263",
+                        @"Cette fonctionnalité permet de définir si l’on doit se connecter avec le générateur au démarrage de TeTriS. Accès à la fonctionnalité depuis le fichier TeTriS_Configuration.ini Conditions  Dans le fichier de configuration du profil, dans la section Hardware Enabled l’entrée Connect XGenerator définit si l’on doit se connecter. Par défaut la valeur est à yes Résultats attendus Si le mot clef n’est pas défini alors par défaut on se connecte au démarrage. Si le mot clef est défini à yes alors on se connecte au démarrage. Si le mot clef est défini à no alors on ne se connecte pas au démarrage. Il faudra par la suite se connecter manuellement au générateur ou via un mot clef de pilotage du générateur. Si le mot clef est défini à une autre valeur, alors on se connecte au démarrage."});
+#line 72
+    testRunner.Given("les exigences suivantes:", ((string)(null)), table11, "Given ");
+#line 75
+    testRunner.When("j\'extrais les scénarios", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 76
+    testRunner.Then("le besoin ESD_263 n\'existe pas", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Extraction d\'un scénario complexe dont la fin est un doublon de mot")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ExtractionDesScenarios")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("extraction")]
+        public virtual void ExtractionDUnScenarioComplexeDontLaFinEstUnDoublonDeMot()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Extraction d\'un scénario complexe dont la fin est un doublon de mot", new string[] {
+                        "extraction"});
+#line 79
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ReqID",
+                        "TEXTE"});
+            table12.AddRow(new string[] {
+                        "ESD_046",
+                        @"Scénario: Sauvegarde impossible lors d’une acquisition autre que contrôlée par script     Etant donné que TeTriS n’a pas pu sauvegarder d’images pour cause de mémoire insuffisante     Lorsque l’acquisition est terminee     Alors j’ai la trace de warning numero IDS_WARN_ACQUI_NO_MEM  IDS_WARN_ACQUI_NO_MEM  WARNING : toutes les"});
+#line 80
+    testRunner.Given("les exigences suivantes:", ((string)(null)), table12, "Given ");
+#line 83
+    testRunner.When("j\'extrais les scénarios", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 84
+    testRunner.Then("le besoin ESD_046 existe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table13.AddRow(new string[] {
+                        "Sauvegarde impossible lors d’une acquisition autre que contrôlée par script",
+                        "Etant donné que TeTriS n’a pas pu sauvegarder d’images pour cause de mémoire insu" +
+                            "ffisante Lorsque l’acquisition est terminee Alors j’ai la trace de warning numer" +
+                            "o IDS_WARN_ACQUI_NO_MEM"});
+#line 85
+        testRunner.And("Et il contient le scénario:", ((string)(null)), table13, "And ");
+#line 88
+        testRunner.And("Et il contient le contexte \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
