@@ -243,6 +243,47 @@ Exemples:
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("transformation d\'un scénario avec table")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "TransformationDesScenarios")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("transformation")]
+        public virtual void TransformationDUnScenarioAvecTable()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("transformation d\'un scénario avec table", new string[] {
+                        "transformation"});
+#line 60
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table9.AddRow(new string[] {
+                        "Affichage des modes disponibles",
+                        @"Etant donné la fenetre de modification d’un PKA ouverte     Et la configuration detecteur définissant les modes : | mode |  | 1 |  | 7 |  | 4 |  | 3 | Alors les modes disponibles dans la liste deroulante sont dans l’ordre : | mode | | 1    | | 3    | | 4    | | 7    |"});
+#line 61
+    testRunner.Given("l\'exigence extraite suivante:", ((string)(null)), table9, "Given ");
+#line 64
+     testRunner.And("son contexte est \"Etant donné l\'IHM de TeTriS\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 65
+    testRunner.When("je transforme le scénario", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table10.AddRow(new string[] {
+                        "Affichage des modes disponibles",
+                        "Soit la fenetre de modification d’un PKA ouverte\nEt la configuration detecteur dé" +
+                            "finissant les modes :\n| mode |\n| 1 |\n| 7 |\n| 4 |\n| 3 |\nAlors les modes disponibl" +
+                            "es dans la liste deroulante sont dans l’ordre : | mode |\n| 1    |\n| 3    |\n| 4  " +
+                            "  |\n| 7    |"});
+#line 66
+    testRunner.Then("l\'exigence extraite devient:", ((string)(null)), table10, "Then ");
+#line 69
+        testRunner.And("son contexte devient \"Soit l\'IHM de TeTriS\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
