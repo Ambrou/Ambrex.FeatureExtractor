@@ -51,8 +51,14 @@ namespace FeatureExtractor
             bool bExampleParameterStarted = false;
             bool bExampleEmpty = false;
             bool bDoublePointOccurs = false;
+            bool bExampleOccurs = false;
+            bool bWriteTable = false;
+            int iColumnIndex = 0;
+            int iColumnSize = 0;
+            Dictionary<int, int> columnSize = new Dictionary<int, int>();
             string[] words = strText.Split(' ');
-            string newText = "";
+            strText = "";
+            //string newText = "";
             foreach (var word in words)
             {
                 switch (word)
@@ -62,63 +68,71 @@ namespace FeatureExtractor
                     case "Alors":
                     case "Et":
                         {
-                            if (newText.Length != 0)
-                            {
-                                newText = newText.TrimEnd(' ');
-                                newText += "\n";
-                            }
-                            newText += word;
-                            newText += " ";
+                            strText = addNewLine(strText);
+                            strText = addWordFollowedBySpaceCharacter(strText, word);
                             bDoublePointOccurs = false;
                         }
                         break;
                     case "Exemple:":
                         {
-                            if (newText.Length != 0)
-                            {
-                                newText = newText.TrimEnd(' ');
-                                newText += "\n";
-                            }
-                            newText += "Exemples:\n";
+                            strText = addNewLine(strText);
+                            strText += "Exemples:\n";
                             bDoublePointOccurs = false;
+                            bExampleOccurs = true;
                         }
                         break;
                     case "Exemples:":
                         {
-                            if (newText.Length != 0)
-                            {
-                                newText = newText.TrimEnd(' ');
-                                newText += "\n";
-                            }
-                            newText += word;
-                            newText += "\n";
+                            strText = addNewLine(strText);
+                            strText += word;
+                            strText += "\n";
                             bDoublePointOccurs = false;
+                            bExampleOccurs = true;
                         }
                         break;
                     case "|":
                         {
+
+                            if (bDoublePointOccurs == true || bExampleOccurs == true)
+                            {
+                                bWriteTable = true;
+                            }
                             if (bDoublePointOccurs == true)
                             {
                                 bDoublePointOccurs = false;
-                                newText = newText.TrimEnd(' ');
-                                newText += "\n";
+                                strText = addNewLine(strText);
+                                iColumnIndex = 0;
+                                if (columnSize.Count <= iColumnIndex)
+                                {
+                                    columnSize[iColumnIndex] = 0;
+                                }
                             }
                             bExampleParameterStarted = true;
                             if (bExampleEmpty == true)
                             {
-                                newText = newText.TrimEnd(' ');
-                                newText += "\n";
+                                strText = addNewLine(strText);
+                                iColumnIndex = 0;
+                                if (columnSize.Count <= iColumnIndex)
+                                {
+                                    columnSize[iColumnIndex] = 0;
+                                }
                             }
-                            newText += word;
-                            newText += " ";
+                            else
+                            {
+                                iColumnIndex++;
+                                if(columnSize.Count <= iColumnIndex)
+                                {
+                                    columnSize[iColumnIndex] = 0;
+                                }
+                            }
+                            strText = addWordFollowedBySpaceCharacter(strText, word);
                             bExampleEmpty = true;
                         }
                         break;
                     case ":":
                         {
                             bDoublePointOccurs = true;
-                            newText += word;
-                            newText += " ";
+                            strText = addWordFollowedBySpaceCharacter(strText, word);
                         }
                         break;
                     case " ":
@@ -129,8 +143,12 @@ namespace FeatureExtractor
                         break;
                     default:
                         {
-                            newText += word;
-                            newText += " ";
+                            if (bWriteTable == true)
+                            {
+                                iColumnSize += word.Length + 1;
+                                columnSize[iColumnIndex] = Math.Max(columnSize[iColumnIndex], iColumnSize);
+                            }
+                            strText = addWordFollowedBySpaceCharacter(strText, word);
                             if (bExampleParameterStarted == true)
                             {
                                 bExampleEmpty = false;
@@ -140,7 +158,25 @@ namespace FeatureExtractor
                         break;
                 }
             }
-            strText = newText.TrimEnd(' ');
+            //strText = newText.TrimEnd(' ');
+            strText = strText.TrimEnd(' ');
+        }
+
+        private static string addWordFollowedBySpaceCharacter(string strText, string word)
+        {
+            strText += word;
+            strText += " ";
+            return strText;
+        }
+
+        private static string addNewLine(string strText)
+        {
+            if (strText.Length != 0)
+            {
+                strText = strText.TrimEnd(' ');
+                strText += "\n";
+            }
+            return strText;
         }
     }
 }
