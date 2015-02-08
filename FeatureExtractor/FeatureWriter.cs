@@ -64,8 +64,8 @@ namespace FeatureExtractor
                 {
                     file.WriteLine("  Scénario: " + scenario.m_strTitle);
                 }
-                
-                string[] lines = scenario.m_strSteps.Split('\n');
+
+                string[] lines = scenario.m_strSteps.Replace("\r","").Split('\n');
                 foreach (var line in lines)
                 {
                     if (line.StartsWith("Et") == true)

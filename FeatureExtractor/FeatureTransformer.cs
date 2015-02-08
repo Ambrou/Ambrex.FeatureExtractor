@@ -42,12 +42,15 @@ namespace FeatureExtractor
             strText = strText.Replace("ö", "o");
             strText = strText.Replace("ï", "i");
             strText = strText.Replace("ä", "a");
+            // Transform the blank character before the : character
+            strText = strText.Replace(" ", " ");
         }
 
         private void formatSteps(ref string strText)
         {
             bool bExampleParameterStarted = false;
             bool bExampleEmpty = false;
+            bool bDoublePointOccurs = false;
             string[] words = strText.Split(' ');
             string newText = "";
             foreach (var word in words)
@@ -66,6 +69,7 @@ namespace FeatureExtractor
                             }
                             newText += word;
                             newText += " ";
+                            bDoublePointOccurs = false;
                         }
                         break;
                     case "Exemple:":
@@ -76,6 +80,7 @@ namespace FeatureExtractor
                                 newText += "\n";
                             }
                             newText += "Exemples:\n";
+                            bDoublePointOccurs = false;
                         }
                         break;
                     case "Exemples:":
@@ -87,11 +92,17 @@ namespace FeatureExtractor
                             }
                             newText += word;
                             newText += "\n";
+                            bDoublePointOccurs = false;
                         }
                         break;
                     case "|":
                         {
-                            
+                            if (bDoublePointOccurs == true)
+                            {
+                                bDoublePointOccurs = false;
+                                newText = newText.TrimEnd(' ');
+                                newText += "\n";
+                            }
                             bExampleParameterStarted = true;
                             if (bExampleEmpty == true)
                             {
@@ -101,18 +112,19 @@ namespace FeatureExtractor
                             newText += word;
                             newText += " ";
                             bExampleEmpty = true;
+                        }
+                        break;
+                    case ":":
+                        {
+                            bDoublePointOccurs = true;
+                            newText += word;
+                            newText += " ";
+                        }
+                        break;
+                    case " ":
+                    case "":
+                        {
 
-                            //if (bExampleParameterStarted == false)
-                            //{
-                            //    if(bExampleEmpty == true)
-                            //    {
-                            //        newText += "\n";
-                            //    } 
-                            //}
-                            //else
-                            //{
-                            //    bExampleEmpty = true;
-                            //}
                         }
                         break;
                     default:
@@ -123,6 +135,7 @@ namespace FeatureExtractor
                             {
                                 bExampleEmpty = false;
                             }
+                            bDoublePointOccurs = false;
                         }
                         break;
                 }

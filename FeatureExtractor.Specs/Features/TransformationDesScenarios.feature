@@ -64,7 +64,7 @@ Scenario: transformation d'un scénario avec table
 	    And son contexte est "Etant donné l'IHM de TeTriS"
     When je transforme le scénario
     Then l'exigence extraite devient:
-            | titre                           | scénario                                                                                                                                                                                                                                                                                     |
-            | Affichage des modes disponibles | Soit la fenetre de modification d’un PKA ouverte\nEt la configuration detecteur définissant les modes :\n\| mode \|\n\| 1 \|\n\| 7 \|\n\| 4 \|\n\| 3 \|\nAlors les modes disponibles dans la liste deroulante sont dans l’ordre : \| mode \|\n\| 1    \|\n\| 3    \|\n\| 4    \|\n\| 7    \| |
-        And son contexte devient "Soit l'IHM de TeTriS"
+            | titre                           | scénario                                                                                                                                                                                                                                                                          |
+            | Affichage des modes disponibles | Soit la fenetre de modification d'un PKA ouverte\nEt la configuration detecteur definissant les modes :\n\| mode \|\n\| 1 \|\n\| 7 \|\n\| 4 \|\n\| 3 \|\nAlors les modes disponibles dans la liste deroulante sont dans l'ordre :\n\| mode \|\n\| 1 \|\n\| 3 \|\n\| 4 \|\n\| 7 \| |
+        And son contexte devient "Soit l'IHM de TeTriS"
 
