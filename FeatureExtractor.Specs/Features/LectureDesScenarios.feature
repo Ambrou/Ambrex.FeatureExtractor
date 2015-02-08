@@ -42,5 +42,5 @@ Scenario: Lecture des exigences
 	    | Date-Statut= 09/05/2014                                                                                                                          |
 	    | @=@=@REQUIREMENT@=@=@                                                                                                                            |
 	When j'analyse ce fichier
-	Then j'ai l'exigence ESD_044 avec comme texte "Gestion des informations dans la barre de statusstatuts [p.29]"
-	    And j'ai l'exigence ESD_544 avec comme texte "Gestion des informations dans la barre de status           statuts [p.29]"
+	Then j'ai l'exigence ESD_044 avec comme texte "Gestion des informations dans la barre de statusstatuts [p.29]" et titre "Utilisation de la bibliothèque IO_Image pour définir les zones de ROI [p.15]"
+	    And j'ai l'exigence ESD_544 avec comme texte "Gestion des informations dans la barre de status           statuts [p.29]" et titre "Utilisation de la bibliothèque IO_Image pour définir les zones de ROI [p.15]"

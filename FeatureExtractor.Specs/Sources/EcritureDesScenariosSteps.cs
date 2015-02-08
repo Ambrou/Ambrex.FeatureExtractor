@@ -26,13 +26,19 @@ namespace FeatureExtractor.Specs.Sources
             requirement.m_strContext = strContext;
         }
 
+        [Given(@"sa fonctionnalité est ""(.*)""")]
+        public void GivenSaFonctionnaliteEst(string strFeature)
+        {
+            requirement.m_strFeature = strFeature;
+        }
+
+
         [When(@"je génére les fichiers scénarios temporaires")]
         public void WhenJeGenereLesFichiersScenariosTemporaires()
         {
             m_FormatedRequirements[strReqId] = requirement;
             FeatureWriter writer = new FeatureWriter();
             writer.write(m_FormatedRequirements);
-            //ScenarioContext.Current.Pending();
         }
 
         [Then(@"j'ai le fichier contient (.*)\.feature contient les lignes:")]

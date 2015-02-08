@@ -7,12 +7,13 @@ namespace FeatureExtractor
 {
     public class FeatureReader
     {
-        public Dictionary<string, string> readRequirements(string strFile)
+        public Dictionary<string, Tuple<string, string>> readRequirements(string strFile)
         {
-            Dictionary<string, string> requirements = new Dictionary<string, string>();
+            Dictionary<string, Tuple<string, string>> requirements = new Dictionary<string, Tuple<string, string>>();
             System.IO.StreamReader file = new System.IO.StreamReader(strFile, Encoding.GetEncoding("iso-8859-15"));
             string strReqId = "";
             string strText = "";
+            string strTitle = "";
             string line = "";
             while ((line = file.ReadLine()) != null)
             {
@@ -20,15 +21,20 @@ namespace FeatureExtractor
                 {
                     strReqId = line.Substring(7).TrimStart(' ').TrimEnd(' ');
                 }
+                else if (line.StartsWith("TITRE= ") == true)
+                {
+                    strTitle = line.Substring(7).TrimStart(' ').TrimEnd(' ');
+                }
                 else if (line.StartsWith("TEXTE= ") == true)
                 {
                     strText = line.Substring(7).TrimStart(' ').TrimEnd(' ');
                 }
-                if(strText != "" && strReqId != "")
+                if(strText != "" && strReqId != "" && strTitle != "")
                 {
-                    requirements[strReqId] = strText;
+                    requirements.Add(strReqId, new Tuple<string, string>(strTitle, strText));
                     strReqId = "";
                     strText = "";
+                    strTitle = "";
                 }
             }
             file.Close();

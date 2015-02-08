@@ -10,12 +10,14 @@ Scenario: Ecriture d'un scénario
             | Changement d’une tablée | Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j'appelle le mot clef changeTable 7\nAlors le script retourne a volonte OK   |
             | Changement d’une tablée | Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j'appelle le mot clef changeTable 7\nAlors le script retourne a volonte OK24 |
 	    And le contexte "Soit un interpreteur de script\nEt un agenda"
+		And sa fonctionnalité est "Changement de table"
 	When je génére les fichiers scénarios temporaires
 	Then j'ai le fichier contient 044.feature contient les lignes:
 	        | ligne                                                 |
 	        | "# language: fr"                                      |
 	        | "# encoding: Windows-1252"                            |
 	        | "@ESD_044"                                            |
+	        | "Fonctionnalité: Changement de table"                 |
 	        | ""                                                    |
 	        | "  Contexte:"                                         |
 	        | "    Soit un interpreteur de script"                  |
@@ -48,6 +50,7 @@ Scenario: Ecriture d'un plan de scénario
 	        | "# language: fr"                                                        |
 	        | "# encoding: Windows-1252"                                              |
 	        | "@ESD_044"                                                              |
+	        | "Fonctionnalité: "                                                      |
 	        | ""                                                                      |
 	        | "  Contexte:"                                                           |
 	        | "    Soit un interpreteur de script"                                    |

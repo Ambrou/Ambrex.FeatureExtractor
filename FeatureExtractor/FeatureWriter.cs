@@ -16,7 +16,7 @@ namespace FeatureExtractor
                 //string strFile = pair.Key + ".feature";
                 System.IO.StreamWriter file = new System.IO.StreamWriter(strFile);
 
-                writeHeader(ref file, pair.Key);
+                writeHeader(ref file, pair.Key, pair.Value.m_strFeature);
                 writeContext(ref file, ref pair.Value.m_strContext);
                 writeScenarios(ref file, ref pair.Value.m_Scenarios);
 
@@ -24,11 +24,12 @@ namespace FeatureExtractor
             }
         }
 
-        private void writeHeader(ref System.IO.StreamWriter file, string strRequirementId)
+        private void writeHeader(ref System.IO.StreamWriter file, string strRequirementId, string strFeature)
         {
             file.WriteLine("# language: fr");
             file.WriteLine("# encoding: Windows-1252");
             file.WriteLine("@" + strRequirementId);
+            file.WriteLine("Fonctionnalité: " + strFeature);
             file.WriteLine("");
         }
 

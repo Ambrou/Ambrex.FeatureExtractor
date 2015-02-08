@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using TechTalk.SpecFlow;
 
 namespace FeatureExtractor.Specs
@@ -12,7 +13,7 @@ namespace FeatureExtractor.Specs
         public void GivenLeFichierESD_AgexContenantLesLignes(Table table)
         {
             strFile = "ESD.agex";
-            System.IO.StreamWriter file = new System.IO.StreamWriter(strFile);
+            System.IO.StreamWriter file = new System.IO.StreamWriter(strFile, false, Encoding.GetEncoding("iso-8859-15"));
             foreach (var row in table.Rows)
             {
                 file.WriteLine(row["ligne"]);
@@ -28,13 +29,14 @@ namespace FeatureExtractor.Specs
         }
 
 
-        [Then(@"j'ai l'exigence (.*) avec comme texte ""(.*)""")]
-        public void ThenJExigencesESD_AvecCommeTexte(string strReqId, string strRequirement)
+        [Then(@"j'ai l'exigence (.*) avec comme texte ""(.*)"" et titre ""(.*)""")]
+        public void ThenJExigencesESD_AvecCommeTexte(string strReqId, string strRequirement, string strTitle)
         {
-            Assert.AreEqual(strRequirement, requirements[strReqId]);
+            Assert.AreEqual(strRequirement, requirements[strReqId].Item2);
+            Assert.AreEqual(strTitle, requirements[strReqId].Item1);
         }
 
         string strFile;
-        Dictionary<string, string> requirements;
+        Dictionary<string, Tuple<string, string>> requirements;
     }
 }

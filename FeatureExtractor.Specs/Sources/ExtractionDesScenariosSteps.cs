@@ -14,7 +14,7 @@ namespace FeatureExtractor.Specs.Sources
 
             foreach (var row in table.Rows)
             {
-                requirements[row["ReqID"]] = row["TEXTE"];
+                requirements[row["ReqID"]] = new Tuple<string, string>("", row["TEXTE"]);
             }
         }
 
@@ -92,7 +92,7 @@ namespace FeatureExtractor.Specs.Sources
         }
 
 
-        Dictionary<string, string> requirements = new Dictionary<string, string>();
+        Dictionary<string, Tuple<string, string>> requirements = new Dictionary<string, Tuple<string, string>>();
         Dictionary<string, Requirement> extractedRequirements;
         Extractor extractor = new Extractor();
         Requirement requirement;

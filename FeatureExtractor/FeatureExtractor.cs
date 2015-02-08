@@ -7,13 +7,13 @@ namespace FeatureExtractor
 {
     public class Extractor
     {
-        public Dictionary<string, Requirement> extract(Dictionary<string, string> requirements)
+        public Dictionary<string, Requirement> extract(Dictionary<string, Tuple<string, string>> requirements)
         {
             Dictionary<string, Requirement> extractedRequirements = new Dictionary<string, Requirement>();
             foreach (var requirement in requirements)
             {
                 Requirement requirementScenario = new Requirement();
-                extractContextAndScenario(requirement.Value, ref requirementScenario.m_strContext, ref requirementScenario.m_Scenarios);
+                extractContextAndScenario(requirement.Value.Item2, ref requirementScenario.m_strContext, ref requirementScenario.m_Scenarios);
                 if (requirementScenario.m_Scenarios.Count != 0)
                 {
                     extractedRequirements.Add(requirement.Key, requirementScenario);
