@@ -11,7 +11,6 @@ namespace FeatureExtractor.Specs.Sources
         [Given(@"les exigences suivantes:")]
         public void GivenLesExigencesSuivantes(Table table)
         {
-
             foreach (var row in table.Rows)
             {
                 requirements[row["ReqID"]] = new Tuple<string, string>("", row["TEXTE"]);
@@ -87,8 +86,22 @@ namespace FeatureExtractor.Specs.Sources
 	        catch (Exception )
 	        {
                 Assert.Fail("Mauvaise exception");
-	        }
-            
+	        }    
+        }
+
+        [Given(@"l'exigences suivantes:")]
+        public void GivenLExigencesSuivantes(Table table)
+        {
+            foreach (var row in table.Rows)
+            {
+                requirements[row["ReqID"]] = new Tuple<string, string>(row["Fonctionnalité"], row["TEXTE"]);
+            }
+        }
+
+        [Then(@"sa fonctionnalité est ""(.*)""")]
+        public void ThenSaFonctionnaliteEst(string strFeature)
+        {
+            Assert.AreEqual(strFeature, requirement.m_strFeature);
         }
 
 

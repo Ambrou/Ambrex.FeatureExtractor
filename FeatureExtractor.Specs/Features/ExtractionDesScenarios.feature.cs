@@ -383,6 +383,51 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Extraction de scénario simple avec sa fonctionnalité")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ExtractionDesScenarios")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("extraction")]
+        public virtual void ExtractionDeScenarioSimpleAvecSaFonctionnalite()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Extraction de scénario simple avec sa fonctionnalité", new string[] {
+                        "extraction"});
+#line 103
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ReqID",
+                        "Fonctionnalité",
+                        "TEXTE"});
+            table16.AddRow(new string[] {
+                        "ESD_044",
+                        "Mon role est de [p.4]",
+                        "Contexte: Étant donné un interpréteur de script Scénario: Changement de table Éta" +
+                            "nt donné un matériel Et la configuration définissant la table 7 Lorsque j\'appell" +
+                            "e le mot clef changeTable 7 Alors le script retourne OK"});
+#line 104
+    testRunner.Given("l\'exigences suivantes:", ((string)(null)), table16, "Given ");
+#line 107
+    testRunner.When("j\'extrais les scénarios", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 108
+    testRunner.Then("le besoin ESD_044 existe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table17.AddRow(new string[] {
+                        "Changement de table",
+                        "Étant donné un matériel Et la configuration définissant la table 7 Lorsque j\'appe" +
+                            "lle le mot clef changeTable 7 Alors le script retourne OK"});
+#line 109
+        testRunner.And("Et il contient le scénario:", ((string)(null)), table17, "And ");
+#line 112
+        testRunner.And("Et il contient le contexte \"Étant donné un interpréteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 113
+  testRunner.And("sa fonctionnalité est \"Mon role est de\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

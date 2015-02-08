@@ -9,7 +9,6 @@ namespace FeatureExtractor
     {
         public string m_strContext = "";
         public List<Scenario> m_Scenarios = new List<Scenario>();
-
         public string m_strFeature = "";
     }
 }

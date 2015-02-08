@@ -98,3 +98,16 @@ Scenario: Extraction d'un scénario qui commence par Lorsque au lieu de Etant do
             | titre               | scénario                                                                |
             | Changement de table | Lorsque j'appelle le mot clef changeTable 7 Alors le script retourne OK |
         And Et il contient le contexte "Étant donné un interpréteur de script"
+
+@extraction
+Scenario: Extraction de scénario simple avec sa fonctionnalité
+    Given l'exigences suivantes:
+            | ReqID   | Fonctionnalité        | TEXTE                                                                                                                                                                                                                    |
+            | ESD_044 | Mon role est de [p.4] | Contexte: Étant donné un interpréteur de script Scénario: Changement de table Étant donné un matériel Et la configuration définissant la table 7 Lorsque j'appelle le mot clef changeTable 7 Alors le script retourne OK |
+    When j'extrais les scénarios
+    Then le besoin ESD_044 existe
+        And Et il contient le scénario:
+            | titre                | scénario                                                                                                                                   |
+            |  Changement de table | Étant donné un matériel Et la configuration définissant la table 7 Lorsque j'appelle le mot clef changeTable 7 Alors le script retourne OK |
+        And Et il contient le contexte "Étant donné un interpréteur de script"
+		And sa fonctionnalité est "Mon role est de"

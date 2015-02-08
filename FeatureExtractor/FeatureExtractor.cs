@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FeatureExtractor
 {
@@ -13,6 +14,7 @@ namespace FeatureExtractor
             foreach (var requirement in requirements)
             {
                 Requirement requirementScenario = new Requirement();
+                requirementScenario.m_strFeature = Regex.Replace(requirement.Value.Item1, " \\[p\\.[0-9]+\\]$", "");
                 extractContextAndScenario(requirement.Value.Item2, ref requirementScenario.m_strContext, ref requirementScenario.m_Scenarios);
                 if (requirementScenario.m_Scenarios.Count != 0)
                 {
