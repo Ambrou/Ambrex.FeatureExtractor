@@ -48,13 +48,21 @@ namespace FeatureExtractor
                             strContext = strContext.TrimEnd(' ').TrimStart(' ');
                         }
                         break;
+                    case " ":
+                    case "":
+                        {
+
+                        }
+                        break;
                     default:
                         {
+
                             if (bIsContext == true)
                             {
                                 strContext += word;
                                 strContext += " ";
                             }
+
                         }
                         break;
                 }
@@ -81,7 +89,7 @@ namespace FeatureExtractor
                         strPartOfExample = "";
                         if (bIsScenarioBody == true)
                         {
-                            scenarios.Add(new Scenario(strTitle.TrimEnd(' '), strBody.TrimEnd(' ')));
+                            scenarios.Add(new Scenario(strTitle.TrimEnd(' ').TrimStart(' '), strBody.TrimEnd(' ').TrimStart(' ')));
                         }
                         strTitle = "";
                         bIsScenarioTitle = true;
@@ -100,7 +108,22 @@ namespace FeatureExtractor
                             strBody += word;
                             strBody += " ";
                         }
-                        
+                    }
+                    break;
+                    case "Lorsque":
+                    {
+                        if (bIsScenarioTitle == true || bIsScenarioBody == true)
+                        {
+                            if (bIsScenarioTitle == true)
+                            {
+                                strBody = "";
+                            }
+                            bIsScenarioTitle = false;
+                            bIsScenarioBody = true;
+                            
+                            strBody += word;
+                            strBody += " ";
+                        }
                     }
                     break;
                     case "|":
@@ -154,7 +177,7 @@ namespace FeatureExtractor
             }
             if (strTitle != "" && strBody != "")
             {
-                scenarios.Add(new Scenario(strTitle.TrimEnd(' '), strBody.TrimEnd(' ')));
+                scenarios.Add(new Scenario(strTitle.TrimEnd(' ').TrimStart(' '), strBody.TrimEnd(' ').TrimStart(' ')));
             }
         }
     }

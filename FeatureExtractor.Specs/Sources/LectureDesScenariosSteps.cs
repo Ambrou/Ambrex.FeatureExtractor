@@ -28,7 +28,7 @@ namespace FeatureExtractor.Specs
         }
 
 
-        [Then(@"j'ai l'exigences (.*) avec comme texte ""(.*)""")]
+        [Then(@"j'ai l'exigence (.*) avec comme texte ""(.*)""")]
         public void ThenJExigencesESD_AvecCommeTexte(string strReqId, string strRequirement)
         {
             Assert.AreEqual(strRequirement, requirements[strReqId]);

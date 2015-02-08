@@ -76,7 +76,19 @@ namespace FeatureExtractor.Specs.Sources
         [Then(@"le besoin (.*) n'existe pas")]
         public void ThenLeBesoinESD_NExistePas(string strRequirementId)
         {
-            Assert.IsNull(extractedRequirements[strRequirementId]);
+            try
+            {
+                requirement = extractedRequirements[strRequirementId];
+            }
+            catch (KeyNotFoundException )
+            {
+               
+            }
+	        catch (Exception )
+	        {
+                Assert.Fail("Mauvaise exception");
+	        }
+            
         }
 
 

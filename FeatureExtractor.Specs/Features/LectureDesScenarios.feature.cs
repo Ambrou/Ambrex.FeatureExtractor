@@ -31,8 +31,8 @@ namespace FeatureExtractor.Specs.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LectureDesScenarios", "In order to avoid silly mistakes\nAs a math idiot\nI want to be told the sum of two" +
-                    " numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "LectureDesScenarios", "In order to extract scenarios from a requirement file\r\nAs a BDD\'s developers\r\nI w" +
+                    "ant to read in input file the several requirements", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -161,11 +161,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 44
  testRunner.When("j\'analyse ce fichier", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 45
- testRunner.Then("j\'ai l\'exigences ESD_044 avec comme texte \"Gestion des informations dans la barre" +
-                    " de statusstatuts [p.29]\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("j\'ai l\'exigence ESD_044 avec comme texte \"Gestion des informations dans la barre " +
+                    "de statusstatuts [p.29]\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 46
-     testRunner.And("j\'ai l\'exigences ESD_544 avec comme texte \"Gestion des informations dans la barre" +
-                    " de status           statuts [p.29]\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+     testRunner.And("j\'ai l\'exigence ESD_544 avec comme texte \"Gestion des informations dans la barre " +
+                    "de status           statuts [p.29]\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

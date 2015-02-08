@@ -86,3 +86,15 @@ Scenario: Extraction d'un scénario complexe dont la fin est un doublon de mot
             | titre                                                                       | scénario                                                                                                                                                                                 |
             | Sauvegarde impossible lors d’une acquisition autre que contrôlée par script | Etant donné que TeTriS n’a pas pu sauvegarder d’images pour cause de mémoire insuffisante Lorsque l’acquisition est terminee Alors j’ai la trace de warning numero IDS_WARN_ACQUI_NO_MEM |
         And Et il contient le contexte ""
+			
+@extraction
+Scenario: Extraction d'un scénario qui commence par Lorsque au lieu de Etant donne ou soit
+    Given les exigences suivantes:
+            | ReqID   | TEXTE                                                                                                                                                                                                                      |   
+            | ESD_044 |   Contexte: Étant donné un interpréteur de script Scénario: Changement de table Lorsque j'appelle le mot clef changeTable 7 Alors le script retourne OK |
+    When j'extrais les scénarios
+    Then le besoin ESD_044 existe
+        And Et il contient le scénario:
+            | titre               | scénario                                                                |
+            | Changement de table | Lorsque j'appelle le mot clef changeTable 7 Alors le script retourne OK |
+        And Et il contient le contexte "Étant donné un interpréteur de script"

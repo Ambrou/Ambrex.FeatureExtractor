@@ -1,7 +1,7 @@
 ﻿Feature: LectureDesScenarios
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+	In order to extract scenarios from a requirement file
+	As a BDD's developers
+	I want to read in input file the several requirements
 
 @lecture
 Scenario: Lecture des exigences
@@ -26,7 +26,7 @@ Scenario: Lecture des exigences
 	    | Commentaire(s)=                                                                                                                                  |
 	    | Statut= A valider                                                                                                                                |
 	    | Date-Statut= 09/05/2014                                                                                                                          |
-	    | @=@=@REQUIREMENT@=@=@                                                                                                                             |
+	    | @=@=@REQUIREMENT@=@=@                                                                                                                            |
 	    | ReqID= ESD_544                                                                                                                                   |
 	    | TITRE= Utilisation de la bibliothèque IO_Image pour définir les zones de ROI [p.15]                                                              |
 	    | VER= 00                                                                                                                                          |
@@ -36,11 +36,11 @@ Scenario: Lecture des exigences
 	    | Impact= Faible                                                                                                                                   |
 	    | Stabilité= MoyenneImportante                                                                                                                     |
 	    | Vérif.= Test                                                                                                                                     |
-	    | TEXTE=   Gestion des informations dans la barre de status           statuts [p.29]                                                                          |
+	    | TEXTE=   Gestion des informations dans la barre de status           statuts [p.29]                                                               |
 	    | Commentaire(s)=                                                                                                                                  |
 	    | Statut= A valider                                                                                                                                |
 	    | Date-Statut= 09/05/2014                                                                                                                          |
-	    | @=@=@REQUIREMENT@=@=@                                                                                                                           |
+	    | @=@=@REQUIREMENT@=@=@                                                                                                                            |
 	When j'analyse ce fichier
-	Then j'ai l'exigences ESD_044 avec comme texte "Gestion des informations dans la barre de statusstatuts [p.29]"
-	    And j'ai l'exigences ESD_544 avec comme texte "Gestion des informations dans la barre de status           statuts [p.29]"
+	Then j'ai l'exigence ESD_044 avec comme texte "Gestion des informations dans la barre de statusstatuts [p.29]"
+	    And j'ai l'exigence ESD_544 avec comme texte "Gestion des informations dans la barre de status           statuts [p.29]"
