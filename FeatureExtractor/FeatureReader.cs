@@ -10,7 +10,8 @@ namespace FeatureExtractor
         public Dictionary<string, Tuple<string, string>> readRequirements(string strFile)
         {
             Dictionary<string, Tuple<string, string>> requirements = new Dictionary<string, Tuple<string, string>>();
-            System.IO.StreamReader file = new System.IO.StreamReader(strFile, Encoding.GetEncoding("iso-8859-15"));
+            System.IO.StreamReader file = new System.IO.StreamReader(strFile, Encoding.GetEncoding("windows-1252"));
+            //System.IO.StreamReader file = new System.IO.StreamReader(strFile);
             string strReqId = "";
             string strText = "";
             string strTitle = "";

@@ -13,7 +13,7 @@ namespace FeatureExtractor.Specs
         public void GivenLeFichierESD_AgexContenantLesLignes(Table table)
         {
             strFile = "ESD.agex";
-            System.IO.StreamWriter file = new System.IO.StreamWriter(strFile, false, Encoding.GetEncoding("iso-8859-15"));
+            System.IO.StreamWriter file = new System.IO.StreamWriter(strFile, false, Encoding.GetEncoding("windows-1252"));
             foreach (var row in table.Rows)
             {
                 file.WriteLine(row["ligne"]);

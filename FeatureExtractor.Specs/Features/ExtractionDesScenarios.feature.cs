@@ -401,7 +401,7 @@ this.ScenarioSetup(scenarioInfo);
                         "TEXTE"});
             table16.AddRow(new string[] {
                         "ESD_044",
-                        "Mon role est de [p.4]",
+                        "Configuration des matériels hardware de l’application [p.4]",
                         "Contexte: Étant donné un interpréteur de script Scénario: Changement de table Éta" +
                             "nt donné un matériel Et la configuration définissant la table 7 Lorsque j\'appell" +
                             "e le mot clef changeTable 7 Alors le script retourne OK"});
@@ -424,7 +424,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 112
         testRunner.And("Et il contient le contexte \"Étant donné un interpréteur de script\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 113
-  testRunner.And("sa fonctionnalité est \"Mon role est de\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("sa fonctionnalité est \"Configuration des matériels hardware de l’application\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

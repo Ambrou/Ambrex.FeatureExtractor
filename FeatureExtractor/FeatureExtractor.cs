@@ -15,6 +15,7 @@ namespace FeatureExtractor
             {
                 Requirement requirementScenario = new Requirement();
                 requirementScenario.m_strFeature = Regex.Replace(requirement.Value.Item1, " \\[p\\.[0-9]+\\]$", "");
+                //requirementScenario.m_strFeature = requirementScenario.m_strFeature.Replace('’', ' ');
                 extractContextAndScenario(requirement.Value.Item2, ref requirementScenario.m_strContext, ref requirementScenario.m_Scenarios);
                 if (requirementScenario.m_Scenarios.Count != 0)
                 {
