@@ -51,8 +51,15 @@ namespace FeatureExtractor
             bool bExampleParameterStarted = false;
             bool bExampleEmpty = false;
             bool bDoublePointOccurs = false;
+            bool bExamplesOccurs = false;
+            bool bWriteInTable = false;
+            bool bPipeOccurs = false;
+            int iIndexColumn = 0;
+            int iSizeColumn = 0;
+            Dictionary<int, int> sizeColums = new Dictionary<int, int>();
             string[] words = strText.Split(' ');
             string newText = "";
+            string strTable = "";
             foreach (var word in words)
             {
                 switch (word)
@@ -62,6 +69,7 @@ namespace FeatureExtractor
                     case "Alors":
                     case "Et":
                         {
+                            transformTable(ref bWriteInTable, ref iIndexColumn, sizeColums, ref newText, ref strTable);
                             if (newText.Length != 0)
                             {
                                 newText = newText.TrimEnd(' ');
@@ -70,6 +78,7 @@ namespace FeatureExtractor
                             newText += word;
                             newText += " ";
                             bDoublePointOccurs = false;
+                            bPipeOccurs = false;
                         }
                         break;
                     case "Exemple:":
@@ -81,6 +90,8 @@ namespace FeatureExtractor
                             }
                             newText += "Exemples:\n";
                             bDoublePointOccurs = false;
+                            bExamplesOccurs = true;
+                            bPipeOccurs = false;
                         }
                         break;
                     case "Exemples:":
@@ -93,25 +104,55 @@ namespace FeatureExtractor
                             newText += word;
                             newText += "\n";
                             bDoublePointOccurs = false;
+                            bExamplesOccurs = true;
+                            bPipeOccurs = false;
                         }
                         break;
                     case "|":
                         {
+                            if (bPipeOccurs == false)
+                            {
+                                iIndexColumn = 0;
+                            }
+                            else
+                            {
+                                iIndexColumn++;
+                            }
+                            iSizeColumn = 1;
                             if (bDoublePointOccurs == true)
                             {
                                 bDoublePointOccurs = false;
                                 newText = newText.TrimEnd(' ');
                                 newText += "\n";
+                                iIndexColumn = 0;
+                                bWriteInTable = true;
                             }
+                            if(bExamplesOccurs == true)
+                            {
+                                bWriteInTable = true;
+                            }
+
                             bExampleParameterStarted = true;
                             if (bExampleEmpty == true)
                             {
-                                newText = newText.TrimEnd(' ');
-                                newText += "\n";
+                                strTable = strTable.TrimEnd(' ');
+                                strTable += "\n";
+                                iIndexColumn = 0;
+                                iSizeColumn = 1;
                             }
-                            newText += word;
-                            newText += " ";
+                            if (bWriteInTable == true)
+                            {
+                                strTable += word;
+                                strTable += " ";
+                            }
+                            else
+                            {
+                                newText += word;
+                                newText += " ";
+                            }
+                            
                             bExampleEmpty = true;
+                            bPipeOccurs = true;
                         }
                         break;
                     case ":":
@@ -129,8 +170,25 @@ namespace FeatureExtractor
                         break;
                     default:
                         {
-                            newText += word;
-                            newText += " ";
+                            if (bWriteInTable == true)
+                            {
+                                iSizeColumn += word.Length + 1;
+                                if (iIndexColumn < sizeColums.Count)
+                                {
+                                    sizeColums[iIndexColumn] = Math.Max(sizeColums[iIndexColumn], iSizeColumn);
+                                }
+                                else
+                                {
+                                    sizeColums[iIndexColumn] = iSizeColumn;
+                                }
+                                strTable += word;
+                                strTable += " ";
+                            }
+                            else
+                            {
+                                newText += word;
+                                newText += " ";
+                            }
                             if (bExampleParameterStarted == true)
                             {
                                 bExampleEmpty = false;
@@ -140,7 +198,69 @@ namespace FeatureExtractor
                         break;
                 }
             }
+            transformTable(ref bWriteInTable, ref iIndexColumn, sizeColums, ref newText, ref strTable);
+            /*if (strTable.Length != 0)
+            {
+                string[] lines = strTable.Split('\n');
+                foreach (var line in lines)
+                {
+                    iIndexColumn = 0;
+                    string[] exampleParts = line.Split('|');
+                    foreach (var examplePart in exampleParts)
+                    {
+                        while (examplePart.Length < sizeColums[iIndexColumn])
+                        {
+                            examplePart.Insert(examplePart.Length, " ");
+                        }
+                        iIndexColumn++;
+                    }
+                }
+                newText = strTable;
+                strTable = "";
+                bWriteInTable = false;
+            }*/
+
             strText = newText.TrimEnd(' ');
+        }
+
+        private static void transformTable(ref bool bWriteInTable, ref int iIndexColumn, Dictionary<int, int> sizeColums, ref string newText, ref string strTable)
+        {
+            if (strTable.TrimEnd(' ').Length != 0)
+            {
+                string strTemp = "";
+                string strTemp2 = "";
+                string[] lines = strTable.TrimEnd(' ').Split('\n');
+                int iLine = 0;
+                foreach (var line in lines)
+                {
+                    iIndexColumn = 0;
+                    string[] exampleParts = line.Split('|');
+                    foreach (var examplePart in exampleParts)
+                    {
+
+                        if (examplePart.Length != 0)
+                        {
+                            strTemp += "|";
+                            strTemp2 = examplePart;
+                            while (strTemp2.Length < sizeColums[iIndexColumn])
+                            {
+                                strTemp2 = strTemp2.Insert(strTemp2.Length - 1, " ");
+                            }
+                            strTemp += strTemp2;
+                            iIndexColumn++;
+                        }
+                    }
+                    strTemp += "|";
+                    iLine++;
+                    if (iLine != lines.Length)
+                    {
+                        strTemp += "\n";
+                    }
+                }
+                newText += strTemp;
+                strTable = "";
+                bWriteInTable = false;
+            }
         }
     }
 }
