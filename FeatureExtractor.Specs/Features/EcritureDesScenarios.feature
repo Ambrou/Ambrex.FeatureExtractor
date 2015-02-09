@@ -65,3 +65,26 @@ Scenario: Ecriture d'un plan de scénario
 	        | "  Exemples:"                                                           |
 	        | "    \| type \| parametres \| st \|"                                    |
 	        | "    \| Philips avec le protocole SDL \| st1Value 32 \| st1Value 32 \|" |
+
+			
+@ecriture
+Scenario: Ecriture d'un scénario sans contexte
+	Given l'exigence transformée ESD_144 contenant les scénario:	       
+            | titre                   | scénario                                                                                                                                              |
+            | Changement d’une tablée | Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j'appelle le mot clef changeTable 7\nAlors le script retourne a volonte OK   |
+	    And le contexte ""
+		And sa fonctionnalité est "Changement de table"
+	When je génére les fichiers scénarios temporaires
+	Then j'ai le fichier contient 144.feature contient les lignes:
+	        | ligne                                                 |
+	        | "# language: fr"                                      |
+	        | "# encoding: Windows-1252"                            |
+	        | "@ESD_144"                                            |
+	        | "Fonctionnalité: Changement de table"                 |
+	        | ""                                                    |
+	        | "  @clean"                                            |
+	        | "  Scénario: Changement d’une tablée"                 |
+	        | "    Soit un materiel"                                |
+	        | "      Et ou la configuration definissant la table 7" |
+	        | "    Lorsque j'appelle le mot clef changeTable 7"     |
+	        | "    Alors le script retourne a volonte OK"           |

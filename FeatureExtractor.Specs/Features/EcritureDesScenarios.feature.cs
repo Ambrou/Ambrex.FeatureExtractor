@@ -226,6 +226,63 @@ Exemples:
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Ecriture d\'un scénario sans contexte")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "EcritureDesScenarios")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("ecriture")]
+        public virtual void EcritureDUnScenarioSansContexte()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Ecriture d\'un scénario sans contexte", new string[] {
+                        "ecriture"});
+#line 71
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "titre",
+                        "scénario"});
+            table5.AddRow(new string[] {
+                        "Changement d’une tablée",
+                        "Soit un materiel\nEt ou la configuration definissant la table 7\nLorsque j\'appelle " +
+                            "le mot clef changeTable 7\nAlors le script retourne a volonte OK"});
+#line 72
+ testRunner.Given("l\'exigence transformée ESD_144 contenant les scénario:", ((string)(null)), table5, "Given ");
+#line 75
+     testRunner.And("le contexte \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 76
+  testRunner.And("sa fonctionnalité est \"Changement de table\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 77
+ testRunner.When("je génére les fichiers scénarios temporaires", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ligne"});
+            table6.AddRow(new string[] {
+                        "\"# language: fr\""});
+            table6.AddRow(new string[] {
+                        "\"# encoding: Windows-1252\""});
+            table6.AddRow(new string[] {
+                        "\"@ESD_144\""});
+            table6.AddRow(new string[] {
+                        "\"Fonctionnalité: Changement de table\""});
+            table6.AddRow(new string[] {
+                        "\"\""});
+            table6.AddRow(new string[] {
+                        "\"  @clean\""});
+            table6.AddRow(new string[] {
+                        "\"  Scénario: Changement d’une tablée\""});
+            table6.AddRow(new string[] {
+                        "\"    Soit un materiel\""});
+            table6.AddRow(new string[] {
+                        "\"      Et ou la configuration definissant la table 7\""});
+            table6.AddRow(new string[] {
+                        "\"    Lorsque j\'appelle le mot clef changeTable 7\""});
+            table6.AddRow(new string[] {
+                        "\"    Alors le script retourne a volonte OK\""});
+#line 78
+ testRunner.Then("j\'ai le fichier contient 144.feature contient les lignes:", ((string)(null)), table6, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

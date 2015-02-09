@@ -56,7 +56,7 @@ Scenario: Extraction d'un plan de scénario simple sans indication de plande sc�
         And Et il contient le contexte "Soit un interpreteur TCL"
 	
 @extraction
-Scenario: Extraction d'un plan de scénario complexe sans indication de plande scénario dans le texte
+Scenario: Extraction d'un plan de scénario complexe sans indication de plan de scénario dans le texte
     Given les exigences suivantes:
             | ReqID   | TEXTE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
             | ESD_046 | Description La configuration maamétrer : ,    Spécifications exécutables   Scénario: Vérification du RTC Port pour un RTC soft ou hard     Etant donné le champ Active RTC defini a un type de RTC hard ou soft         Et le champ RTC Port <etat>     Lorsque je verifie la configuration RTC     Alors j’ai la boite de dialogue d’erreur IDS_ERR_RTC_PORT_CONFIG         Et TeTriS ne se lance pas Exemple:     \| etat       \|     \| inexistant \|     \| vide       \|    IDS_ERR_RTC_PORT_CONFIG  Erreur de configuration de TeTr |

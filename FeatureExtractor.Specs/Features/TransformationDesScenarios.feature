@@ -53,7 +53,7 @@ Scenario: transformation d'un plan de scénario simple sans indication de plan d
     When je transforme le scénario
     Then l'exigence extraite devient:
             | titre                                          | scénario                                                                                                                                                                                                                                                                                                                                    |
-            | Définition des statuts bloquants l’acquisition | Soit un generateur type\nEt aucun statut bloquant pour l'acquisition\nLorsque j'appelle le mot clef setAcquiBlockingXGStatus parametres\nAlors les statuts st sont bloquants pour l'acquisition\nEt le script retourne TCL_OK\nExemples:\n\| type \| parametres \| st \|\n\| Philips avec le protocole SDL \| st1Value 32 \| st1Value 32 \| |
+            | Définition des statuts bloquants l’acquisition | Soit un generateur type\nEt aucun statut bloquant pour l'acquisition\nLorsque j'appelle le mot clef setAcquiBlockingXGStatus parametres\nAlors les statuts st sont bloquants pour l'acquisition\nEt le script retourne TCL_OK\nExemples:\n\| type                          \| parametres  \| st          \|\n\| Philips avec le protocole SDL \| st1Value 32 \| st1Value 32 \| |
         And son contexte devient "Soit un interpreteur TCL"
 
 @transformation
@@ -65,6 +65,6 @@ Scenario: transformation d'un scénario avec table
     When je transforme le scénario
     Then l'exigence extraite devient:
             | titre                           | scénario                                                                                                                                                                                                                                                                          |
-            | Affichage des modes disponibles | Soit la fenetre de modification d'un PKA ouverte\nEt la configuration detecteur definissant les modes :\n\| mode \|\n\| 1 \|\n\| 7 \|\n\| 4 \|\n\| 3 \|\nAlors les modes disponibles dans la liste deroulante sont dans l'ordre :\n\| mode \|\n\| 1 \|\n\| 3 \|\n\| 4 \|\n\| 7 \| |
+            | Affichage des modes disponibles | Soit la fenetre de modification d'un PKA ouverte\nEt la configuration detecteur definissant les modes :\n\| mode \|\n\| 1    \|\n\| 7    \|\n\| 4    \|\n\| 3    \|\nAlors les modes disponibles dans la liste deroulante sont dans l'ordre :\n\| mode \|\n\| 1    \|\n\| 3    \|\n\| 4    \|\n\| 7    \| |
         And son contexte devient "Soit l'IHM de TeTriS"
 

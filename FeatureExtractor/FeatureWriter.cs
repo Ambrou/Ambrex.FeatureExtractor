@@ -35,19 +35,22 @@ namespace FeatureExtractor
 
         private void writeContext(ref System.IO.StreamWriter file, ref string strContext)
         {
-            file.WriteLine("  Contexte:");
-            string[] lines = strContext.Split('\n');
-            foreach (var line in lines)
+            if (strContext.Length != 0)
             {
-                if (line.StartsWith("Et") == true)
+                file.WriteLine("  Contexte:");
+                string[] lines = strContext.Split('\n');
+                foreach (var line in lines)
                 {
-                    file.WriteLine("      " + line);
+                    if (line.StartsWith("Et") == true)
+                    {
+                        file.WriteLine("      " + line);
+                    }
+                    else
+                    {
+                        file.WriteLine("    " + line);
+                    }
                 }
-                else
-                {
-                    file.WriteLine("    " + line);
-                }
-
+                file.WriteLine("");
             }
         }
 
@@ -55,7 +58,6 @@ namespace FeatureExtractor
         {
             foreach (var scenario in Scenarios)
             {
-                file.WriteLine("");
                 file.WriteLine("  @clean");
                 if (scenario.m_strSteps.Contains("Exemples:") == true)
                 {
@@ -66,6 +68,7 @@ namespace FeatureExtractor
                     file.WriteLine("  Scénario: " + scenario.m_strTitle);
                 }
 
+                int iCounter = 0;
                 string[] lines = scenario.m_strSteps.Replace("\r","").Split('\n');
                 foreach (var line in lines)
                 {
@@ -80,6 +83,11 @@ namespace FeatureExtractor
                     else
                     {
                         file.WriteLine("    " + line);
+                    }
+                    iCounter++;
+                    if (iCounter == lines.Length)
+                    {
+                        file.WriteLine("");
                     }
                 }
             }

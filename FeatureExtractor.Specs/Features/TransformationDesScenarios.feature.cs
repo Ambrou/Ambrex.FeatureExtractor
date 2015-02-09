@@ -234,7 +234,7 @@ Lorsque j'appelle le mot clef setAcquiBlockingXGStatus parametres
 Alors les statuts st sont bloquants pour l'acquisition
 Et le script retourne TCL_OK
 Exemples:
-| type | parametres | st |
+| type                          | parametres  | st          |
 | Philips avec le protocole SDL | st1Value 32 | st1Value 32 |"});
 #line 54
     testRunner.Then("l\'exigence extraite devient:", ((string)(null)), table8, "Then ");
@@ -273,10 +273,19 @@ this.ScenarioSetup(scenarioInfo);
                         "scénario"});
             table10.AddRow(new string[] {
                         "Affichage des modes disponibles",
-                        "Soit la fenetre de modification d\'un PKA ouverte\nEt la configuration detecteur de" +
-                            "finissant les modes :\n| mode |\n| 1 |\n| 7 |\n| 4 |\n| 3 |\nAlors les modes disponibl" +
-                            "es dans la liste deroulante sont dans l\'ordre :\n| mode |\n| 1 |\n| 3 |\n| 4 |\n| 7 |" +
-                            ""});
+                        @"Soit la fenetre de modification d'un PKA ouverte
+Et la configuration detecteur definissant les modes :
+| mode |
+| 1    |
+| 7    |
+| 4    |
+| 3    |
+Alors les modes disponibles dans la liste deroulante sont dans l'ordre :
+| mode |
+| 1    |
+| 3    |
+| 4    |
+| 7    |"});
 #line 66
     testRunner.Then("l\'exigence extraite devient:", ((string)(null)), table10, "Then ");
 #line 69
