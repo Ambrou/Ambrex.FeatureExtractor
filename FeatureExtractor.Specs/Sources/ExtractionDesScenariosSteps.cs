@@ -8,7 +8,7 @@ namespace FeatureExtractor.Specs.Sources
     [Binding]
     public class ExtractionDesScenariosSteps
     {
-        [Given(@"les efdsqxigences suivantes:")]
+        [Given(@"les exigences suivantes:")]
         public void GivenLesExigencesSuivantes(Table table)
         {
             foreach (var row in table.Rows)
