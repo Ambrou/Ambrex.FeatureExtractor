@@ -30,6 +30,7 @@ namespace FeatureExtractor
         {
 
             // Transform the blank character before the : character
+            strText = insertSpaceBehindPipe(strText);
             strText = strText.Replace(" ", " ");
             strText = strText.Replace("Exemples :", "Exemples:");
             strText = strText.Replace("Exemple :", "Exemples:");
@@ -49,6 +50,20 @@ namespace FeatureExtractor
             strText = strText.Replace("ä", "a");
         }
 
+        private string insertSpaceBehindPipe(string strText)
+        {
+            for (int iLoop = 0; iLoop < strText.Length; ++iLoop)
+            {
+                if (iLoop < strText.Length - 1)
+                {
+                    if (strText[iLoop] == '|' && strText[iLoop + 1] != ' ')
+                    {
+                        strText = strText.Insert(iLoop + 1, " ");
+                    }
+                }
+            }
+            return strText;
+        }
         private void formatSteps(ref string strText)
         {
             bool bExampleParameterStarted = false;

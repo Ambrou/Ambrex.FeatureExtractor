@@ -74,5 +74,28 @@ namespace FeatureExtractor.Tests
             Assert.AreEqual("Soit les donnees Ethernet correctement definies dans la configuration TeTriS\nExemples:\n| statut     | droits             | etat         | resultat          |\n| differente | administrateur     | modifiee     | OK (modified)     |\n| differente | non administrateur | non modifiee | error             |\n| identique  | administrateur     | non modifiee | OK (not modified) |\n| identique  | non administrateur | non modifiee | OK (not modified) |", requirement.m_Scenarios[0].m_strSteps);
             Assert.AreEqual("Vérification de la configuration de la carte réseau", requirement.m_Scenarios[0].m_strTitle);          
         }
+
+
+
+        [TestMethod]
+        public void TestFeatureTransformerIssue5()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "";
+            Scenario scenario = new Scenario("Vérification de la configuration de la carte réseau", "Soit un detecteur de generation 3 Et la configuration detecteur la commande : | en-tete | valeur | titre | val_arg | format | | II | 0x24 | Info Temperature | 0x600 | Temperature 0xs2 Range 0xu1 | Lorsque j'appelle le mot clef pxSend 0x24 0x600 Alors j'ai la reponse TCL vide Et le script retourne TCL_OK Exemples: |etat |wait | |definissant |false | |ne definissant pas |true |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["ESD-TXL-TeTriS-008"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("", requirement.m_strContext);
+            Assert.AreEqual("Soit un detecteur de generation 3\nEt la configuration detecteur la commande :\n| en-tete | valeur | titre            | val_arg | format                      |\n| II      | 0x24   | Info Temperature | 0x600   | Temperature 0xs2 Range 0xu1 |\nLorsque j'appelle le mot clef pxSend 0x24 0x600\nAlors j'ai la reponse TCL vide\nEt le script retourne TCL_OK\nExemples:\n| etat               | wait  |\n| definissant        | false |\n| ne definissant pas | true  |", requirement.m_Scenarios[0].m_strSteps);
+            Assert.AreEqual("Vérification de la configuration de la carte réseau", requirement.m_Scenarios[0].m_strTitle);
+        }
     }
 }
