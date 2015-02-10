@@ -76,6 +76,10 @@ namespace FeatureExtractor
                     {
                         file.WriteLine("      " + line);
                     }
+                    else if (line.StartsWith("|") == true)
+                    {
+                        file.WriteLine("        " + line);
+                    }
                     else if (line.StartsWith("Exemples:") == true)
                     {
                         file.WriteLine("  " + line);

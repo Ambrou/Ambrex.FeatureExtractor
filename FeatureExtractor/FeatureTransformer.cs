@@ -48,6 +48,7 @@ namespace FeatureExtractor
             strText = strText.Replace("ö", "o");
             strText = strText.Replace("ï", "i");
             strText = strText.Replace("ä", "a");
+            strText = strText.Replace("–", "-");
         }
 
         private string insertSpaceBehindPipe(string strText)
