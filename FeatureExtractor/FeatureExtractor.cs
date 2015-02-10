@@ -99,7 +99,7 @@ namespace FeatureExtractor
                     {
                         bPartOfExample = false;
                         strPartOfExample = "";
-                        if (bIsScenarioBody == true)
+                        if (strTitle != "" && strBody != "")
                         {
                             scenarios.Add(new Scenario(strTitle.TrimEnd(' ').TrimStart(' '), strBody.TrimEnd(' ').TrimStart(' ')));
                         }
