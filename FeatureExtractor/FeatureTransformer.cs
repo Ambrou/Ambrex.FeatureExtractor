@@ -83,8 +83,8 @@ namespace FeatureExtractor
                         break;
                     case "Exemple:":
                         {
-                            strText = addNewLine(strText);
-                            strText += "Exemples:\n";
+                            newText = addNewLine(newText);
+                            newText += "Exemples:\n";
                             bDoublePointOccurs = false;
                             bExamplesOccurs = true;
                             bPipeOccurs = false;
@@ -92,9 +92,9 @@ namespace FeatureExtractor
                         break;
                     case "Exemples:":
                         {
-                            strText = addNewLine(strText);
-                            strText += word;
-                            strText += "\n";
+                            newText = addNewLine(newText);
+                            newText += word;
+                            newText += "\n";
                             bDoublePointOccurs = false;
                             bExamplesOccurs = true;
                             bPipeOccurs = false;
@@ -149,7 +149,7 @@ namespace FeatureExtractor
                     case ":":
                         {
                             bDoublePointOccurs = true;
-                            strText = addWordFollowedBySpaceCharacter(strText, word);
+                            newText = addWordFollowedBySpaceCharacter(newText, word);
                         }
                         break;
                     case " ":
@@ -188,27 +188,7 @@ namespace FeatureExtractor
                 }
             }
             transformTable(ref bWriteInTable, ref iIndexColumn, sizeColums, ref newText, ref strTable);
-            /*if (strTable.Length != 0)
-            {
-                string[] lines = strTable.Split('\n');
-                foreach (var line in lines)
-                {
-                    iIndexColumn = 0;
-                    string[] exampleParts = line.Split('|');
-                    foreach (var examplePart in exampleParts)
-                    {
-                        while (examplePart.Length < sizeColums[iIndexColumn])
-                        {
-                            examplePart.Insert(examplePart.Length, " ");
-                        }
-                        iIndexColumn++;
-                    }
-                }
-                newText = strTable;
-                strTable = "";
-                bWriteInTable = false;
-            }*/
-
+            
             strText = newText.TrimEnd(' ');
         }
 

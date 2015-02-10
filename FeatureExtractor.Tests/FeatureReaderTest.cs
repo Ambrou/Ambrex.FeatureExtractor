@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.IO;
 
 namespace FeatureExtractor.Tests
 {
@@ -12,9 +13,10 @@ namespace FeatureExtractor.Tests
         {
             // Arrange
             FeatureReader reader = new FeatureReader();
+            string path = Directory.GetCurrentDirectory();
 
             // Act
-            Dictionary<string, Tuple<string, string>> requirement = reader.readRequirements("..\\..\\Ressources\\Issue01.agex");
+            Dictionary<string, Tuple<string, string>> requirement = reader.readRequirements("..\\..\\..\\FeatureExtractor.Tests\\Ressources\\Issue01.agex");
 
             // Assert
             //Assert.AreEqual("ESD-TXL-TeTriS-001", requirement.Keys[0]);
