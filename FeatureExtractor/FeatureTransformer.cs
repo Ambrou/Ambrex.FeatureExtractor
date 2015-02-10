@@ -30,7 +30,7 @@ namespace FeatureExtractor
         {
 
             // Transform the blank character before the : character
-            strText = insertSpaceBehindPipe(strText);
+            strText = insertSpaceBeforeAndAfterPipe(strText);
             strText = strText.Replace(" ", " ");
             strText = strText.Replace("Exemples :", "Exemples:");
             strText = strText.Replace("Exemple :", "Exemples:");
@@ -51,7 +51,7 @@ namespace FeatureExtractor
             strText = strText.Replace("–", "-");
         }
 
-        private string insertSpaceBehindPipe(string strText)
+        private string insertSpaceBeforeAndAfterPipe(string strText)
         {
             for (int iLoop = 0; iLoop < strText.Length; ++iLoop)
             {
@@ -60,6 +60,13 @@ namespace FeatureExtractor
                     if (strText[iLoop] == '|' && strText[iLoop + 1] != ' ')
                     {
                         strText = strText.Insert(iLoop + 1, " ");
+                    }
+                }
+                if (0 < iLoop)
+                {
+                    if (strText[iLoop] == '|' && strText[iLoop - 1] != ' ')
+                    {
+                        strText = strText.Insert(iLoop, " ");
                     }
                 }
             }

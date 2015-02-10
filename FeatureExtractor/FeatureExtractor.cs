@@ -157,7 +157,10 @@ namespace FeatureExtractor
                     {
                         if (word == strLastWord)
                         {
-                            bIsScenarioBody = false;
+                            if (Regex.Match(word, "^[A-Z]", RegexOptions.None).Success == true)
+                            {
+                                bIsScenarioBody = false;
+                            }
                         }
                         if (bIsScenarioTitle == true && bPartOfExample == false)
                         {

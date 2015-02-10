@@ -97,5 +97,27 @@ namespace FeatureExtractor.Tests
             Assert.AreEqual("Soit un detecteur de generation 3\nEt la configuration detecteur la commande :\n| en-tete | valeur | titre            | val_arg | format                      |\n| II      | 0x24   | Info Temperature | 0x600   | Temperature 0xs2 Range 0xu1 |\nLorsque j'appelle le mot clef pxSend 0x24 0x600\nAlors j'ai la reponse TCL vide\nEt le script retourne TCL_OK\nExemples:\n| etat               | wait  |\n| definissant        | false |\n| ne definissant pas | true  |", requirement.m_Scenarios[0].m_strSteps);
             Assert.AreEqual("Vérification de la configuration de la carte réseau", requirement.m_Scenarios[0].m_strTitle);
         }
+
+
+        [TestMethod]
+        public void TestFeatureTransformerWithOutSpaceBetweenPipeInTable()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "Étant donné un interpréteur de script éàèùëïäöêô’";
+            Scenario scenario = new Scenario(" éàèùëïäöêô’", "Soit un detecteur de type type Lorsque j'appelle le mot clef pxSetEnergyParameters autoswitch rechargetrigger lowleveltriggerwakeup lowleveltriggerstartimage securitytemperature dateofexchangeweek dateofexchangeyear launchcalibration Alors j'ai la trace d'erreur numero IDS_TCL_ERR_PX_SET_ENERGY_PARAMETERS_WRONG_ARG. Et le script retourne TCL_KO Exemple: | type | autoswitch| rechargetrigger| lowleveltriggerwakeup| lowleveltriggerstartimage| securitytemperature| dateofexchangeweek| dateofexchangeyear| launchcalibration| | 4600 | G | 2 | 3 | 4 | 5 | 6 | 7 | 8 | | 4700 | 1 | 2G | 3 | 4 | 5 | 6 | 7 | 8 | | 4800 | 1 | 2 | 3G | 4 | 5 | 6 | 7 | 8 | | generation 3| 1 | 2 | 3 | 4G | 5 | 6 | 7 | 8 | | generation 2| 1 | 2 | 3 | 4 | 5G | 6 | 7 | 8 | | 4800 | 1 | 2 | 3 | 4 | 5 | 6G | 7 | 8 | | generation 3| 1 | 2 | 3 | 4 | 5 | 6 | 7G | 8 | | generation 2| 1|2| 3 | 4 | 5 | 6 | 7 | G |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit un interpreteur de script eaeueiaoeo'", requirement.m_strContext);
+            Assert.AreEqual("Soit un detecteur de type type\nLorsque j'appelle le mot clef pxSetEnergyParameters autoswitch rechargetrigger lowleveltriggerwakeup lowleveltriggerstartimage securitytemperature dateofexchangeweek dateofexchangeyear launchcalibration\nAlors j'ai la trace d'erreur numero IDS_TCL_ERR_PX_SET_ENERGY_PARAMETERS_WRONG_ARG.\nEt le script retourne TCL_KO\nExemples:\n| type         | autoswitch | rechargetrigger | lowleveltriggerwakeup | lowleveltriggerstartimage | securitytemperature | dateofexchangeweek | dateofexchangeyear | launchcalibration |\n| 4600         | G          | 2               | 3                     | 4                         | 5                   | 6                  | 7                  | 8                 |\n| 4700         | 1          | 2G              | 3                     | 4                         | 5                   | 6                  | 7                  | 8                 |\n| 4800         | 1          | 2               | 3G                    | 4                         | 5                   | 6                  | 7                  | 8                 |\n| generation 3 | 1          | 2               | 3                     | 4G                        | 5                   | 6                  | 7                  | 8                 |\n| generation 2 | 1          | 2               | 3                     | 4                         | 5G                  | 6                  | 7                  | 8                 |\n| 4800         | 1          | 2               | 3                     | 4                         | 5                   | 6G                 | 7                  | 8                 |\n| generation 3 | 1          | 2               | 3                     | 4                         | 5                   | 6                  | 7G                 | 8                 |\n| generation 2 | 1          | 2               | 3                     | 4                         | 5                   | 6                  | 7                  | G                 |", requirement.m_Scenarios[0].m_strSteps);
+            Assert.AreEqual(" éàèùëïäöêô’", requirement.m_Scenarios[0].m_strTitle);
+        }
     }
 }
