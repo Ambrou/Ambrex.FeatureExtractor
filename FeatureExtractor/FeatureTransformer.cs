@@ -109,6 +109,7 @@ namespace FeatureExtractor
                         break;
                     case "Exemple:":
                         {
+                            transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
                             newText = addNewLine(newText);
                             newText += "Exemples:\n";
                             bDoublePointOccurs = false;
@@ -118,6 +119,7 @@ namespace FeatureExtractor
                         break;
                     case "Exemples:":
                         {
+                            transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
                             newText = addNewLine(newText);
                             newText += word;
                             newText += "\n";
@@ -240,31 +242,35 @@ namespace FeatureExtractor
                 int iLine = 0;
                 foreach (var line in lines)
                 {
-                    iIndexColumn = 0;
-                    string[] exampleParts = line.Split('|');
-                    foreach (var examplePart in exampleParts)
+                    if (line.Length != 0)
                     {
-
-                        if (examplePart.Length != 0)
+                        iIndexColumn = 0;
+                        string[] exampleParts = line.Split('|');
+                        foreach (var examplePart in exampleParts)
                         {
-                            strTemp += "|";
-                            strTemp2 = examplePart;
-                            while (strTemp2.Length < sizeColums[iIndexColumn])
+
+                            if (examplePart.Length != 0)
                             {
-                                strTemp2 = strTemp2.Insert(strTemp2.Length - 1, " ");
+                                strTemp += "|";
+                                strTemp2 = examplePart;
+                                while (strTemp2.Length < sizeColums[iIndexColumn])
+                                {
+                                    strTemp2 = strTemp2.Insert(strTemp2.Length - 1, " ");
+                                }
+                                strTemp += strTemp2;
+                                iIndexColumn++;
                             }
-                            strTemp += strTemp2;
-                            iIndexColumn++;
                         }
-                    }
-                    strTemp += "|";
-                    iLine++;
-                    if (iLine != lines.Length)
-                    {
-                        strTemp += "\n";
+                        strTemp += "|";
+                        iLine++;
+                        if (iLine != lines.Length)
+                        {
+                            strTemp += "\n";
+                        }
                     }
                 }
                 newText += strTemp;
+                newText = newText.TrimEnd('\n');
                 strTable = "";
                 bWriteInTable = false;
 

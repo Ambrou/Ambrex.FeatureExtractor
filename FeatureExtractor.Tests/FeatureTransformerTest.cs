@@ -176,5 +176,24 @@ namespace FeatureExtractor.Tests
             // Assert
             Assert.AreEqual("Soit un interpreteur TCL\nSoit une IHM", requirement.m_strContext);
         }
+
+        [TestMethod]
+        public void TestFeatureIssue9()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "Soit un interpreteur TCL Soit un interpreteur TCL";
+            Scenario scenario = new Scenario(" éàèùëïäöêô’", "Etant donné la configuration detecteur définissant les modes : | mode | | 1    | | 7    | | 4    | | 3    |     Quand j’affiche le menu <menu>     Alors les modes et leurs informations sont affiches dans l’ordre : | mode | | 1    | | 3    | | 4    | | 7    | Exemple: | menu                             | | Detector->Control->Select Mode   | | mode de la barre de mode         | | mode de la barre de mode etendue |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit la configuration detecteur definissant les modes :\n| mode |\n| 1    |\n| 7    |\n| 4    |\n| 3    |\nQuand j'affiche le menu <menu>\nAlors les modes et leurs informations sont affiches dans l'ordre :\n| mode |\n| 1    |\n| 3    |\n| 4    |\n| 7    |\nExemples:\n| menu                             |\n| Detector->Control->Select Mode   |\n| mode de la barre de mode         |\n| mode de la barre de mode etendue |", requirement.m_Scenarios[0].m_strSteps);
+        }
     }
 }
