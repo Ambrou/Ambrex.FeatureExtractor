@@ -84,7 +84,8 @@ namespace FeatureExtractor
             string strLastWord = "";
             foreach (var word in words)
             {
-                switch (word)
+                //word = word.TrimEnd('\x00A0');
+                switch (word.TrimEnd('\x00A0'))
                 {
                     case "Scénario:":
                     {
@@ -108,12 +109,13 @@ namespace FeatureExtractor
                             bIsScenarioTitle = false;
                             bIsScenarioBody = true;
                             strBody = "";
-                            strBody += word;
-                            strBody += " ";
+                            strBody = addWordFollowedBySpaceCharacter(strBody, word);
                         }
+                        bPartOfExample = false;
                     }
                     break;
                     case "Lorsque":
+                    case "Et":
                     {
                         if (bIsScenarioTitle == true || bIsScenarioBody == true)
                         {
@@ -123,10 +125,10 @@ namespace FeatureExtractor
                             }
                             bIsScenarioTitle = false;
                             bIsScenarioBody = true;
-                            
-                            strBody += word;
-                            strBody += " ";
+
+                            strBody = addWordFollowedBySpaceCharacter(strBody, word);
                         }
+                        bPartOfExample = false;
                     }
                     break;
                     case "|":
@@ -137,8 +139,7 @@ namespace FeatureExtractor
                             strPartOfExample = "";
                         }
                         bPartOfExample = true;
-                        strBody += word;
-                        strBody += " ";
+                        strBody = addWordFollowedBySpaceCharacter(strBody, word);
                     }
                     break;
                     case " ":
@@ -160,18 +161,15 @@ namespace FeatureExtractor
                         }
                         if (bIsScenarioTitle == true && bPartOfExample == false)
                         {
-                            strTitle += word;
-                            strTitle += " ";
+                            strTitle = addWordFollowedBySpaceCharacter(strTitle, word);
                         }
                         if (bIsScenarioBody == true && bPartOfExample == false)
                         {
-                            strBody += word;
-                            strBody += " ";
+                            strBody = addWordFollowedBySpaceCharacter(strBody, word);
                         }
                         if(bPartOfExample == true)
                         {
-                            strPartOfExample += word;
-                            strPartOfExample += " ";
+                            strPartOfExample = addWordFollowedBySpaceCharacter(strPartOfExample, word);
                         }
                         strLastWord = word;
                     }
@@ -182,6 +180,13 @@ namespace FeatureExtractor
             {
                 scenarios.Add(new Scenario(strTitle.TrimEnd(' ').TrimStart(' '), strBody.TrimEnd(' ').TrimStart(' ')));
             }
+        }
+
+        private static string addWordFollowedBySpaceCharacter(string strBody, string word)
+        {
+            strBody += word.TrimEnd('\x00A0');
+            strBody += " ";
+            return strBody;
         }
     }
 }

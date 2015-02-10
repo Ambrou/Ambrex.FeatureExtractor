@@ -80,8 +80,6 @@ namespace FeatureExtractor.Tests
 
         }
 
-
-
         [TestMethod]
         public void TestExtractIssue4()
         {
@@ -103,6 +101,27 @@ namespace FeatureExtractor.Tests
 
             Assert.AreEqual("Etant donné les données Ethernet dans la configuration TeTriS <etat> Lorsque TeTriS initialise le materiel Alors j’ai la boite d’initialisation hardware avec l’information Ethernet board setting : <resultat> Exemples : | etat | resultat | | inexistantes | not done | | vides | not done | | erronées | error |", extractedRequirements["ESD-TXL-TeTriS-008"].m_Scenarios[1].m_strSteps);
             Assert.AreEqual("Vérification de la configuration de la carte réseau avec configuration insuffisante", extractedRequirements["ESD-TXL-TeTriS-008"].m_Scenarios[1].m_strTitle);
+
+        }
+
+        [TestMethod]
+        public void TestExtractIssue5()
+        {
+            // Arrange
+            Extractor extractor = new Extractor();
+            Dictionary<string, Tuple<string, string>> requirements = new Dictionary<string, Tuple<string, string>>();
+            requirements.Add("ESD-TXL-TeTriS-081", new Tuple<string, string>("Envoi de commandes au détecteur [p.362]", "Contexte:     Etant donné un interpreteur TCL     Scénario: Envoi d’une commande au détecteur avec formatage de la réponse     Soit un détecteur de generation 3     Et la configuration detecteur definissant la commande : | en-tete | valeur | titre            | val_arg | format                      | | II      | 0x24   | Info Temperature | 0x600   | Temperature 0xs2 Range 0xu1 |     Et le detecteur renvoie comme reponse 00170102     Lorsque j’appelle le mot clef pxSend 0x24 0x600 true     Alors j’ai la trace d’information : II – Info Temperature\n      Et j’ai la reponse TCL {Temperature 0x0117 Range 0x02}     Et le script retourne TCL_OK  "));
+
+            // Act
+            Dictionary<string, Requirement> extractedRequirements = extractor.extract(requirements);
+
+            // Assert
+            Assert.AreEqual(1, extractedRequirements["ESD-TXL-TeTriS-081"].m_Scenarios.Count);
+
+            Assert.AreEqual("Etant donné un interpreteur TCL", extractedRequirements["ESD-TXL-TeTriS-081"].m_strContext);
+
+            Assert.AreEqual("Soit un détecteur de generation 3 Et la configuration detecteur definissant la commande : | en-tete | valeur | titre | val_arg | format | | II | 0x24 | Info Temperature | 0x600 | Temperature 0xs2 Range 0xu1 | Et le detecteur renvoie comme reponse 00170102 Lorsque j’appelle le mot clef pxSend 0x24 0x600 true Alors j’ai la trace d’information : II – Info Temperature\n Et j’ai la reponse TCL {Temperature 0x0117 Range 0x02} Et le script retourne TCL_OK", extractedRequirements["ESD-TXL-TeTriS-081"].m_Scenarios[0].m_strSteps);
+            Assert.AreEqual("Envoi d’une commande au détecteur avec formatage de la réponse", extractedRequirements["ESD-TXL-TeTriS-081"].m_Scenarios[0].m_strTitle);
 
         }
     }
