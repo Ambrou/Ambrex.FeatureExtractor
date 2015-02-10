@@ -152,7 +152,7 @@ namespace FeatureExtractor
                             }
 
                             bExampleParameterStarted = true;
-                            if (bExampleEmpty == true)
+                            if (bExampleEmpty == true && sizeColums.Count < iIndexColumn)
                             {
                                 strTable = strTable.TrimEnd(' ');
                                 strTable += "\n";

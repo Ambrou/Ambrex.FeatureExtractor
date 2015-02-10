@@ -119,7 +119,7 @@ namespace FeatureExtractor.Tests
         }
 
         [TestMethod]
-        public void TestFeatureIssue7()
+        public void TestFeatureTransformerIssue7()
         {
             // Arrange
             FeatureTransformer transformer = new FeatureTransformer();
@@ -140,7 +140,7 @@ namespace FeatureExtractor.Tests
         }
 
         [TestMethod]
-        public void TestFeatureIssue8()
+        public void TestFeatureTransformerIssue8()
         {
             // Arrange
             FeatureTransformer transformer = new FeatureTransformer();
@@ -159,7 +159,7 @@ namespace FeatureExtractor.Tests
         }
 
         [TestMethod]
-        public void TestFeatureIssue8_bis()
+        public void TestFeatureTransformerIssue8_bis()
         {
             // Arrange
             FeatureTransformer transformer = new FeatureTransformer();
@@ -178,7 +178,7 @@ namespace FeatureExtractor.Tests
         }
 
         [TestMethod]
-        public void TestFeatureIssue9()
+        public void TestFeatureTransformerIssue9()
         {
             // Arrange
             FeatureTransformer transformer = new FeatureTransformer();
@@ -194,6 +194,25 @@ namespace FeatureExtractor.Tests
 
             // Assert
             Assert.AreEqual("Soit la configuration detecteur definissant les modes :\n| mode |\n| 1    |\n| 7    |\n| 4    |\n| 3    |\nQuand j'affiche le menu <menu>\nAlors les modes et leurs informations sont affiches dans l'ordre :\n| mode |\n| 1    |\n| 3    |\n| 4    |\n| 7    |\nExemples:\n| menu                             |\n| Detector->Control->Select Mode   |\n| mode de la barre de mode         |\n| mode de la barre de mode etendue |", requirement.m_Scenarios[0].m_strSteps);
+        }
+
+        [TestMethod]
+        public void TestFeatureTransformerWithTableWithEmptyCase()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "";
+            Scenario scenario = new Scenario("", "Etant donné la configuration detecteur définissant les tables <table> Quand j'affiche le menu <menu> Alors les tables affichees sont dans l'ordre <ordre> Exemple: | table | menu | ordre | | 1 7 4 3 | Detector->Control->Select Table | 1 3 4 7 | | | Detector->Control->Select Table | | | 1 7 4 3 | table de la barre de mode | 1 3 4 7 | | | table de la barre de mode | | | 1 7 4 3 | table de la barre de mode etendue | 1 3 4 7 | | | table de la barre de mode etendue | |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit la configuration detecteur definissant les tables <table>\nQuand j'affiche le menu <menu>\nAlors les tables affichees sont dans l'ordre <ordre>\nExemples:\n| table   | menu                              | ordre   |\n| 1 7 4 3 | Detector->Control->Select Table   | 1 3 4 7 |\n|         | Detector->Control->Select Table   |         |\n| 1 7 4 3 | table de la barre de mode         | 1 3 4 7 |\n|         | table de la barre de mode         |         |\n| 1 7 4 3 | table de la barre de mode etendue | 1 3 4 7 |\n|         | table de la barre de mode etendue |         |", requirement.m_Scenarios[0].m_strSteps);
         }
     }
 }
