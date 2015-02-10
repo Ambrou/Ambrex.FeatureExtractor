@@ -52,6 +52,10 @@ namespace FeatureExtractor
                     case "Contexte:":
                         {
                             bIsContext = true;
+                            if (strContext.Length != 0)
+                            {
+                                strContext += " ";
+                            }
                         }
                         break;
                     case "Scénario:":

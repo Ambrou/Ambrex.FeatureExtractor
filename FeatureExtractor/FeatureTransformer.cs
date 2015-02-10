@@ -99,11 +99,9 @@ namespace FeatureExtractor
                             transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
                             if (newText.Length != 0)
                             {
-                                newText = newText.TrimEnd(' ');
-                                newText += "\n";
+                                newText = addNewLine(newText);
                             }
-                            newText += word;
-                            newText += " ";
+                            newText = addWordFollowedBySpaceCharacter(newText, word);
                             bDoublePointOccurs = false;
                             bPipeOccurs = false;
                         }
@@ -160,13 +158,11 @@ namespace FeatureExtractor
                             }
                             if (bWriteInTable == true)
                             {
-                                strTable += word;
-                                strTable += " ";
+                                strTable = addWordFollowedBySpaceCharacter(strTable, word);
                             }
                             else
                             {
-                                newText += word;
-                                newText += " ";
+                                newText = addWordFollowedBySpaceCharacter(newText, word);
                             }
                             
                             bExampleEmpty = true;
@@ -199,8 +195,7 @@ namespace FeatureExtractor
                                 {
                                     sizeColums[iIndexColumn] = iSizeColumn;
                                 }
-                                strTable += word;
-                                strTable += " ";
+                                strTable = addWordFollowedBySpaceCharacter(strTable, word);
                             }
                             else
                             {

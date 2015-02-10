@@ -138,5 +138,43 @@ namespace FeatureExtractor.Tests
             Assert.AreEqual("Soit la premiere ligne du fichier Fit1.fit ne contenant pas <ligne>\nEt le reste du fichier contenant\n| [Single/Serial Exposure]   |\n| FX128= 1 1 1 70 100 60 100 |\nEt un generateur <type>\nLorsque je charge ce fichier depuis l'IHM\nAlors j'ai la boite de dialogue en erreur avec le message: IDS_ERR_LOAD_FIT_FILE_WRONG_HEADER\nExemples:\n| ligne              | type                           |\n| ; TeTriS LWDR file | Philips avec le protocole LWDR |\n| ; XSTREAM FIT file | NO                             |\n| ; XSTREAM FIT file | philips avec le protocole SDL  |", requirement.m_Scenarios[0].m_strSteps);
             Assert.AreEqual(" éàèùëïäöêô’", requirement.m_Scenarios[0].m_strTitle);
         }
+
+        [TestMethod]
+        public void TestFeatureIssue8()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "Soit un interpreteur TCL Soit un interpreteur TCL";
+            Scenario scenario = new Scenario(" éàèùëïäöêô’", "Etant donné la première ligne du fichier Fit1.fit ne contenant pas <ligne> Et le reste du fichier contenant | [Single/Serial Exposure] | | FX128= 1 1 1 70 100 60 100 | Et un générateur <type> Lorsque je charge ce fichier depuis l’IHM Alors j’ai la boîte de dialogue en erreur avec le message: IDS_ERR_LOAD_FIT_FILE_WRONG_HEADER Exemples: | ligne | type | | ; TeTriS LWDR file | Philips avec le protocole LWDR | | ; XSTREAM FIT file | NO | | ; XSTREAM FIT file | philips avec le protocole SDL |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit un interpreteur TCL\nSoit un interpreteur TCL", requirement.m_strContext);
+        }
+
+        [TestMethod]
+        public void TestFeatureIssue8_bis()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "Soit un interpreteur TCL Soit une IHM";
+            Scenario scenario = new Scenario(" éàèùëïäöêô’", "Etant donné la première ligne du fichier Fit1.fit ne contenant pas <ligne> Et le reste du fichier contenant | [Single/Serial Exposure] | | FX128= 1 1 1 70 100 60 100 | Et un générateur <type> Lorsque je charge ce fichier depuis l’IHM Alors j’ai la boîte de dialogue en erreur avec le message: IDS_ERR_LOAD_FIT_FILE_WRONG_HEADER Exemples: | ligne | type | | ; TeTriS LWDR file | Philips avec le protocole LWDR | | ; XSTREAM FIT file | NO | | ; XSTREAM FIT file | philips avec le protocole SDL |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit un interpreteur TCL\nSoit une IHM", requirement.m_strContext);
+        }
     }
 }
