@@ -75,8 +75,6 @@ namespace FeatureExtractor.Tests
             Assert.AreEqual("Vérification de la configuration de la carte réseau", requirement.m_Scenarios[0].m_strTitle);          
         }
 
-
-
         [TestMethod]
         public void TestFeatureTransformerIssue5()
         {
@@ -98,7 +96,6 @@ namespace FeatureExtractor.Tests
             Assert.AreEqual("Vérification de la configuration de la carte réseau", requirement.m_Scenarios[0].m_strTitle);
         }
 
-
         [TestMethod]
         public void TestFeatureTransformerWithOutSpaceBetweenPipeInTable()
         {
@@ -117,6 +114,28 @@ namespace FeatureExtractor.Tests
             // Assert
             Assert.AreEqual("Soit un interpreteur de script eaeueiaoeo'", requirement.m_strContext);
             Assert.AreEqual("Soit un detecteur de type type\nLorsque j'appelle le mot clef pxSetEnergyParameters autoswitch rechargetrigger lowleveltriggerwakeup lowleveltriggerstartimage securitytemperature dateofexchangeweek dateofexchangeyear launchcalibration\nAlors j'ai la trace d'erreur numero IDS_TCL_ERR_PX_SET_ENERGY_PARAMETERS_WRONG_ARG.\nEt le script retourne TCL_KO\nExemples:\n| type         | autoswitch | rechargetrigger | lowleveltriggerwakeup | lowleveltriggerstartimage | securitytemperature | dateofexchangeweek | dateofexchangeyear | launchcalibration |\n| 4600         | G          | 2               | 3                     | 4                         | 5                   | 6                  | 7                  | 8                 |\n| 4700         | 1          | 2G              | 3                     | 4                         | 5                   | 6                  | 7                  | 8                 |\n| 4800         | 1          | 2               | 3G                    | 4                         | 5                   | 6                  | 7                  | 8                 |\n| generation 3 | 1          | 2               | 3                     | 4G                        | 5                   | 6                  | 7                  | 8                 |\n| generation 2 | 1          | 2               | 3                     | 4                         | 5G                  | 6                  | 7                  | 8                 |\n| 4800         | 1          | 2               | 3                     | 4                         | 5                   | 6G                 | 7                  | 8                 |\n| generation 3 | 1          | 2               | 3                     | 4                         | 5                   | 6                  | 7G                 | 8                 |\n| generation 2 | 1          | 2               | 3                     | 4                         | 5                   | 6                  | 7                  | G                 |", requirement.m_Scenarios[0].m_strSteps);
+            Assert.AreEqual(" éàèùëïäöêô’", requirement.m_Scenarios[0].m_strTitle);
+            
+        }
+
+        [TestMethod]
+        public void TestFeatureIssue7()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "Étant donné un interpréteur de script éàèùëïäöêô’";
+            Scenario scenario = new Scenario(" éàèùëïäöêô’", "Etant donné la première ligne du fichier Fit1.fit ne contenant pas <ligne> Et le reste du fichier contenant | [Single/Serial Exposure] | | FX128= 1 1 1 70 100 60 100 | Et un générateur <type> Lorsque je charge ce fichier depuis l’IHM Alors j’ai la boîte de dialogue en erreur avec le message: IDS_ERR_LOAD_FIT_FILE_WRONG_HEADER Exemples: | ligne | type | | ; TeTriS LWDR file | Philips avec le protocole LWDR | | ; XSTREAM FIT file | NO | | ; XSTREAM FIT file | philips avec le protocole SDL |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit un interpreteur de script eaeueiaoeo'", requirement.m_strContext);
+            Assert.AreEqual("Soit la premiere ligne du fichier Fit1.fit ne contenant pas <ligne>\nEt le reste du fichier contenant\n| [Single/Serial Exposure]   |\n| FX128= 1 1 1 70 100 60 100 |\nEt un generateur <type>\nLorsque je charge ce fichier depuis l'IHM\nAlors j'ai la boite de dialogue en erreur avec le message: IDS_ERR_LOAD_FIT_FILE_WRONG_HEADER\nExemples:\n| ligne              | type                           |\n| ; TeTriS LWDR file | Philips avec le protocole LWDR |\n| ; XSTREAM FIT file | NO                             |\n| ; XSTREAM FIT file | philips avec le protocole SDL  |", requirement.m_Scenarios[0].m_strSteps);
             Assert.AreEqual(" éàèùëïäöêô’", requirement.m_Scenarios[0].m_strTitle);
         }
     }

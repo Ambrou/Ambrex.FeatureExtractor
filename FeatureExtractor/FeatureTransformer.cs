@@ -47,6 +47,7 @@ namespace FeatureExtractor
             strText = strText.Replace("ë", "e");
             strText = strText.Replace("ö", "o");
             strText = strText.Replace("ï", "i");
+            strText = strText.Replace("î", "i");
             strText = strText.Replace("ä", "a");
             strText = strText.Replace("–", "-");
         }
@@ -173,6 +174,7 @@ namespace FeatureExtractor
                         }
                         break;
                     case ":":
+                    case "contenant":
                         {
                             bDoublePointOccurs = true;
                             newText = addWordFollowedBySpaceCharacter(newText, word);
