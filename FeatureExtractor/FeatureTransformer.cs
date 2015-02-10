@@ -28,6 +28,11 @@ namespace FeatureExtractor
 
         private void removeSpicyCharacters(ref string strText)
         {
+
+            // Transform the blank character before the : character
+            strText = strText.Replace(" ", " ");
+            strText = strText.Replace("Exemples :", "Exemples:");
+            strText = strText.Replace("Exemple :", "Exemples:");
             strText = strText.Replace("Etant donné", "Soit");
             strText = strText.Replace("Étant donné", "Soit");
             strText = strText.Replace("é", "e");
@@ -42,8 +47,6 @@ namespace FeatureExtractor
             strText = strText.Replace("ö", "o");
             strText = strText.Replace("ï", "i");
             strText = strText.Replace("ä", "a");
-            // Transform the blank character before the : character
-            strText = strText.Replace(" ", " ");
         }
 
         private void formatSteps(ref string strText)
@@ -69,7 +72,7 @@ namespace FeatureExtractor
                     case "Alors":
                     case "Et":
                         {
-                            transformTable(ref bWriteInTable, ref iIndexColumn, sizeColums, ref newText, ref strTable);
+                            transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
                             if (newText.Length != 0)
                             {
                                 newText = newText.TrimEnd(' ');
@@ -187,7 +190,7 @@ namespace FeatureExtractor
                         break;
                 }
             }
-            transformTable(ref bWriteInTable, ref iIndexColumn, sizeColums, ref newText, ref strTable);
+            transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
             
             strText = newText.TrimEnd(' ');
         }
@@ -206,7 +209,7 @@ namespace FeatureExtractor
             return strText;
         }
 
-        private static void transformTable(ref bool bWriteInTable, ref int iIndexColumn, Dictionary<int, int> sizeColums, ref string newText, ref string strTable)
+        private static void transformTable(ref bool bWriteInTable, ref int iIndexColumn, ref Dictionary<int, int> sizeColums, ref string newText, ref string strTable)
         {
             if (strTable.TrimEnd(' ').Length != 0)
             {
@@ -243,6 +246,9 @@ namespace FeatureExtractor
                 newText += strTemp;
                 strTable = "";
                 bWriteInTable = false;
+
+                iIndexColumn = 0;
+                sizeColums = new Dictionary<int, int>();
             }
         }
     }

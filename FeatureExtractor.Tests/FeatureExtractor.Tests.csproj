@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Issue01.agex" />
+    <None Include="Issue04.agex" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
