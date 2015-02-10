@@ -95,6 +95,7 @@ namespace FeatureExtractor
                     case "Lorsque":
                     case "Alors":
                     case "Et":
+                    case "Quand":
                         {
                             transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
                             if (newText.Length != 0)
