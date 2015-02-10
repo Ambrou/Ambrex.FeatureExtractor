@@ -14,15 +14,24 @@ namespace FeatureExtractor
             foreach (var requirement in requirements)
             {
                 Requirement requirementScenario = new Requirement();
-                requirementScenario.m_strFeature = Regex.Replace(requirement.Value.Item1, " \\[p\\.[0-9]+\\]$", "");
-                //requirementScenario.m_strFeature = requirementScenario.m_strFeature.Replace('’', ' ');
+                extractFonctionnalityName(requirement, requirementScenario);
                 extractContextAndScenario(requirement.Value.Item2, ref requirementScenario.m_strContext, ref requirementScenario.m_Scenarios);
-                if (requirementScenario.m_Scenarios.Count != 0)
-                {
-                    extractedRequirements.Add(requirement.Key, requirementScenario);
-                }
+                addScenario(extractedRequirements, requirement, requirementScenario);
             }
             return extractedRequirements;
+        }
+
+        private void addScenario(Dictionary<string, Requirement> extractedRequirements, KeyValuePair<string, Tuple<string, string>> requirement, Requirement requirementScenario)
+        {
+            if (requirementScenario.m_Scenarios.Count != 0)
+            {
+                extractedRequirements.Add(requirement.Key, requirementScenario);
+            }
+        }
+
+        private void extractFonctionnalityName(KeyValuePair<string, Tuple<string, string>> requirement, Requirement requirementScenario)
+        {
+            requirementScenario.m_strFeature = Regex.Replace(requirement.Value.Item1, " \\[p\\.[0-9]+\\]$", "");
         }
 
         private void extractContextAndScenario(string strRawRequirement, ref string strContext, ref List<Scenario> scenario)
@@ -84,7 +93,6 @@ namespace FeatureExtractor
             string strLastWord = "";
             foreach (var word in words)
             {
-                //word = word.TrimEnd('\x00A0');
                 switch (word.TrimEnd('\x00A0'))
                 {
                     case "Scénario:":
