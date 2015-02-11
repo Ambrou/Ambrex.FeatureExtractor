@@ -166,6 +166,7 @@ namespace FeatureExtractor
                     break;
                     case "Résultats":
                     case "Messages":
+                    case "Message":
                     case "Accès":
                     {
                         bIsScenarioBody = false;
@@ -176,7 +177,11 @@ namespace FeatureExtractor
                     {
                         if (word == strLastWord)
                         {
-                            if (Regex.Match(word, "^[A-Z]", RegexOptions.None).Success == true)
+                            if (Regex.Match(word, "^[A-Z]", RegexOptions.None).Success == true &&
+                                Regex.Match(word, "^PX[0-9]+[A-Z]*", RegexOptions.None).Success == false &&
+                                Regex.Match(word, "^Portable2$", RegexOptions.IgnoreCase).Success == false &&
+                                Regex.Match(word, "^NO$", RegexOptions.None).Success == false &&
+                                Regex.Match(word, "^PX_TEST$", RegexOptions.None).Success == false)
                             {
                                 bIsScenarioBody = false;
                             }

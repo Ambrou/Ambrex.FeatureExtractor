@@ -272,5 +272,46 @@ namespace FeatureExtractor.Tests
             Assert.AreEqual("Soit le fichier Tetris_ImageHeader.ini contenant les informations suivantes\n| clef | nb_word | offset | masque | type |\n| MODE | 1       | 0x00   | 0x000F | dec  |\nAlors les parametres du mot clef getImagesParameters sont\n| parametres |\n| MODE       |", requirement.m_Scenarios[0].m_strSteps);
         }
 
+        [TestMethod]
+        public void TestFeatureTransformerWithExempleWithoutDoublePointButWithPipe()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "";
+            Scenario scenario = new Scenario("", "Soit un detecteur sans information de data Alors j'ai une image d'offset de reference temporaire. Exemple | data | | mode | | table |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit un detecteur sans information de data\nAlors j'ai une image d'offset de reference temporaire.\nExemples:\n| data  |\n| mode  |\n| table |", requirement.m_Scenarios[0].m_strSteps);
+        }
+
+
+
+        [TestMethod]
+        public void TestFeatureTransformerTheLastFinishByPointAndFollowedByIDS()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "";
+            Scenario scenario = new Scenario("", "Soit un sequenceur de memoire Et le script retourne TCL_KO. IDS_TCL_ERR_GET_SEQUENCES_NUMBER_INV_ARG pas d'argument requis. Usage : getSequencesNumber no argument required. Usage : getSequencesNumber");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit un sequenceur de memoire\nEt le script retourne TCL_KO.", requirement.m_Scenarios[0].m_strSteps);
+        }
+        
+
     }
 }

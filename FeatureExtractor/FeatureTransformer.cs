@@ -33,7 +33,9 @@ namespace FeatureExtractor
             strText = insertSpaceBeforeAndAfterPipe(strText);
             strText = strText.Replace(" ", " ");
             strText = strText.Replace("Exemples :", "Exemples:");
+            strText = strText.Replace("Exemple |", "Exemples: |");
             strText = strText.Replace("Exemple :", "Exemples:");
+            strText = strText.Replace("Exemple:", "Exemples:");
             strText = strText.Replace("Etant donné", "Soit");
             strText = strText.Replace("Étant donné", "Soit");
             strText = strText.Replace("é", "e");
@@ -81,6 +83,7 @@ namespace FeatureExtractor
             bool bExamplesOccurs = false;
             bool bWriteInTable = false;
             bool bPipeOccurs = false;
+            bool bEndOfLine = false;
             int iIndexColumn = 0;
             int iSizeColumn = 0;
             Dictionary<int, int> sizeColums = new Dictionary<int, int>();
@@ -105,18 +108,20 @@ namespace FeatureExtractor
                             newText = addWordFollowedBySpaceCharacter(newText, word);
                             bDoublePointOccurs = false;
                             bPipeOccurs = false;
+                            bEndOfLine = false;
                         }
                         break;
-                    case "Exemple:":
-                        {
-                            transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
-                            newText = addNewLine(newText);
-                            newText += "Exemples:\n";
-                            bDoublePointOccurs = false;
-                            bExamplesOccurs = true;
-                            bPipeOccurs = false;
-                        }
-                        break;
+                    //case "Exemple:":
+                    //    {
+                    //        transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
+                    //        newText = addNewLine(newText);
+                    //        newText += "Exemples:\n";
+                    //        bDoublePointOccurs = false;
+                    //        bExamplesOccurs = true;
+                    //        bPipeOccurs = false;
+                    //        bEndOfLine = false;
+                    //    }
+                    //    break;
                     case "Exemples:":
                         {
                             transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
@@ -126,6 +131,7 @@ namespace FeatureExtractor
                             bDoublePointOccurs = false;
                             bExamplesOccurs = true;
                             bPipeOccurs = false;
+                            bEndOfLine = false;
                         }
                         break;
                     case "|":
@@ -177,14 +183,17 @@ namespace FeatureExtractor
                     case "suivantes":
                     case "sont":
                         {
-                            if(bWriteInTable == true)
+                            if (bEndOfLine == false)
                             {
-                                strTable = addWordFollowedBySpaceCharacter(strTable, word);
-                            }
-                            else
-                            {
-                                bDoublePointOccurs = true;
-                                newText = addWordFollowedBySpaceCharacter(newText, word);
+                                if(bWriteInTable == true)
+                                {
+                                    strTable = addWordFollowedBySpaceCharacter(strTable, word);
+                                }
+                                else
+                                {
+                                    bDoublePointOccurs = true;
+                                    newText = addWordFollowedBySpaceCharacter(newText, word);
+                                }
                             }
                         }
                         break;
@@ -196,28 +205,35 @@ namespace FeatureExtractor
                         break;
                     default:
                         {
-                            if (bWriteInTable == true)
+                            if (bEndOfLine == false)
                             {
-                                iSizeColumn += word.Length + 1;
-                                if (iIndexColumn < sizeColums.Count)
+                                if (bWriteInTable == true)
                                 {
-                                    sizeColums[iIndexColumn] = Math.Max(sizeColums[iIndexColumn], iSizeColumn);
+                                    iSizeColumn += word.Length + 1;
+                                    if (iIndexColumn < sizeColums.Count)
+                                    {
+                                        sizeColums[iIndexColumn] = Math.Max(sizeColums[iIndexColumn], iSizeColumn);
+                                    }
+                                    else
+                                    {
+                                        sizeColums[iIndexColumn] = iSizeColumn;
+                                    }
+                                    strTable = addWordFollowedBySpaceCharacter(strTable, word);
                                 }
                                 else
                                 {
-                                    sizeColums[iIndexColumn] = iSizeColumn;
+                                    newText = addWordFollowedBySpaceCharacter(newText, word);
                                 }
-                                strTable = addWordFollowedBySpaceCharacter(strTable, word);
+                                if (bExampleParameterStarted == true)
+                                {
+                                    bExampleEmpty = false;
+                                }
+                                bDoublePointOccurs = false;
                             }
-                            else
+                            if (word.EndsWith(".") == true && bWriteInTable == false)
                             {
-                                newText = addWordFollowedBySpaceCharacter(newText, word);
+                                bEndOfLine = true;
                             }
-                            if (bExampleParameterStarted == true)
-                            {
-                                bExampleEmpty = false;
-                            }
-                            bDoublePointOccurs = false;
                         }
                         break;
                 }

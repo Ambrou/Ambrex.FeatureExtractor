@@ -227,8 +227,40 @@ namespace FeatureExtractor.Tests
             Assert.AreEqual("Etant donné un détecteur de génération 3 Lorsque le détecteur envoie la trame <severite><code><contexte> Alors j’ai la trace standard d'information <trace> Exemple : | severite | code | contexte | trace | | 00 | 0001 | 4465746563746F7220726561647920746F20646F20616E20696D616765 | \"Event received : Detector ready to do an image (severity: no, code: 0x100 Detector ready to do an image again )\" | | 01 | 0900 | 4465746563746F7220726561647920746F20646F20616E20696D616765 | \"Event received : Detector ready to do an image (severity: critical, code: 0x009 POST failed. At least one POST failed ) \" | | 10 | 0003 | 4465746563746F7220726561647920746F20646F20616E20696D616765 | \"Event received : Detector ready to do an image (severity: warning, code: 0x300 Network reconfiguration request )\" |", extractedRequirements["ESD-TXL-TeTriS-244"].m_Scenarios[0].m_strSteps);
         }
 
+        [TestMethod]
+        public void TestExtractExtractWithMessageAtEndOfScenario()
+        {
+            // Arrange
+            Extractor extractor = new Extractor();
+            Dictionary<string, Tuple<string, string>> requirements = new Dictionary<string, Tuple<string, string>>();
+            requirements.Add("ESD-TXL-TeTriS-304", new Tuple<string, string>("",
+                " à l’utilisateur dans la sortie des messages standards.  Spécification executable Contexte:     Soit un interpreteur TCL  Scénario: Modification des paramètres de mode     Etant donné un détecteur de génération 3     Et les paramètres de mode définis sont       | nom  |indice | etat |       | mode |  1    | N/A  |       | gain |  2    |      |       | R.L. |  6    |      |       | X.W. |  3    | N/A  |     Lorsque j'appelle le mot clef setModeParameters {{mode 1} {gain 2 N/A} {R.L. 6 N/A} {X.W. 3}}     Alors les paramètres de mode sont       | nom  |indice | etat |       | mode |  1    |      |       | gain |  2    | N/A  |       | R.L. |  6    | N/A  |       | X.W. |  3    |      |     Et le script retourne TCL_OK    Message d’information Si"));
 
-        
-        
+            // Act
+            Dictionary<string, Requirement> extractedRequirements = extractor.extract(requirements);
+
+            // Assert
+            //Assert.AreEqual(2, extractedRequirements["ESD-TXL-TeTriS-244"].m_Scenarios.Count);
+            Assert.AreEqual("Etant donné un détecteur de génération 3 Et les paramètres de mode définis sont | nom |indice | etat | | mode | 1 | N/A | | gain | 2 | | | R.L. | 6 | | | X.W. | 3 | N/A | Lorsque j'appelle le mot clef setModeParameters {{mode 1} {gain 2 N/A} {R.L. 6 N/A} {X.W. 3}} Alors les paramètres de mode sont | nom |indice | etat | | mode | 1 | | | gain | 2 | N/A | | R.L. | 6 | N/A | | X.W. | 3 | | Et le script retourne TCL_OK", extractedRequirements["ESD-TXL-TeTriS-304"].m_Scenarios[0].m_strSteps);
+        }
+
+
+
+        [TestMethod]
+        public void TestExtractExtractWithWordRepeatInTable()
+        {
+            // Arrange
+            Extractor extractor = new Extractor();
+            Dictionary<string, Tuple<string, string>> requirements = new Dictionary<string, Tuple<string, string>>();
+            requirements.Add("ESD-TXL-TeTriS-304", new Tuple<string, string>("",
+                "Scénario: Définition du type de détecteur     Etant donné le fichier Tetris_Configuration.ini qui définit un détecteur Active Detector et un sous type Active Sub-Detector     Lorsque je cree le detecteur     Alors le detecteur est de type detecteur Exemple:     | Active Detector | Active Sub-Detector | detecteur |     | GEN3            | 2121aSi             | 2121aSi   |     | GEN3            | PX3040              | PX3040    |     | GEN3            | 2020C               | 2020C     |     | GEN3            | 2121C               | 2121C     |     | Gen3            | Portable2           | Portable2 |     | PX3040          | Portable2           | PX3040    |     | PX3040          |                     | PX3040    |     | FS36            | tototo              | FS36      |     | NO              |                     | NO        |     | PORTABLE2       |                     | PORTABLE2 |     | PX_TEST         |                     | PX_TEST   |     | PX2020C         |                     | PX2020C   |     | PX2630          |                     | PX2630    |     | PX3040          |                     | PX3040    |     | PX4143R         |                     | PX4143R   |     | PX4343F-3       |                     | PX4343F-3 |     | PX4343R         |                     | PX4343R   |     | PX4600          |                     | PX4600    |     | PX4700          |                     | PX4700    |     | PX4700-6        |                     | PX4700-6  |     | PX4800          |                     | PX4800    |     | PX5100          |                     | PX5100    |     | PX5500          |                     | PX5500    |     | PX2121C         |                     | PX2020C   |"));
+
+            // Act
+            Dictionary<string, Requirement> extractedRequirements = extractor.extract(requirements);
+
+            // Assert
+            //Assert.AreEqual(2, extractedRequirements["ESD-TXL-TeTriS-244"].m_Scenarios.Count);
+            Assert.AreEqual("Etant donné le fichier Tetris_Configuration.ini qui définit un détecteur Active Detector et un sous type Active Sub-Detector Lorsque je cree le detecteur Alors le detecteur est de type detecteur Exemple: | Active Detector | Active Sub-Detector | detecteur | | GEN3 | 2121aSi | 2121aSi | | GEN3 | PX3040 | PX3040 | | GEN3 | 2020C | 2020C | | GEN3 | 2121C | 2121C | | Gen3 | Portable2 | Portable2 | | PX3040 | Portable2 | PX3040 | | PX3040 | | PX3040 | | FS36 | tototo | FS36 | | NO | | NO | | PORTABLE2 | | PORTABLE2 | | PX_TEST | | PX_TEST | | PX2020C | | PX2020C | | PX2630 | | PX2630 | | PX3040 | | PX3040 | | PX4143R | | PX4143R | | PX4343F-3 | | PX4343F-3 | | PX4343R | | PX4343R | | PX4600 | | PX4600 | | PX4700 | | PX4700 | | PX4700-6 | | PX4700-6 | | PX4800 | | PX4800 | | PX5100 | | PX5100 | | PX5500 | | PX5500 | | PX2121C | | PX2020C |", extractedRequirements["ESD-TXL-TeTriS-304"].m_Scenarios[0].m_strSteps);
+        }
     }
 }
