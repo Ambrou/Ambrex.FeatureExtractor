@@ -128,6 +128,7 @@ namespace FeatureExtractor
                     break;
                     case "Lorsque":
                     case "Et":
+                    case "Alors":
                     {
                         if (bIsScenarioTitle == true || bIsScenarioBody == true)
                         {
@@ -165,6 +166,7 @@ namespace FeatureExtractor
                     break;
                     case "Résultats":
                     case "Messages":
+                    case "Accès":
                     {
                         bIsScenarioBody = false;
                         bPartOfExample = false;
