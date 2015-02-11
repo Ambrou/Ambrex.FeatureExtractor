@@ -214,5 +214,24 @@ namespace FeatureExtractor.Tests
             // Assert
             Assert.AreEqual("Soit la configuration detecteur definissant les tables <table>\nQuand j'affiche le menu <menu>\nAlors les tables affichees sont dans l'ordre <ordre>\nExemples:\n| table   | menu                              | ordre   |\n| 1 7 4 3 | Detector->Control->Select Table   | 1 3 4 7 |\n|         | Detector->Control->Select Table   |         |\n| 1 7 4 3 | table de la barre de mode         | 1 3 4 7 |\n|         | table de la barre de mode         |         |\n| 1 7 4 3 | table de la barre de mode etendue | 1 3 4 7 |\n|         | table de la barre de mode etendue |         |", requirement.m_Scenarios[0].m_strSteps);
         }
+
+        [TestMethod]
+        public void TestFeatureTransformerIssue10()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "";
+            Scenario scenario = new Scenario("", "Etant donné un détecteur de type <type> Et l’etat de connexion du detecteur est <etat> Alors l’entrée Detector -> Setup -> DefectMap -> Erase est <etat_menu>. Exemple: | type | etat | etat_menu | | PX4600 | connecte | actif | | PX4700-6 | connecte | actif | | PX4700-2 | connecte | inactif | | PX4700 | connecte | inactif | | PX4800 | connecte | inactif | | gen3 | connecte | inactif | | PX3040 | connecte | inactif | | PX2020C | connecte | inactif | | PX2121C | connecte | inactif | | Portable2 | connecte | inactif | | PX2630 | connecte | actif | | PX5100 | connecte | actif | | PX5500 | connecte | actif | | PXFS36 | connecte | actif | | PX4143R | connecte | actif | | PX4343R | connecte | actif | | PX4343F-3 | connecte | actif | | materiel | deconnecte | inactif |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit un detecteur de type <type>\nEt l'etat de connexion du detecteur est <etat>\nAlors l'entree Detector -> Setup -> DefectMap -> Erase est <etat_menu>.\nExemples:\n| type      | etat       | etat_menu |\n| PX4600    | connecte   | actif     |\n| PX4700-6  | connecte   | actif     |\n| PX4700-2  | connecte   | inactif   |\n| PX4700    | connecte   | inactif   |\n| PX4800    | connecte   | inactif   |\n| gen3      | connecte   | inactif   |\n| PX3040    | connecte   | inactif   |\n| PX2020C   | connecte   | inactif   |\n| PX2121C   | connecte   | inactif   |\n| Portable2 | connecte   | inactif   |\n| PX2630    | connecte   | actif     |\n| PX5100    | connecte   | actif     |\n| PX5500    | connecte   | actif     |\n| PXFS36    | connecte   | actif     |\n| PX4143R   | connecte   | actif     |\n| PX4343R   | connecte   | actif     |\n| PX4343F-3 | connecte   | actif     |\n| materiel  | deconnecte | inactif   |", requirement.m_Scenarios[0].m_strSteps);
+        }
     }
 }

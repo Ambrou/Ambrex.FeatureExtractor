@@ -176,5 +176,21 @@ namespace FeatureExtractor.Tests
             // Assert
             Assert.AreEqual("Soit un interpreteur TCL Soit un interpreteur TCL", extractedRequirements["ESD-TXL-TeTriS-036"].m_strContext);
         }
+
+        [TestMethod]
+        public void TestExtractIssue10()
+        {
+            // Arrange
+            Extractor extractor = new Extractor();
+            Dictionary<string, Tuple<string, string>> requirements = new Dictionary<string, Tuple<string, string>>();
+            requirements.Add("ESD-TXL-TeTriS-067", new Tuple<string, string>("Ouverture d’un document de type FIT [p.153]",
+                "Scénario: Etat de l’entrée Detector -> Setup -> DefectMap -> Erase Etant donné un détecteur de type <type>     Et l’etat de connexion du detecteur est <etat>     Alors l’entrée Detector -> Setup -> DefectMap -> Erase est <etat_menu>. Exemple:     | type      | etat       | etat_menu |     | PX4600    | connecte   | actif     |     | PX4700-6  | connecte   | actif     |     | PX4700-2  | connecte   | inactif   |     | PX4700    | connecte   | inactif   |     | PX4800    | connecte   | inactif   |     | gen3      | connecte   | inactif   |     | PX3040    | connecte   | inactif   |     | PX2020C   | connecte   | inactif   |     | PX2121C   | connecte   | inactif   |     | Portable2 | connecte   | inactif   |     | PX2630    | connecte   | actif     |     | PX5100    | connecte   | actif     |     | PX5500    | connecte   | actif     |     | PXFS36    | connecte   | actif     |     | PX4143R   | connecte   | actif     |     | PX4343R   | connecte   | actif     |     | PX4343F-3 | connecte   | actif     |     | materiel  | deconnecte | inactif   |   Messages d’erreur Si l’effacement échoue : \"DefectMap handle n erasing failed\" où n est le handle de la defect map.  Accès à la fonctionnalité depuis un script TCL Conditions Syntaxe :  pxEraseDefectMap {liste d’index} Arguments : {liste d’index}: liste de valeurs indiquant les defect map à effacer. La liste contient les index de la defect map. La liste d’index pour le 4700-6 représente les valeurs de handle de fichier [20-24 ;30-39], alors que pour les autres cette liste représente les index de defect map [0-3]. Pour le 4600 et 5500 l’index de defect map n’a pas de sens. Pour effacer les defectmap de ces derniers il faut utiliser -1 comme index Résumé : Efface les defects map listées. Résultats attendus Efface les defects map contenues dans la liste. Si la liste a pour valeur -1 alors toutes les defects maps sont effacées.       "));
+
+            // Act
+            Dictionary<string, Requirement> extractedRequirements = extractor.extract(requirements);
+
+            // Assert
+            Assert.AreEqual("Etant donné un détecteur de type <type> Et l’etat de connexion du detecteur est <etat> Alors l’entrée Detector -> Setup -> DefectMap -> Erase est <etat_menu>. Exemple: | type | etat | etat_menu | | PX4600 | connecte | actif | | PX4700-6 | connecte | actif | | PX4700-2 | connecte | inactif | | PX4700 | connecte | inactif | | PX4800 | connecte | inactif | | gen3 | connecte | inactif | | PX3040 | connecte | inactif | | PX2020C | connecte | inactif | | PX2121C | connecte | inactif | | Portable2 | connecte | inactif | | PX2630 | connecte | actif | | PX5100 | connecte | actif | | PX5500 | connecte | actif | | PXFS36 | connecte | actif | | PX4143R | connecte | actif | | PX4343R | connecte | actif | | PX4343F-3 | connecte | actif | | materiel | deconnecte | inactif |", extractedRequirements["ESD-TXL-TeTriS-067"].m_Scenarios[0].m_strSteps);
+        }
     }
 }

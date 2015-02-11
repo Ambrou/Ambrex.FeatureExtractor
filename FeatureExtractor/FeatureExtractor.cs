@@ -145,13 +145,16 @@ namespace FeatureExtractor
                     break;
                     case "|":
                     {
-                        if (bPartOfExample == true)
+                        if (bIsScenarioBody == true)
                         {
-                            strBody += strPartOfExample;
-                            strPartOfExample = "";
+                            if (bPartOfExample == true)
+                            {
+                                strBody += strPartOfExample;
+                                strPartOfExample = "";
+                            }
+                            bPartOfExample = true;
+                            strBody = addWordFollowedBySpaceCharacter(strBody, word);
                         }
-                        bPartOfExample = true;
-                        strBody = addWordFollowedBySpaceCharacter(strBody, word);
                     }
                     break;
                     case " ":
@@ -161,8 +164,10 @@ namespace FeatureExtractor
                     }
                     break;
                     case "Résultats":
+                    case "Messages":
                     {
                         bIsScenarioBody = false;
+                        bPartOfExample = false;
                     }
                     break;
                     default:
@@ -182,7 +187,7 @@ namespace FeatureExtractor
                         {
                             strBody = addWordFollowedBySpaceCharacter(strBody, word);
                         }
-                        if(bPartOfExample == true)
+                        if (bIsScenarioBody == true && bPartOfExample == true)
                         {
                             strPartOfExample = addWordFollowedBySpaceCharacter(strPartOfExample, word);
                         }
