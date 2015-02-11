@@ -253,5 +253,24 @@ namespace FeatureExtractor.Tests
             Assert.AreEqual("Soit un detecteur de generation 3\nLorsque le detecteur envoie la trame <severite><code><contexte>\nAlors j'ai la trace standard d'information <trace>\nExemples:\n| severite | code | contexte                                                   | trace                                                                                                                    |\n| 00       | 0001 | 4465746563746F7220726561647920746F20646F20616E20696D616765 | \"Event received : Detector ready to do an image (severity: no, code: 0x100 Detector ready to do an image again )\"        |\n| 01       | 0900 | 4465746563746F7220726561647920746F20646F20616E20696D616765 | \"Event received : Detector ready to do an image (severity: critical, code: 0x009 POST failed. At least one POST failed ) \" |\n| 10       | 0003 | 4465746563746F7220726561647920746F20646F20616E20696D616765 | \"Event received : Detector ready to do an image (severity: warning, code: 0x300 Network reconfiguration request )\"       |", requirement.m_Scenarios[0].m_strSteps);
         }
 
+        [TestMethod]
+        public void TestFeatureTransformerWithTableAfterSontOrSuivantes()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "";
+            Scenario scenario = new Scenario("", "Etant donné le fichier Tetris_ImageHeader.ini contenant les informations suivantes | clef              | nb_word |   offset   |  masque   | type |    | MODE              |    1    |    0x00    |    0x000F | dec  | Alors les paramètres du mot clef getImagesParameters sont  | parametres        |    | MODE              |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit le fichier Tetris_ImageHeader.ini contenant les informations suivantes\n| clef | nb_word | offset | masque | type |\n| MODE | 1       | 0x00   | 0x000F | dec  |\nAlors les parametres du mot clef getImagesParameters sont\n| parametres |\n| MODE       |", requirement.m_Scenarios[0].m_strSteps);
+        }
+
     }
 }

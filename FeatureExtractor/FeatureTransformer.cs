@@ -174,6 +174,8 @@ namespace FeatureExtractor
                         break;
                     case ":":
                     case "contenant":
+                    case "suivantes":
+                    case "sont":
                         {
                             if(bWriteInTable == true)
                             {
