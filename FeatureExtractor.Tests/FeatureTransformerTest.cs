@@ -233,5 +233,25 @@ namespace FeatureExtractor.Tests
             // Assert
             Assert.AreEqual("Soit un detecteur de type <type>\nEt l'etat de connexion du detecteur est <etat>\nAlors l'entree Detector -> Setup -> DefectMap -> Erase est <etat_menu>.\nExemples:\n| type      | etat       | etat_menu |\n| PX4600    | connecte   | actif     |\n| PX4700-6  | connecte   | actif     |\n| PX4700-2  | connecte   | inactif   |\n| PX4700    | connecte   | inactif   |\n| PX4800    | connecte   | inactif   |\n| gen3      | connecte   | inactif   |\n| PX3040    | connecte   | inactif   |\n| PX2020C   | connecte   | inactif   |\n| PX2121C   | connecte   | inactif   |\n| Portable2 | connecte   | inactif   |\n| PX2630    | connecte   | actif     |\n| PX5100    | connecte   | actif     |\n| PX5500    | connecte   | actif     |\n| PXFS36    | connecte   | actif     |\n| PX4143R   | connecte   | actif     |\n| PX4343R   | connecte   | actif     |\n| PX4343F-3 | connecte   | actif     |\n| materiel  | deconnecte | inactif   |", requirement.m_Scenarios[0].m_strSteps);
         }
+
+        [TestMethod]
+        public void TestFeatureTransformerIssue12()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "";
+            Scenario scenario = new Scenario("", "Etant donné un détecteur de génération 3 Lorsque le détecteur envoie la trame <severite><code><contexte> Alors j’ai la trace standard d'information <trace> Exemple : | severite | code | contexte | trace | | 00 | 0001 | 4465746563746F7220726561647920746F20646F20616E20696D616765 | \"Event received : Detector ready to do an image (severity: no, code: 0x100 Detector ready to do an image again )\" | | 01 | 0900 | 4465746563746F7220726561647920746F20646F20616E20696D616765 | \"Event received : Detector ready to do an image (severity: critical, code: 0x009 POST failed. At least one POST failed ) \" | | 10 | 0003 | 4465746563746F7220726561647920746F20646F20616E20696D616765 | \"Event received : Detector ready to do an image (severity: warning, code: 0x300 Network reconfiguration request )\" |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit un detecteur de generation 3\nLorsque le detecteur envoie la trame <severite><code><contexte>\nAlors j'ai la trace standard d'information <trace>\nExemples:\n| severite | code | contexte                                                   | trace                                                                                                                    |\n| 00       | 0001 | 4465746563746F7220726561647920746F20646F20616E20696D616765 | \"Event received : Detector ready to do an image (severity: no, code: 0x100 Detector ready to do an image again )\"        |\n| 01       | 0900 | 4465746563746F7220726561647920746F20646F20616E20696D616765 | \"Event received : Detector ready to do an image (severity: critical, code: 0x009 POST failed. At least one POST failed ) \" |\n| 10       | 0003 | 4465746563746F7220726561647920746F20646F20616E20696D616765 | \"Event received : Detector ready to do an image (severity: warning, code: 0x300 Network reconfiguration request )\"       |", requirement.m_Scenarios[0].m_strSteps);
+        }
+
     }
 }

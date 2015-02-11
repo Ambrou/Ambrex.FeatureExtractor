@@ -175,8 +175,15 @@ namespace FeatureExtractor
                     case ":":
                     case "contenant":
                         {
-                            bDoublePointOccurs = true;
-                            newText = addWordFollowedBySpaceCharacter(newText, word);
+                            if(bWriteInTable == true)
+                            {
+                                strTable = addWordFollowedBySpaceCharacter(strTable, word);
+                            }
+                            else
+                            {
+                                bDoublePointOccurs = true;
+                                newText = addWordFollowedBySpaceCharacter(newText, word);
+                            }
                         }
                         break;
                     case " ":
