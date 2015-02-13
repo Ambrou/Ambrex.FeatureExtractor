@@ -127,6 +127,7 @@ namespace FeatureExtractor
                     }
                     break;
                     case "Lorsque":
+                    case "Quand":
                     case "Et":
                     case "Alors":
                     {

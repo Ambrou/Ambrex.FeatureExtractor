@@ -291,8 +291,6 @@ namespace FeatureExtractor.Tests
             Assert.AreEqual("Soit un detecteur sans information de data\nAlors j'ai une image d'offset de reference temporaire.\nExemples:\n| data  |\n| mode  |\n| table |", requirement.m_Scenarios[0].m_strSteps);
         }
 
-
-
         [TestMethod]
         public void TestFeatureTransformerTheLastFinishByPointAndFollowedByIDS()
         {
@@ -311,7 +309,5 @@ namespace FeatureExtractor.Tests
             // Assert
             Assert.AreEqual("Soit un sequenceur de memoire\nEt le script retourne TCL_KO.", requirement.m_Scenarios[0].m_strSteps);
         }
-        
-
     }
 }
