@@ -75,6 +75,7 @@ namespace FeatureExtractor
             }
             return strText;
         }
+
         private void formatSteps(ref string strText)
         {
             bool bExampleParameterStarted = false;

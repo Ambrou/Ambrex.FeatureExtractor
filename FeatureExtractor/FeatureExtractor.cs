@@ -36,8 +36,31 @@ namespace FeatureExtractor
 
         private void extractContextAndScenario(string strRawRequirement, ref string strContext, ref List<Scenario> scenario)
         {
+            strRawRequirement = insertSpaceBeforeAndAfterPipe(strRawRequirement);
             extractContext(strRawRequirement, ref strContext);
             extractScenario(strRawRequirement, ref scenario);
+        }
+
+        private string insertSpaceBeforeAndAfterPipe(string strText)
+        {
+            for (int iLoop = 0; iLoop < strText.Length; ++iLoop)
+            {
+                if (iLoop < strText.Length - 1)
+                {
+                    if (strText[iLoop] == '|' && strText[iLoop + 1] != ' ')
+                    {
+                        strText = strText.Insert(iLoop + 1, " ");
+                    }
+                }
+                if (0 < iLoop)
+                {
+                    if (strText[iLoop] == '|' && strText[iLoop - 1] != ' ')
+                    {
+                        strText = strText.Insert(iLoop, " ");
+                    }
+                }
+            }
+            return strText;
         }
 
         private void extractContext(string strRawRequirement, ref string strContext)
