@@ -272,6 +272,28 @@ namespace FeatureExtractor.Tests
             Assert.AreEqual("Soit le fichier Tetris_ImageHeader.ini contenant les informations suivantes\n| clef | nb_word | offset | masque | type |\n| MODE | 1       | 0x00   | 0x000F | dec  |\nAlors les parametres du mot clef getImagesParameters sont\n| parametres |\n| MODE       |", requirement.m_Scenarios[0].m_strSteps);
         }
 
+
+
+        [TestMethod]
+        public void TestFeatureTransformerWithTableAfterSuivant()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "";
+            Scenario scenario = new Scenario("", "Etant donné le fichier Tetris_ImageHeader.ini contenant les informations suivant | clef              | nb_word |   offset   |  masque   | type |    | MODE              |    1    |    0x00    |    0x000F | dec  | Alors les paramètres du mot clef getImagesParameters sont  | parametres        |    | MODE              |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit le fichier Tetris_ImageHeader.ini contenant les informations suivant\n| clef | nb_word | offset | masque | type |\n| MODE | 1       | 0x00   | 0x000F | dec  |\nAlors les parametres du mot clef getImagesParameters sont\n| parametres |\n| MODE       |", requirement.m_Scenarios[0].m_strSteps);
+        }
+
+
         [TestMethod]
         public void TestFeatureTransformerWithExempleWithoutDoublePointButWithPipe()
         {

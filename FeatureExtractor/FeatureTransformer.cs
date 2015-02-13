@@ -182,6 +182,7 @@ namespace FeatureExtractor
                     case ":":
                     case "contenant":
                     case "suivantes":
+                    case "suivant":
                     case "sont":
                         {
                             if (bEndOfLine == false)
