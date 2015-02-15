@@ -86,7 +86,6 @@ namespace FeatureExtractor
             bool bPipeOccurs = false;
             bool bEndOfLine = false;
             int iIndexColumn = 0;
-            int iLineTable = 0;
             int iSizeColumn = 0;
             Dictionary<int, int> sizeColums = new Dictionary<int, int>();
             string[] words = strText.Split(' ');
@@ -102,7 +101,7 @@ namespace FeatureExtractor
                     case "Et":
                     case "Quand":
                         {
-                            transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable, ref iLineTable);
+                            transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
                             if (newText.Length != 0)
                             {
                                 newText = addNewLine(newText);
@@ -126,7 +125,7 @@ namespace FeatureExtractor
                     //    break;
                     case "Exemples:":
                         {
-                            transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable, ref iLineTable);
+                            transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
                             newText = addNewLine(newText);
                             newText += word;
                             newText += "\n";
@@ -166,11 +165,6 @@ namespace FeatureExtractor
                                 strTable += "\n";
                                 iIndexColumn = 0;
                                 iSizeColumn = 1;
-                                iLineTable++;
-                            }
-                            if (bExampleEmpty == false && sizeColums.Count < iIndexColumn)
-                            {
-                                transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable, ref iLineTable);
                             }
                             if (bWriteInTable == true)
                             {
@@ -217,25 +211,16 @@ namespace FeatureExtractor
                             {
                                 if (bWriteInTable == true)
                                 {
-
-                                    if (iLineTable != 0 && iIndexColumn >= sizeColums.Count)
+                                    iSizeColumn += word.Length + 1;
+                                    if (iIndexColumn < sizeColums.Count)
                                     {
-
+                                        sizeColums[iIndexColumn] = Math.Max(sizeColums[iIndexColumn], iSizeColumn);
                                     }
                                     else
                                     {
-                                        iSizeColumn += word.Length + 1;
-                                        if (iIndexColumn < sizeColums.Count)
-                                        {
-                                            sizeColums[iIndexColumn] = Math.Max(sizeColums[iIndexColumn], iSizeColumn);
-                                        }
-                                        else
-                                        {
-                                            sizeColums[iIndexColumn] = iSizeColumn;
-                                        }
-                                            strTable = addWordFollowedBySpaceCharacter(strTable, word);
+                                        sizeColums[iIndexColumn] = iSizeColumn;
                                     }
-                                    
+                                    strTable = addWordFollowedBySpaceCharacter(strTable, word);
                                 }
                                 else
                                 {
@@ -255,7 +240,7 @@ namespace FeatureExtractor
                         break;
                 }
             }
-            transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable, ref iLineTable);
+            transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
             
             strText = newText.TrimEnd(' ');
         }
@@ -274,7 +259,7 @@ namespace FeatureExtractor
             return strText;
         }
 
-        private static void transformTable(ref bool bWriteInTable, ref int iIndexColumn, ref Dictionary<int, int> sizeColums, ref string newText, ref string strTable, ref int iLineTable)
+        private static void transformTable(ref bool bWriteInTable, ref int iIndexColumn, ref Dictionary<int, int> sizeColums, ref string newText, ref string strTable)
         {
             if (strTable.TrimEnd(' ').Length != 0)
             {
@@ -318,7 +303,6 @@ namespace FeatureExtractor
 
                 iIndexColumn = 0;
                 sizeColums = new Dictionary<int, int>();
-                iLineTable = 0;
             }
         }
     }

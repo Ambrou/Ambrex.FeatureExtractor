@@ -339,7 +339,7 @@ namespace FeatureExtractor.Tests
             FeatureTransformer transformer = new FeatureTransformer();
             Requirement requirement = new Requirement();
             requirement.m_strContext = "";
-            Scenario scenario = new Scenario("", "Etant donné un générateur matériel     Lorsque j'appelle le mot clef getXGCounters <parametre>     Alors j’ai la trace d’erreur numéro IDS_ERR_TCL_GET_XG_COUNTERS_INV_ARG.     Et le script retourne TCL_KO Exemples :     | parametre    |     |              |     | small medium |  IDS_ERR_TCL_GET_XG_COUNTERS_INV_ARG  1 argument requis");
+            Scenario scenario = new Scenario("", "Etant donné un générateur matériel     Lorsque j'appelle le mot clef getXGCounters <parametre>     Alors j’ai la trace d’erreur numéro IDS_ERR_TCL_GET_XG_COUNTERS_INV_ARG.     Et le script retourne TCL_KO Exemples :     | parametre    |     |              |     | small medium |  IDS_ERR_TCL_GET_XG_COUNTERS_INV_ARG  1 argument requis.\nUsage: getXGCounters {small|medium|large}  1 argument required.\nUsage: getXGCounters {small|medium|large}");
             requirement.m_Scenarios.Add(scenario);
             Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
             Requirements["toto"] = requirement;
