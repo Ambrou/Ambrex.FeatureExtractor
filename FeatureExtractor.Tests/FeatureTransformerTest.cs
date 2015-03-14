@@ -331,24 +331,5 @@ namespace FeatureExtractor.Tests
             // Assert
             Assert.AreEqual("Soit un sequenceur de memoire\nEt le script retourne TCL_KO.", requirement.m_Scenarios[0].m_strSteps);
         }
-
-        [TestMethod]
-        public void TestFeatureTransformerIssue15()
-        {
-            // Arrange
-            FeatureTransformer transformer = new FeatureTransformer();
-            Requirement requirement = new Requirement();
-            requirement.m_strContext = "";
-            Scenario scenario = new Scenario("", "Etant donné un générateur matériel     Lorsque j'appelle le mot clef getXGCounters <parametre>     Alors j’ai la trace d’erreur numéro IDS_ERR_TCL_GET_XG_COUNTERS_INV_ARG.     Et le script retourne TCL_KO Exemples :     | parametre    |     |              |     | small medium |  IDS_ERR_TCL_GET_XG_COUNTERS_INV_ARG  1 argument requis.\nUsage: getXGCounters {small|medium|large}  1 argument required.\nUsage: getXGCounters {small|medium|large}");
-            requirement.m_Scenarios.Add(scenario);
-            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
-            Requirements["toto"] = requirement;
-
-            // Act
-            transformer.transform(Requirements);
-
-            // Assert
-            Assert.AreEqual("Soit un generateur materiel\nLorsque j'appelle le mot clef getXGCounters <parametre>\nAlors j'ai la trace d'erreur numero IDS_ERR_TCL_GET_XG_COUNTERS_INV_ARG.\nEt le script retourne TCL_KO\nExemples:\n| parametre    |\n|              |\n| small medium |", requirement.m_Scenarios[0].m_strSteps);
-        }
     }
 }

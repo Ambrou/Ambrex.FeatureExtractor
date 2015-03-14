@@ -120,9 +120,10 @@ namespace FeatureExtractor
             string strLastWord = "";
             foreach (var word in words)
             {
-                switch (word.TrimEnd('\x00A0'))
+                switch (word.Replace('\x00A0', ' '))
                 {
                     case "Scénario:":
+                    case "Scénario :":
                     {
                         bPartOfExample = false;
                         strPartOfExample = "";
@@ -192,6 +193,9 @@ namespace FeatureExtractor
                     case "Messages":
                     case "Message":
                     case "Accès":
+                    case "IDS_ERR_TCL_GET_XG_COUNTERS_INV_ARG":
+                    case "IDS_ERR_GENE_ADAPT_TUBE_X_WRONG_ARG":
+                    case "Si":
                     {
                         bIsScenarioBody = false;
                         bPartOfExample = false;

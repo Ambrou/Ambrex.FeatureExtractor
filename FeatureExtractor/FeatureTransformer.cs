@@ -52,6 +52,7 @@ namespace FeatureExtractor
             strText = strText.Replace("î", "i");
             strText = strText.Replace("ä", "a");
             strText = strText.Replace("–", "-");
+            strText = strText.Replace("ç", "c");
         }
 
         private string insertSpaceBeforeAndAfterPipe(string strText)

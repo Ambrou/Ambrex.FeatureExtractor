@@ -44,7 +44,7 @@ Scenario: Extraction de scénarios complexes
 
 
 @extraction
-Scenario: Extraction d'un plan de scénario simple sans indication de plande scénario dans le texte
+Scenario: Extraction d'un plan de scénario simple sans indication de plan de scénario dans le texte
     Given les exigences suivantes:
             | ReqID   | TEXTE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |   
             | ESD_046 |   Contexte:     Soit un interpreteur TCL  Scénario: Définition des statuts bloquant l’acquisition     Etant donné un générateur type     Et aucun statut bloquant pour l’acquisition     Lorsque j'appelle le mot clef setAcquiBlockingXGStatus parametres     Alors les statuts st sont bloquants pour l’acquisition     Et le script retourne TCL_OK Exemples:     \|  type                      \| paramètres  \| st          \|     \| Philips avec le protocole SDL  \| st1Value 32 \| st1Value 32 \| |

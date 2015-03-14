@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using TechTalk.SpecFlow;
 
 namespace FeatureExtractor.Specs.Sources
@@ -46,7 +47,7 @@ namespace FeatureExtractor.Specs.Sources
         {
             string strFile = strRequirementId + ".feature";
 
-            System.IO.StreamReader file = new System.IO.StreamReader(strFile);
+            System.IO.StreamReader file = new System.IO.StreamReader(strFile, Encoding.GetEncoding("windows-1252"));
             foreach (var row in table.Rows)
             {
                 string line = file.ReadLine();

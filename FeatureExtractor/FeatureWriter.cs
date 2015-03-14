@@ -14,7 +14,7 @@ namespace FeatureExtractor
             {
                 string strFile = Regex.Replace(pair.Key, "[a-zA-Z\\-_]", "") + ".feature";
                 //string strFile = pair.Key + ".feature";
-                System.IO.StreamWriter file = new System.IO.StreamWriter(strFile);
+                System.IO.StreamWriter file = new System.IO.StreamWriter(strFile, false, Encoding.GetEncoding("windows-1252"));
 
                 writeHeader(ref file, pair.Key, pair.Value.m_strFeature);
                 writeContext(ref file, ref pair.Value.m_strContext);
