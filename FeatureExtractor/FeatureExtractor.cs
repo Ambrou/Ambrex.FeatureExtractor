@@ -196,6 +196,7 @@ namespace FeatureExtractor
                     case "IDS_ERR_TCL_GET_XG_COUNTERS_INV_ARG":
                     case "IDS_ERR_GENE_ADAPT_TUBE_X_WRONG_ARG":
                     case "Si":
+                    case "Syntaxe":
                     {
                         bIsScenarioBody = false;
                         bPartOfExample = false;
