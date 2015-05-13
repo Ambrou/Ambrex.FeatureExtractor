@@ -331,5 +331,24 @@ namespace FeatureExtractor.Tests
             // Assert
             Assert.AreEqual("Soit un sequenceur de memoire\nEt le script retourne TCL_KO.", requirement.m_Scenarios[0].m_strSteps);
         }
+
+        [TestMethod]
+        public void TestFeatureTransformerFrenchComasToEnglishComas()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "";
+            Scenario scenario = new Scenario("", "Soit «un sequenceur» de memoire Et le script « retourne » TCL_KO.");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit \"un sequenceur\" de memoire\nEt le script \"retourne\" TCL_KO.", requirement.m_Scenarios[0].m_strSteps);
+        }
     }
 }
