@@ -312,5 +312,20 @@ namespace FeatureExtractor.Tests
             // Assert
             Assert.AreEqual("Etant donné un générateur matériel Lorsque j'appelle le mot clef getXGCounters <parametre> Alors j’ai la trace d’erreur numéro IDS_ERR_TCL_GET_XG_COUNTERS_INV_ARG. Et le script retourne TCL_KO Exemples : | parametre | | | | small medium |", extractedRequirements["ESD-TXL-TeTriS-195"].m_Scenarios[0].m_strSteps);
         }
+
+        [TestMethod]
+        public void TestExtractSameTextInColumnExample()
+        {
+            Extractor extractor = new Extractor(); Dictionary<string, Tuple<string, string>> requirements = new Dictionary<string, Tuple<string, string>>();
+            requirements.Add("ESD-TXL-TeTriS-337", new Tuple<string, string>("",
+                "Scénario: Définir un cycle image     Soit un détecteur de génération 3         Et le type de demande d’image à utiliser est défini à <type>     Lorsque je demande une image     Alors une demande <demande> de type Image Frame Request est faite Exemples : | type  | demande | | RDO   | RDO     | | RDOE  | RDOE    |"));
+
+            // Act
+            Dictionary<string, Requirement> extractedRequirements = extractor.extract(requirements);
+
+
+            // Assert
+            Assert.AreEqual("Soit un détecteur de génération 3 Et le type de demande d’image à utiliser est défini à <type> Lorsque je demande une image Alors une demande <demande> de type Image Frame Request est faite Exemples : | type | demande | | RDO | RDO | | RDOE | RDOE |", extractedRequirements["ESD-TXL-TeTriS-337"].m_Scenarios[0].m_strSteps);
+        }
     }
 }

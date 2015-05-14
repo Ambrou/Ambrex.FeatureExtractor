@@ -98,6 +98,7 @@ namespace FeatureExtractor
             string strTable = "";
             foreach (var word in words)
             {
+
                 switch (word)
                 {
                     case "Soit":
@@ -106,6 +107,10 @@ namespace FeatureExtractor
                     case "Et":
                     case "Quand":
                         {
+                            if (newText.EndsWith(".") == true || newText.EndsWith(". ") == true)
+                            {
+                                newText = newText.Remove(newText.LastIndexOf("."));
+                            }
                             transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
                             if (newText.Length != 0)
                             {
@@ -117,19 +122,12 @@ namespace FeatureExtractor
                             bEndOfLine = false;
                         }
                         break;
-                    //case "Exemple:":
-                    //    {
-                    //        transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
-                    //        newText = addNewLine(newText);
-                    //        newText += "Exemples:\n";
-                    //        bDoublePointOccurs = false;
-                    //        bExamplesOccurs = true;
-                    //        bPipeOccurs = false;
-                    //        bEndOfLine = false;
-                    //    }
-                    //    break;
                     case "Exemples:":
                         {
+                            if (newText.EndsWith(".") == true || newText.EndsWith(". ") == true)
+                            {
+                                newText = newText.Remove(newText.LastIndexOf("."));
+                            }
                             transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
                             newText = addNewLine(newText);
                             newText += word;

@@ -350,5 +350,44 @@ namespace FeatureExtractor.Tests
             // Assert
             Assert.AreEqual("Soit \"un sequenceur\" de memoire\nEt le script \"retourne\" TCL_KO.", requirement.m_Scenarios[0].m_strSteps);
         }
+
+        [TestMethod]
+        public void TestFeatureTransformerSameTextInColumnExample()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "";
+            Scenario scenario = new Scenario("", "Soit un detecteur de generation 3 Et le type de demande d'image a utiliser est defini a <type> Lorsque je demande une image Alors une demande <demande> de type Image Frame Request est faite Exemples: | type | demande | | RDO | RDOE | | RDO | RDOE |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit un detecteur de generation 3\nEt le type de demande d'image a utiliser est defini a <type>\nLorsque je demande une image\nAlors une demande <demande> de type Image Frame Request est faite\nExemples:\n| type | demande |\n| RDO  | RDOE    |\n| RDO  | RDOE    |", requirement.m_Scenarios[0].m_strSteps);
+        }
+
+        [TestMethod]
+        public void TestFeatureTransformerRemovePointAfEndOfLine()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "";
+            Scenario scenario = new Scenario("", "Soit un detecteur de generation 3. Et le type de demande d'image a utiliser est defini a <type>. Lorsque je demande une image Alors une demande <demande> de type Image.Frame.Request est faite. Exemples: | type | demande | | RDO | RDOE | | RDO | RDOE |");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["toto"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit un detecteur de generation 3\nEt le type de demande d'image a utiliser est defini a <type>\nLorsque je demande une image\nAlors une demande <demande> de type Image.Frame.Request est faite\nExemples:\n| type | demande |\n| RDO  | RDOE    |\n| RDO  | RDOE    |", requirement.m_Scenarios[0].m_strSteps);
+        }
+
     }
 }

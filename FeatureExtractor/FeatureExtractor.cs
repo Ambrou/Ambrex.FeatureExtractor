@@ -181,6 +181,7 @@ namespace FeatureExtractor
                             bPartOfExample = true;
                             strBody = addWordFollowedBySpaceCharacter(strBody, word);
                         }
+                        strLastWord = "|";
                     }
                     break;
                     case " ":
