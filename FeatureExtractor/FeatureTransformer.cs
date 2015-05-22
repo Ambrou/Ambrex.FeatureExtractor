@@ -243,6 +243,10 @@ namespace FeatureExtractor
                         break;
                 }
             }
+            if (newText.EndsWith(".") == true || newText.EndsWith(". ") == true)
+            {
+                newText = newText.Remove(newText.LastIndexOf("."));
+            }
             transformTable(ref bWriteInTable, ref iIndexColumn, ref sizeColums, ref newText, ref strTable);
             
             strText = newText.TrimEnd(' ');
