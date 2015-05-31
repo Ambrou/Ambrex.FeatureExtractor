@@ -235,7 +235,7 @@ namespace FeatureExtractor
                                 }
                                 bDoublePointOccurs = false;
                             }
-                            if (word.EndsWith(".") == true && bWriteInTable == false)
+                            if (word.EndsWith(".") == true && bWriteInTable == false && word != "{R.L." && word != "{X.W.")
                             {
                                 bEndOfLine = true;
                             }

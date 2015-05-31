@@ -118,10 +118,13 @@ namespace FeatureExtractor
             string strBody = "";
             string strPartOfExample = "";
             string strLastWord = "";
+            string strIDSFound = "";
             foreach (var word in words)
             {
+                
                 switch (word.Replace('\x00A0', ' '))
                 {
+                    case "Plan":
                     case "Scénario:":
                     case "Scénario :":
                     {
@@ -134,6 +137,7 @@ namespace FeatureExtractor
                         strTitle = "";
                         bIsScenarioTitle = true;
                         bIsScenarioBody = false;
+                        strIDSFound = "";
                     }
                     break;
                     case "Étant":
@@ -177,6 +181,7 @@ namespace FeatureExtractor
                             {
                                 strBody += strPartOfExample;
                                 strPartOfExample = "";
+                                strIDSFound = "";
                             }
                             bPartOfExample = true;
                             strBody = addWordFollowedBySpaceCharacter(strBody, word);
@@ -205,30 +210,46 @@ namespace FeatureExtractor
                     break;
                     default:
                     {
-                        if (word == strLastWord)
+                        
+                        if(strIDSFound != word.Replace('\x00A0', ' '))
                         {
-                            if (Regex.Match(word, "^[A-Z]", RegexOptions.None).Success == true &&
-                                Regex.Match(word, "^PX[0-9]+[A-Z]*", RegexOptions.None).Success == false &&
-                                Regex.Match(word, "^Portable2$", RegexOptions.IgnoreCase).Success == false &&
-                                Regex.Match(word, "^NO$", RegexOptions.None).Success == false &&
-                                Regex.Match(word, "^PX_TEST$", RegexOptions.None).Success == false)
+                            if (word == strLastWord)
                             {
-                                bIsScenarioBody = false;
+                                if (Regex.Match(word, "^[A-Z]", RegexOptions.None).Success == true &&
+                                    Regex.Match(word, "^PX[0-9]+[A-Z]*", RegexOptions.None).Success == false &&
+                                    Regex.Match(word, "^Portable2$", RegexOptions.IgnoreCase).Success == false &&
+                                    Regex.Match(word, "^NO$", RegexOptions.None).Success == false &&
+                                    Regex.Match(word, "^PX_TEST$", RegexOptions.None).Success == false)
+                                {
+                                    bIsScenarioBody = false;
+                                }
+                            }
+                            if (bIsScenarioTitle == true && bPartOfExample == false)
+                            {
+                                strTitle = addWordFollowedBySpaceCharacter(strTitle, word);
+                            }
+                            if (bIsScenarioBody == true && bPartOfExample == false)
+                            {
+                                strBody = addWordFollowedBySpaceCharacter(strBody, word);
+                            }
+                            if (bIsScenarioBody == true && bPartOfExample == true)
+                            {
+                                strPartOfExample = addWordFollowedBySpaceCharacter(strPartOfExample, word);
+                            }
+                            strLastWord = word;
+                        }
+                        else
+                        {
+                            bIsScenarioBody = false;
+                            bPartOfExample = false;
+                        }
+                        if (word.StartsWith("IDS") == true)
+                        {
+                            if (strIDSFound == "")
+                            {
+                                strIDSFound = word.Replace('\x00A0', ' ');
                             }
                         }
-                        if (bIsScenarioTitle == true && bPartOfExample == false)
-                        {
-                            strTitle = addWordFollowedBySpaceCharacter(strTitle, word);
-                        }
-                        if (bIsScenarioBody == true && bPartOfExample == false)
-                        {
-                            strBody = addWordFollowedBySpaceCharacter(strBody, word);
-                        }
-                        if (bIsScenarioBody == true && bPartOfExample == true)
-                        {
-                            strPartOfExample = addWordFollowedBySpaceCharacter(strPartOfExample, word);
-                        }
-                        strLastWord = word;
                     }
                     break;
                 }

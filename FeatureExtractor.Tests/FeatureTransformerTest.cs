@@ -408,5 +408,23 @@ namespace FeatureExtractor.Tests
             Assert.AreEqual("Soit un detecteur de generation 3\nEt le type de demande d'image a utiliser est defini a <type>\nLorsque je demande une image\nAlors une demande <demande> de type Image.Frame.Request est faite", requirement.m_Scenarios[0].m_strSteps);
         }
 
+        [TestMethod]
+        public void TestFeatureTransformerWithAPointInScenario()
+        {
+            // Arrange
+            FeatureTransformer transformer = new FeatureTransformer();
+            Requirement requirement = new Requirement();
+            requirement.m_strContext = "";
+            Scenario scenario = new Scenario("", "Etant donné un RTC de type ACQPXGen3 Lorsque j'appelle le mot clef getModeParameters Alors la trace de résultat TCL est { {mode 1} {gain 2 N/A} {R.L. 6 N/A} {X.W. 3} }");
+            requirement.m_Scenarios.Add(scenario);
+            Dictionary<string, Requirement> Requirements = new Dictionary<string, Requirement>();
+            Requirements["ESD-TXL-TeTriS-305"] = requirement;
+
+            // Act
+            transformer.transform(Requirements);
+
+            // Assert
+            Assert.AreEqual("Soit un RTC de type ACQPXGen3\nLorsque j'appelle le mot clef getModeParameters\nAlors la trace de resultat TCL est { {mode 1} {gain 2 N/A} {R.L. 6 N/A} {X.W. 3} }", requirement.m_Scenarios[0].m_strSteps);
+        }
     }
 }

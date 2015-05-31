@@ -29,6 +29,10 @@ namespace FeatureExtractor
                 else if (line.StartsWith("TEXTE= ") == true)
                 {
                     strText = line.Substring(7).TrimStart(' ').TrimEnd(' ');
+                    strText = strText.Replace("Plan du ", "");
+                    strText = strText.Replace("Plan Du ", "");
+                    strText = strText.Replace("plan du ", "");
+                    strText = strText.Replace("scénario", "Scénario");
                 }
                 if(strText != "" && strReqId != "" && strTitle != "")
                 {
