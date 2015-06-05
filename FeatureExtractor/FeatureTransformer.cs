@@ -57,6 +57,8 @@ namespace FeatureExtractor
             strText = strText.Replace(" »", "\"");
             strText = strText.Replace("«", "\"");
             strText = strText.Replace("»", "\"");
+            strText = strText.Replace("# ", "#");
+            strText = strText.Replace("#", "# ");
         }
 
         private string insertSpaceBeforeAndAfterPipe(string strText)
@@ -101,6 +103,15 @@ namespace FeatureExtractor
 
                 switch (word)
                 {
+                    case "#":
+                        {
+                            if (newText.Length != 0)
+                            {
+                                newText = addNewLine(newText);
+                            }
+                            newText = addWordFollowedBySpaceCharacter(newText, word);
+                        }
+                        break;
                     case "Soit":
                     case "Lorsque":
                     case "Alors":
